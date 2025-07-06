@@ -14,7 +14,7 @@ const TestAcceptance = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold mb-4">🧪 Test Acceptance Page</h1>
+        <h1 className="text-2xl font-bold mb-4">Test Acceptance Page</h1>
         <p className="text-gray-600 mb-4">This is a test component to verify routing works.</p>
         
         <div className="bg-blue-50 p-4 rounded-lg">

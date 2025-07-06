@@ -126,7 +126,7 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
         {/* Success Message */}
         <div className={`transition-all duration-1000 ${showMessage ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            🎉 Congratulations!
+            Congratulations!
           </h1>
           
           <p className="text-gray-600 mb-4">
@@ -148,19 +148,19 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
           <div className="bg-blue-50 rounded-lg p-4 mb-6">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="text-center">
-                <div className="font-semibold text-blue-800">⚡ Instant</div>
+                <div className="font-semibold text-blue-800">Instant</div>
                 <div className="text-blue-600">Approval</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-blue-800">💰 No Fees</div>
-                <div className="text-blue-600">Hidden Costs</div>
+                <div className="font-semibold text-blue-800">No Hidden</div>
+                <div className="text-blue-600">Fees</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-blue-800">📱 Digital</div>
+                <div className="font-semibold text-blue-800">Digital</div>
                 <div className="text-blue-600">Process</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-blue-800">🔒 Secure</div>
+                <div className="font-semibold text-blue-800">Secure</div>
                 <div className="text-blue-600">Platform</div>
               </div>
             </div>
@@ -186,16 +186,16 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
           <div className="mt-6 pt-4 border-t border-gray-200">
             <div className="flex justify-center items-center space-x-4 text-xs text-gray-500">
               <div className="flex items-center">
-                <span className="text-green-500 mr-1">🔒</span>
-                256-bit SSL
+                <span className="text-green-500 mr-1">SSL</span>
+                Encrypted
               </div>
               <div className="flex items-center">
-                <span className="text-blue-500 mr-1">🏛️</span>
-                BaFin Regulated
+                <span className="text-blue-500 mr-1">BaFin</span>
+                Regulated
               </div>
               <div className="flex items-center">
-                <span className="text-purple-500 mr-1">🛡️</span>
-                GDPR Compliant
+                <span className="text-purple-500 mr-1">GDPR</span>
+                Compliant
               </div>
             </div>
           </div>

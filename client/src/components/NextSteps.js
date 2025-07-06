@@ -6,19 +6,16 @@ const NextSteps = ({ loanData }) => {
   
   const fundUsageSuggestions = [
     {
-      icon: '📦',
       title: 'Stock Up on Inventory',
       description: 'Take advantage of bulk discounts from suppliers',
       savings: 'Save up to 15% with bulk orders'
     },
     {
-      icon: '🚀',
       title: 'Launch Marketing Campaign',
       description: 'Invest in digital advertising to boost sales',
       savings: 'Average ROI of 200% on targeted ads'
     },
     {
-      icon: '🔧',
       title: 'Upgrade Equipment',
       description: 'Improve efficiency with modern tools',
       savings: 'Reduce operating costs by 20%'
@@ -29,20 +26,17 @@ const NextSteps = ({ loanData }) => {
     {
       id: 1,
       title: 'Set Up Automatic Payments',
-      content: 'Enable auto-debit to never miss a payment and maintain a perfect repayment record. This helps build your credit profile for future loans.',
-      icon: '💳'
+      content: 'Enable auto-debit to never miss a payment and maintain a perfect repayment record. This helps build your credit profile for future loans.'
     },
     {
       id: 2,
       title: 'Track Your Cash Flow',
-      content: 'Use our free cash flow tracking tools to monitor your business health. Understanding your patterns helps you make better financial decisions.',
-      icon: '📊'
+      content: 'Use our free cash flow tracking tools to monitor your business health. Understanding your patterns helps you make better financial decisions.'
     },
     {
       id: 3,
       title: 'Plan for Growth',
-      content: 'As you repay this loan, you\'ll qualify for higher amounts. Start planning how additional capital could accelerate your business growth.',
-      icon: '📈'
+      content: 'As you repay this loan, you\'ll qualify for higher amounts. Start planning how additional capital could accelerate your business growth.'
     }
   ];
   
@@ -97,7 +91,6 @@ const NextSteps = ({ loanData }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {fundUsageSuggestions.map((suggestion, index) => (
             <div key={index} className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
-              <div className="text-3xl mb-3">{suggestion.icon}</div>
               <h3 className="font-semibold text-gray-800 mb-1">{suggestion.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{suggestion.description}</p>
               <p className="text-xs font-medium text-green-600">{suggestion.savings}</p>
@@ -122,7 +115,6 @@ const NextSteps = ({ loanData }) => {
                 className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
               >
                 <div className="flex items-center">
-                  <span className="text-2xl mr-3">{tip.icon}</span>
                   <span className="font-medium text-gray-800">{tip.title}</span>
                 </div>
                 <svg

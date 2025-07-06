@@ -63,10 +63,10 @@ const SuccessDashboardPage = () => {
   };
   
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'schedule', label: 'Payment Schedule', icon: '📅' },
-    { id: 'share', label: 'Share & Earn', icon: '🎉' },
-    { id: 'nextsteps', label: 'Next Steps', icon: '🚀' }
+    { id: 'overview', label: 'Overview' },
+    { id: 'schedule', label: 'Payment Schedule' },
+    { id: 'share', label: 'Share & Earn' },
+    { id: 'nextsteps', label: 'Next Steps' }
   ];
   
   if (!loanData) {
@@ -113,7 +113,6 @@ const SuccessDashboardPage = () => {
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  <span className="mr-2">{tab.icon}</span>
                   {tab.label}
                 </button>
               ))}
