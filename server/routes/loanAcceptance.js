@@ -43,7 +43,7 @@ router.post('/accept-loan', async (req, res) => {
         repaymentDays: 30,
         createdAt: new Date().toISOString()
       };
-      console.log('🧪 Using demo offer for testing');
+      console.log('Demo offer created for testing');
     }
     
     if (!offer) {
@@ -124,7 +124,7 @@ router.post('/accept-loan', async (req, res) => {
     };
 
     // Log acceptance for demo metrics
-    console.log(`✅ Loan accepted: ${loanId} for €${offer.amount}`);
+    console.log(`Loan accepted: ${loanId} for €${offer.amount}`);
 
     res.json({
       success: true,
