@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-// Import persona photos - these need to be added to the assets folder
-// import annaPhoto from '../assets/anna-photo.jpg';
-// import mehmetPhoto from '../assets/mehmet-photo.jpg';
-// import mariaPhoto from '../assets/maria-photo.jpg';
+// Import persona photos
+import annaPhoto from '../assets/anna-photo.jpg';
+import mehmetPhoto from '../assets/mehmet-photo.jpg';
+import mariaPhoto from '../assets/maria-photo.jpg';
 
 const BusinessDemoSelector = ({ onPersonaSelect }) => {
   const [selectedPersona, setSelectedPersona] = useState(null);
 
-  // Using placeholder images until actual photos are added
-  const annaPhoto = '/placeholder-anna.jpg';
-  const mehmetPhoto = '/placeholder-mehmet.jpg';
-  const mariaPhoto = '/placeholder-maria.jpg';
 
   const personas = [
     {
