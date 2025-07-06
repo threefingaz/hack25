@@ -171,17 +171,39 @@ The application is currently **demo-ready** with a complete loan application flo
 
 ## Quick Start for Next Session
 
-1. Start both servers:
-   ```bash
-   cd /Users/alnikitin/Code/hack25/server && npm run dev
-   cd /Users/alnikitin/Code/hack25/client && PORT=3002 npm start
-   ```
+### Automated Startup (Recommended)
+```bash
+cd /Users/alnikitin/Code/hack25
+npm run dev:all
+```
 
-2. Review current implementation at http://localhost:3002
+### Manual Startup (Alternative)
+```bash
+# Terminal 1 - Server
+npm run server
 
-3. Continue with Polish & Optimization story in implementation checklist
+# Terminal 2 - Client  
+npm run client
+```
 
-4. Focus on responsive design testing and performance optimization
+### Available Commands
+- `npm run dev:all` - Start both servers with automated setup
+- `npm run stop` - Stop all development servers
+- `npm run restart` - Stop and restart all servers  
+- `npm run health` - Check server status
+
+### Service URLs
+- **Application**: http://localhost:3002
+- **API Server**: http://localhost:3001
+- **Health Check**: http://localhost:3001/api/health
+
+### Next Steps
+1. Review current implementation at http://localhost:3002
+2. Continue with Polish & Optimization story in implementation checklist
+3. Focus on responsive design testing and performance optimization
+
+### Troubleshooting
+See `/docs/development-guide.md` for detailed troubleshooting steps
 
 ## Session Complete Summary
 
