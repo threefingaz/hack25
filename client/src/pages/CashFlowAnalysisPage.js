@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CashFlowChart from '../components/CashFlowChart';
 import CashFlowSummary from '../components/CashFlowSummary';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const CashFlowAnalysisPage = () => {
   const navigate = useNavigate();
@@ -144,10 +144,20 @@ const CashFlowAnalysisPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <LoadingSpinner size="large" />
-          <p className="mt-4 text-gray-600">Analyzing your cash flow...</p>
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="animate-pulse">
+                <div className="h-8 bg-gray-200 rounded w-64 mx-auto mb-2"></div>
+                <div className="h-6 bg-gray-200 rounded w-48 mx-auto"></div>
+              </div>
+            </div>
+            <div className="space-y-6">
+              <LoadingSkeleton type="chart" />
+              <LoadingSkeleton type="card" count={1} />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -180,9 +190,9 @@ const CashFlowAnalysisPage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Cash Flow Analysis</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Cash Flow Analysis</h1>
             {cashFlowData?.persona && (
-              <p className="text-lg text-gray-600">
+              <p className="text-base sm:text-lg text-gray-600">
                 {cashFlowData.persona.name} - {cashFlowData.persona.business}
               </p>
             )}
@@ -201,9 +211,9 @@ const CashFlowAnalysisPage = () => {
             )}
 
             {/* Action Section */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
               <div className="text-center">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
                   Ready to see your credit offer?
                 </h3>
                 <p className="text-gray-600 mb-6">
@@ -211,7 +221,7 @@ const CashFlowAnalysisPage = () => {
                 </p>
                 <button
                   onClick={handleProceedToOffer}
-                  className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="bg-blue-600 text-white font-semibold py-3 px-6 sm:px-8 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full sm:w-auto"
                 >
                   Get My Credit Offer
                 </button>

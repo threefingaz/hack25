@@ -32,7 +32,7 @@ const HeroSection = ({ onGetStarted, onWatchDemo }) => {
         <div className="max-w-5xl mx-auto text-center text-white">
           {/* Main headline */}
           <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                 CashFlow Bridge
               </span>
@@ -41,23 +41,23 @@ const HeroSection = ({ onGetStarted, onWatchDemo }) => {
 
           {/* Rotating subtitle */}
           <div className={`h-16 mb-8 transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className="text-xl md:text-2xl text-blue-100 transition-all duration-500">
+            <p className="text-lg sm:text-xl md:text-2xl text-blue-100 transition-all duration-500">
               {rotatingTexts[currentTextIndex]}
             </p>
           </div>
 
           {/* Value proposition */}
           <div className={`transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className="text-lg mb-12 text-blue-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg mb-8 sm:mb-12 text-blue-200 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
               Connect your bank account, let our AI analyze your cash flow patterns, and receive personalized credit offers in seconds. No paperwork, no waiting, no traditional credit checks.
             </p>
           </div>
           
           {/* CTA Buttons */}
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 sm:mb-12 px-4 sm:px-0 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <button
               onClick={onGetStarted}
-              className="bg-white text-blue-700 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-xl transform hover:scale-105 hover:shadow-2xl group"
+              className="bg-white text-blue-700 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-xl transform hover:scale-105 hover:shadow-2xl group w-full sm:w-auto"
             >
               <span className="flex items-center">
                 Get Started - Free Analysis
@@ -69,7 +69,7 @@ const HeroSection = ({ onGetStarted, onWatchDemo }) => {
             
             <button
               onClick={onWatchDemo}
-              className="border-2 border-white text-white font-semibold text-lg px-8 py-4 rounded-lg hover:bg-white hover:text-blue-700 transition-all duration-200 transform hover:scale-105 group"
+              className="border-2 border-white text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white hover:text-blue-700 transition-all duration-200 transform hover:scale-105 group w-full sm:w-auto"
             >
               <span className="flex items-center">
                 <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

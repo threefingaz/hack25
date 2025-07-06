@@ -1,24 +1,37 @@
-import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import React, { Suspense } from 'react';
+import LoadingSkeleton from './LoadingSkeleton';
 
-// Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
+// Lazy load Chart.js components
+const Chart = React.lazy(() => 
+  Promise.all([
+    import('chart.js').then(module => {
+      const {
+        Chart: ChartJS,
+        CategoryScale,
+        LinearScale,
+        BarElement,
+        Title,
+        Tooltip,
+        Legend,
+      } = module;
+      
+      ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        BarElement,
+        Title,
+        Tooltip,
+        Legend
+      );
+      
+      return module;
+    }),
+    import('react-chartjs-2')
+  ]).then(([chartjs, reactChartjs]) => ({
+    default: reactChartjs.Bar
+  }))
 );
+
 
 const CashFlowChart = ({ monthlyFlows }) => {
   if (!monthlyFlows || monthlyFlows.length === 0) {
@@ -65,10 +78,10 @@ const CashFlowChart = ({ monthlyFlows }) => {
         display: true,
         text: 'Your Cash Flow Analysis',
         font: {
-          size: 18,
+          size: window.innerWidth < 768 ? 14 : 18,
           weight: 'bold'
         },
-        padding: 20
+        padding: window.innerWidth < 768 ? 10 : 20
       },
       legend: {
         display: true,
@@ -146,9 +159,11 @@ const CashFlowChart = ({ monthlyFlows }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <div className="relative" style={{ height: '400px' }}>
-        <Bar data={data} options={options} />
+    <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+      <div className="relative" style={{ height: window.innerWidth < 768 ? '300px' : '400px' }}>
+        <Suspense fallback={<LoadingSkeleton type="chart" />}>
+          <Chart data={data} options={options} />
+        </Suspense>
       </div>
       <div className="mt-4 text-sm text-gray-600 text-center">
         <span className="inline-flex items-center">

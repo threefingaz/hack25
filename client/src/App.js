@@ -10,12 +10,14 @@ import TestAcceptance from './pages/TestAcceptance';
 import TestDashboard from './pages/TestDashboard';
 import SuccessDashboardPage from './pages/SuccessDashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
+    <ErrorBoundary>
+      <Router>
+        <div className="App">
+          <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/connect" element={<BankConnectionPage />} />
           <Route 
@@ -49,9 +51,10 @@ function App() {
               </ProtectedRoute>
             } 
           />
-        </Routes>
-      </div>
-    </Router>
+          </Routes>
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

@@ -100,10 +100,11 @@ router.get('/cash-flow/:accountId', (req, res) => {
       .sort((a, b) => a.month.localeCompare(b.month))
       .slice(-3) // Last 3 months
       .map(month => ({
-        ...month,
-        netFlow: month.income - month.expenses,
+        month: month.month,
         income: Math.round(month.income * 100) / 100,
-        expenses: Math.round(month.expenses * 100) / 100
+        expenses: Math.round(month.expenses * 100) / 100,
+        netFlow: Math.round((month.income - month.expenses) * 100) / 100
+        // Removed transactions array to reduce payload size
       }));
     
     // Calculate summary metrics

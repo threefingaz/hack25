@@ -76,11 +76,11 @@ const PersonaSelector = ({ onPersonaSelect }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {personas.map((persona) => (
           <div
             key={persona.id}
-            className={`${persona.bgColor} ${persona.borderColor} border-2 rounded-xl p-6 transition-all duration-300 hover:shadow-lg cursor-pointer transform hover:scale-105 ${
+            className={`${persona.bgColor} ${persona.borderColor} border-2 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:shadow-lg cursor-pointer transform hover:scale-105 ${
               selectedPersona === persona.id ? 'ring-4 ring-blue-500 ring-opacity-50' : ''
             }`}
             onClick={() => handlePersonaClick(persona)}

@@ -114,7 +114,7 @@ const BankConnectionPage = () => {
   const renderStep = () => {
     if (isSuccess) {
       return (
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+        <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-md mx-auto">
           <div className="text-center space-y-6">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +136,7 @@ const BankConnectionPage = () => {
 
     if (isLoading) {
       return (
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+        <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-md mx-auto">
           <div className="space-y-6">
             <LoadingSpinner size="large" />
             <ProgressMessage />
@@ -151,7 +151,7 @@ const BankConnectionPage = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-md mx-auto">
             <h2 className="text-2xl font-semibold mb-6">Connect Your Bank Account</h2>
             <p className="text-gray-600 mb-6">
               Select your bank to securely analyze your cash flow and get instant credit decisions.
@@ -207,7 +207,7 @@ const BankConnectionPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Connect Your Bank</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 px-4">Connect Your Bank</h1>
         
         <StepIndicator currentStep={currentStep} />
 
