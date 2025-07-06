@@ -81,84 +81,60 @@ const CashFlowSummary = ({ summary }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-6">Cash Flow Summary</h3>
+    <div>
+      <h3 className="text-xl font-bold text-gray-900 mb-6">Financial Summary</h3>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Key Metrics Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {metrics.map((metric, index) => (
-          <div key={index} className="relative group">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-600 mb-1">{metric.label}</p>
-                <p className={`text-2xl font-bold ${getTrendColor(metric.trend, metric.value)}`}>
-                  {formatValue(metric.value, metric.format)}
-                </p>
-              </div>
-              <div className="ml-4 mt-1">
-                {getTrendIcon(metric.trend)}
-              </div>
+          <div key={index} className="text-center p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-center mb-2">
+              {getTrendIcon(metric.trend)}
             </div>
-            
-            {/* Tooltip */}
-            <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-10">
-              <div className="bg-gray-800 text-white text-xs rounded py-1 px-2 whitespace-nowrap">
-                {metric.tooltip}
-                <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
-              </div>
-            </div>
+            <p className={`text-lg font-bold ${getTrendColor(metric.trend, metric.value)} mb-1`}>
+              {formatValue(metric.value, metric.format)}
+            </p>
+            <p className="text-xs text-gray-600 leading-tight">{metric.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-6 pt-6 border-t border-gray-200">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-600">Positive Cash Flow Months</p>
-            <p className="text-lg font-semibold text-gray-900">
-              {summary.positiveCashFlowMonths} out of {summary.totalMonths}
-            </p>
-          </div>
+      {/* Cash Flow Health */}
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h4 className="text-lg font-semibold text-gray-900">Cash Flow Health</h4>
           <div className="flex items-center">
-            <div className="w-32 bg-gray-200 rounded-full h-2">
+            {summary.averageNetCashFlow > 0 && summary.volatility < 40 ? (
+              <>
+                <span className="text-green-600 font-semibold mr-2">Excellent</span>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              </>
+            ) : summary.averageNetCashFlow > 0 || summary.volatility < 50 ? (
+              <>
+                <span className="text-yellow-600 font-semibold mr-2">Good</span>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              </>
+            ) : (
+              <>
+                <span className="text-red-600 font-semibold mr-2">Fair</span>
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              </>
+            )}
+          </div>
+        </div>
+        
+        <div className="flex items-center justify-between">
+          <span className="text-sm text-gray-600">Positive Cash Flow Months</span>
+          <div className="flex items-center">
+            <div className="w-24 bg-gray-200 rounded-full h-2 mr-3">
               <div 
                 className="bg-blue-600 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${(summary.positiveCashFlowMonths / summary.totalMonths) * 100}%` }}
               ></div>
             </div>
-            <span className="ml-2 text-sm text-gray-600">
-              {Math.round((summary.positiveCashFlowMonths / summary.totalMonths) * 100)}%
+            <span className="text-sm font-semibold text-gray-900">
+              {summary.positiveCashFlowMonths}/{summary.totalMonths}
             </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Business Health Indicator */}
-      <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-700">Business Health Score</span>
-          <div className="flex items-center">
-            {summary.averageNetCashFlow > 0 && summary.volatility < 40 ? (
-              <>
-                <span className="text-green-600 font-semibold mr-2">Good</span>
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </>
-            ) : summary.averageNetCashFlow > 0 || summary.volatility < 50 ? (
-              <>
-                <span className="text-yellow-600 font-semibold mr-2">Fair</span>
-                <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
-              </>
-            ) : (
-              <>
-                <span className="text-red-600 font-semibold mr-2">Needs Improvement</span>
-                <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                </svg>
-              </>
-            )}
           </div>
         </div>
       </div>

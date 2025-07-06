@@ -47,15 +47,52 @@ const CashFlowAnalysisPage = () => {
 
   // Generate demo data for when API is not available
   const generateDemoData = (accountId) => {
-    const personas = ['Anna Schmidt - Food Truck Owner', 'Mehmet Özkan - Online Retailer', 'Maria Rodriguez - Event Planner'];
-    const personaIndex = Math.abs(accountId.charCodeAt(4) || 0) % personas.length;
+    const personas = [
+      { 
+        name: 'Anna Schmidt', 
+        accountType: 'Business Current Account', 
+        iban: 'DE89 1001 0010 0532 0130 00',
+        bic: 'DEUTDEFFXXX',
+        accountNumber: '0532013000',
+        bankCode: '10010010',
+        bankName: 'Deutsche Bank AG',
+        accountOpened: '2019-03-15'
+      },
+      { 
+        name: 'Mehmet Özkan', 
+        accountType: 'Business Premium Account', 
+        iban: 'DE89 1001 0010 9012 3456 78',
+        bic: 'DEUTDEFFXXX',
+        accountNumber: '9012345678',
+        bankCode: '10010010',
+        bankName: 'Deutsche Bank AG',
+        accountOpened: '2020-07-22'
+      },
+      { 
+        name: 'Maria Rodriguez', 
+        accountType: 'Business Current Account', 
+        iban: 'DE89 1001 0010 1098 7654 32',
+        bic: 'DEUTDEFFXXX',
+        accountNumber: '1098765432',
+        bankCode: '10010010',
+        bankName: 'Deutsche Bank AG',
+        accountOpened: '2018-11-08'
+      }
+    ];
+    const personaIndex = Math.abs((accountId || 'demo').charCodeAt(4) || 0) % personas.length;
+    const selectedPersona = personas[personaIndex];
     
     return {
       accountId,
       persona: {
-        name: personas[personaIndex].split(' - ')[0],
-        business: personas[personaIndex].split(' - ')[1],
-        type: personas[personaIndex]
+        name: selectedPersona.name,
+        accountType: selectedPersona.accountType,
+        iban: selectedPersona.iban,
+        bic: selectedPersona.bic,
+        accountNumber: selectedPersona.accountNumber,
+        bankCode: selectedPersona.bankCode,
+        bankName: selectedPersona.bankName,
+        accountOpened: selectedPersona.accountOpened
       },
       monthlyFlows: [
         { month: '2024-10', income: 2150, expenses: 1850 },
@@ -189,17 +226,76 @@ const CashFlowAnalysisPage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Cash Flow Analysis</h1>
+          <div className="mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Cash Flow Analysis</h1>
             {cashFlowData?.persona && (
-              <p className="text-base sm:text-lg text-gray-600">
-                {cashFlowData.persona.name} - {cashFlowData.persona.business}
-              </p>
+              <div>
+                {/* Account Holder */}
+                <div className="pb-4 border-b border-gray-200 mb-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h2 className="text-xl font-bold text-gray-900">{cashFlowData.persona.name || 'Maria Rodriguez'}</h2>
+                      <p className="text-sm text-gray-600">{cashFlowData.persona.accountType || 'Business Current Account'}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">Account Since</p>
+                      <p className="text-sm font-semibold text-gray-700">
+                        {cashFlowData.persona.accountOpened ? 
+                          new Date(cashFlowData.persona.accountOpened).toLocaleDateString('en-GB', { 
+                            year: 'numeric', 
+                            month: 'long' 
+                          }) : 'November 2018'
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bank Details */}
+                <div className="mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Bank</p>
+                      <p className="text-sm font-semibold text-gray-900">{cashFlowData.persona.bankName || 'Deutsche Bank AG'}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">IBAN</p>
+                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.iban || 'DE89 1001 0010 1098 7654 32'}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">BIC/SWIFT</p>
+                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.bic || 'DEUTDEFFXXX'}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Account Number</p>
+                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.accountNumber || '1098765432'}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Bank Code</p>
+                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.bankCode || '10010010'}</p>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                      <span className="text-sm text-gray-600">Account Active</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Security Notice */}
+                <div className="pb-4 border-b border-gray-200">
+                  <div className="flex items-center text-xs text-gray-600">
+                    <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>Read-only access • Bank-grade encryption • No transaction capability</span>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
 
           {/* Main Content */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Cash Flow Chart */}
             {cashFlowData?.monthlyFlows && (
               <CashFlowChart monthlyFlows={cashFlowData.monthlyFlows} />
@@ -209,21 +305,25 @@ const CashFlowAnalysisPage = () => {
             {cashFlowData?.summary && (
               <CashFlowSummary summary={cashFlowData.summary} />
             )}
+          </div>
 
-            {/* Action Section */}
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
-              <div className="text-center">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
-                  Ready to see your credit offer?
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Based on your cash flow analysis, we can provide you with a personalized credit offer in seconds.
-                </p>
+          {/* Sticky Action Button */}
+          <div className="mt-12 sticky bottom-8 z-10">
+            <div className="bg-white rounded-xl shadow-2xl border-2 border-blue-200 p-6">
+              <div className="flex flex-col sm:flex-row items-center justify-between">
+                <div className="text-center sm:text-left mb-4 sm:mb-0">
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">
+                    Get Your Credit Offer
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Instant decision based on your cash flow analysis
+                  </p>
+                </div>
                 <button
                   onClick={handleProceedToOffer}
-                  className="bg-blue-600 text-white font-semibold py-3 px-6 sm:px-8 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full sm:w-auto"
+                  className="bg-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transform hover:scale-105 w-full sm:w-auto text-lg"
                 >
-                  Get My Credit Offer
+                  Get My Offer →
                 </button>
               </div>
             </div>

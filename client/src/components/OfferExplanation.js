@@ -59,9 +59,9 @@ const OfferExplanation = ({ offer, className = '' }) => {
   ];
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg ${className}`}>
+    <div className={`${className}`}>
       <div className="border-b border-gray-200">
-        <nav className="flex space-x-8 px-6">
+        <nav className="flex space-x-8">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -79,7 +79,7 @@ const OfferExplanation = ({ offer, className = '' }) => {
         </nav>
       </div>
 
-      <div className="p-6">
+      <div className="pt-6">
         {/* Calculation Tab */}
         {activeTab === 'calculation' && (
           <div className="space-y-6">

@@ -123,34 +123,62 @@ const CreditOfferPage = () => {
           </div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Credit Offer Card */}
-            <div className="lg:col-span-2">
-              <CreditOfferCard
-                offer={offer}
-                onAccept={handleAccept}
-                onDecline={handleDecline}
-              />
-            </div>
+          <div className="space-y-8">
+            {/* Credit Offer Card - Full Width */}
+            <CreditOfferCard
+              offer={offer}
+              onAccept={handleAccept}
+              onDecline={handleDecline}
+            />
 
-            {/* Offer Explanation */}
-            <div className="lg:col-span-1">
-              <OfferExplanation offer={offer} />
+            {/* Offer Explanation - Under the Card */}
+            <OfferExplanation offer={offer} />
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-12 border-t border-gray-200 pt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate is your credit assessment?</h3>
+                <p className="text-gray-700">Our AI analyzes 90 days of real transaction data, providing a more accurate picture of your business health than traditional credit scores. This leads to better loan amounts tailored to your actual cash flow.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">What if I can't make a daily payment?</h3>
+                <p className="text-gray-700">We understand business cash flow can be unpredictable. Contact us immediately if you anticipate payment difficulties. We offer flexible payment restructuring based on your updated cash flow patterns.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my banking data secure?</h3>
+                <p className="text-gray-700">Yes. We use bank-grade encryption and read-only access to your accounts. We never store your banking credentials and are fully GDPR compliant. Your data is deleted after the assessment period.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I get a larger loan amount?</h3>
+                <p className="text-gray-700">Our algorithm determines the optimal loan amount based on your cash flow to ensure comfortable repayment. As your business grows and cash flow improves, you can apply for larger amounts in the future.</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">What happens after I accept the offer?</h3>
+                <p className="text-gray-700">Funds are typically transferred to your Deutsche Bank account within 24 hours. Daily payments will be automatically collected from the same account starting the next business day.</p>
+              </div>
             </div>
           </div>
 
-          {/* Additional Info */}
-          <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+          {/* Next Steps */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
             <div className="flex items-start">
               <svg className="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div>
-                <h3 className="text-lg font-semibold text-blue-900 mb-2">Next Steps</h3>
-                <p className="text-blue-800 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Next Steps</h3>
+                <p className="text-gray-700 mb-2">
                   This offer is valid for 24 hours. If you accept, funds will be transferred to your account within 24 hours.
                 </p>
-                <p className="text-sm text-blue-700">
+                <p className="text-sm text-gray-600">
                   Offer expires: {new Date(offer.offerValidUntil).toLocaleString()}
                 </p>
               </div>
