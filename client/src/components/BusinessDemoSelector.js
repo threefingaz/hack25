@@ -13,53 +13,62 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
       id: 'anna',
       name: 'Anna Schmidt',
       business: 'Food Truck Owner',
+      description: 'Runs a popular food truck with steady weekly patterns',
       photo: annaPhoto,
       accountType: 'Business',
       balance: '€2,847',
       averageMonthlyIncome: '€2,100',
+      pattern: 'Weekly income patterns with weekend variations',
+      expectedLoan: '€525',
       latestTransaction: {
         type: 'income',
-        description: 'Food Truck Sales',
-        amount: '+€342',
-        time: 'Today, 14:30',
+        description: 'Weekend Food Sales',
+        amount: '+€287',
+        time: 'Today, 16:30',
         icon: '🚚',
-        iconBg: 'bg-green-100'
-      }
-    },
-    {
-      id: 'maria',
-      name: 'Maria Rodriguez',
-      business: 'Event Planner',
-      photo: mariaPhoto,
-      accountType: 'Business',
-      balance: '€1,923',
-      averageMonthlyIncome: '€1,800',
-      latestTransaction: {
-        type: 'expense',
-        description: 'Event Supplies',
-        amount: '-€156',
-        time: 'Yesterday, 16:20',
-        icon: '🎉',
-        iconBg: 'bg-purple-100'
+        iconBg: 'bg-orange-100'
       }
     },
     {
       id: 'mehmet',
       name: 'Mehmet Özkan',
       business: 'Online Retailer',
+      description: 'E-commerce business with monthly promotional spikes',
       photo: mehmetPhoto,
       accountType: 'Business',
       balance: '€4,235',
       averageMonthlyIncome: '€3,500',
+      pattern: 'Monthly spikes with consistent daily base income',
+      expectedLoan: '€875',
       latestTransaction: {
         type: 'income',
-        description: 'Online Order #4521',
-        amount: '+€89',
-        time: 'Today, 11:45',
+        description: 'Online Store Revenue',
+        amount: '+€156',
+        time: 'Today, 14:20',
         icon: '🛒',
         iconBg: 'bg-blue-100'
       },
       featured: true
+    },
+    {
+      id: 'maria',
+      name: 'Maria Rodriguez',
+      business: 'Event Planner',
+      description: 'Freelance event planner with seasonal variations',
+      photo: mariaPhoto,
+      accountType: 'Business',
+      balance: '€1,923',
+      averageMonthlyIncome: '€1,800',
+      pattern: 'Seasonal patterns with holiday boosts',
+      expectedLoan: '€450',
+      latestTransaction: {
+        type: 'expense',
+        description: 'Event Equipment',
+        amount: '-€89',
+        time: 'Yesterday, 11:45',
+        icon: '🎉',
+        iconBg: 'bg-purple-100'
+      }
     }
   ];
 
