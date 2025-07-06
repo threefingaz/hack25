@@ -5,7 +5,7 @@ const banks = [
     id: 'deutsche-bank',
     name: 'Deutsche Bank',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/200px-Deutsche_Bank_logo_without_wordmark.svg.png',
-    popular: false
+    popular: true
   },
   {
     id: 'commerzbank',
@@ -17,7 +17,7 @@ const banks = [
     id: 'sparkasse',
     name: 'Sparkasse',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Sparkasse.svg/200px-Sparkasse.svg.png',
-    popular: true
+    popular: false
   }
 ];
 

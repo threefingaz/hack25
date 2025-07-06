@@ -13,6 +13,7 @@ const BankConnectionPage = () => {
   const [selectedBank, setSelectedBank] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleBankSelect = (bankId) => {
     setSelectedBank(bankId);
@@ -66,15 +67,23 @@ const BankConnectionPage = () => {
         localStorage.setItem('accountId', data.accountId);
         localStorage.setItem('selectedBank', selectedBank);
         
-        // Show success animation briefly
+        console.log('Bank connected successfully, redirecting in 3 seconds...');
+        
+        // Show success state
+        setIsLoading(false);
+        setIsSuccess(true);
+        
+        // Redirect after showing success
         setTimeout(() => {
+          console.log('Redirecting to cash flow analysis...');
           navigate('/cash-flow-analysis');
-        }, 2000);
+        }, 3000);
       } else {
         setError(data.error || 'Failed to connect bank');
         setIsLoading(false);
       }
     } catch (err) {
+      console.error('Bank connection error:', err);
       setError('Failed to connect to server. Please try again.');
       setIsLoading(false);
     }
@@ -86,6 +95,28 @@ const BankConnectionPage = () => {
   };
 
   const renderStep = () => {
+    if (isSuccess) {
+      return (
+        <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+          <div className="text-center space-y-6">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Bank Connected Successfully!</h3>
+              <p className="text-gray-600 mb-4">Your account has been securely connected.</p>
+              <p className="text-sm text-gray-500">Redirecting to cash flow analysis...</p>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="bg-green-600 h-2 rounded-full animate-pulse" style={{ width: '100%' }}></div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     if (isLoading) {
       return (
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
