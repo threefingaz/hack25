@@ -68,7 +68,7 @@
 - Click "Continue to Login"
 - Show Deutsche Bank's authentic login form with pre-filled fields:
   - Branch: 100, Account: 1234567, Sub-account: 00, PIN: ••••• 
-  - "Financial Status" dropdown, Session-TAN checkbox
+  - Clean, professional layout with authentic Deutsche Bank branding
   - Security notice: "Deutsche Bank never asks for more than one TAN"
 - Click "Execute Login" (no typing needed - demo ready)
 - Show loading animation: "Securing connection..."
