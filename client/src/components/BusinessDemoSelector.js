@@ -120,19 +120,26 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
             
             {/* Content */}
             <div className="relative h-full flex flex-col justify-between p-6 text-white">
-              {/* Top Section - Account Info */}
+              {/* Top Section - Persona Info */}
               <div>
                 <div className="mb-4">
-                  <p className="text-sm opacity-80 mb-1">{persona.accountType}</p>
-                  <p className="text-4xl font-bold">{persona.balance}</p>
+                  <h3 className="text-xl font-bold text-white mb-1">{persona.name}</h3>
+                  <p className="text-sm font-medium text-white/90 mb-2">{persona.business}</p>
+                  <p className="text-xs text-white/80 mb-3">{persona.description}</p>
                 </div>
                 
-                <button className="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/30 transition-colors">
-                  Konten
-                </button>
+                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg p-3 mb-4">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs font-medium text-white/80">Avg Monthly Income</span>
+                    <span className="text-lg font-bold text-white">{persona.averageMonthlyIncome}</span>
+                  </div>
+                  <div className="text-xs text-white/70">
+                    {persona.pattern}
+                  </div>
+                </div>
               </div>
               
-              {/* Bottom Section - Transaction */}
+              {/* Bottom Section - Latest Transaction */}
               <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 text-gray-900">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
