@@ -6,14 +6,12 @@ const banks = [
     name: 'Sparkasse',
     fullName: 'Sparkassen-Finanzgruppe',
     description: 'Germany\'s largest banking group',
-    logo: '🏛️', // Using emoji for demo reliability
-    color: 'red',
-    bgColor: 'bg-red-50',
-    borderColor: 'border-red-200',
-    hoverColor: 'hover:border-red-300',
-    selectedColor: 'ring-red-500',
+    bgColor: 'bg-gray-50',
+    borderColor: 'border-gray-200',
+    hoverColor: 'hover:border-gray-300',
+    selectedColor: 'ring-blue-500',
     popular: true,
-    priority: 1, // Show first
+    priority: 1,
     customers: '50M+ customers'
   },
   {
@@ -21,11 +19,9 @@ const banks = [
     name: 'Deutsche Bank',
     fullName: 'Deutsche Bank AG',
     description: 'Leading international bank',
-    logo: '🏦',
-    color: 'blue',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    hoverColor: 'hover:border-blue-300',
+    bgColor: 'bg-gray-50',
+    borderColor: 'border-gray-200',
+    hoverColor: 'hover:border-gray-300',
     selectedColor: 'ring-blue-500',
     popular: false,
     customers: '20M+ customers',
@@ -36,12 +32,10 @@ const banks = [
     name: 'Commerzbank',
     fullName: 'Commerzbank AG',
     description: 'Major German commercial bank',
-    logo: '🟨',
-    color: 'yellow',
-    bgColor: 'bg-yellow-50',
-    borderColor: 'border-yellow-200',
-    hoverColor: 'hover:border-yellow-300',
-    selectedColor: 'ring-yellow-500',
+    bgColor: 'bg-gray-50',
+    borderColor: 'border-gray-200',
+    hoverColor: 'hover:border-gray-300',
+    selectedColor: 'ring-blue-500',
     popular: false,
     customers: '11M+ customers',
     priority: 3
@@ -94,7 +88,11 @@ const BankSelector = ({ onBankSelect, selectedBank }) => {
 
             {/* Bank Logo */}
             <div className="text-center mb-4">
-              <div className="text-4xl mb-3">{bank.logo}</div>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
               <h4 className="text-xl font-bold text-gray-900 mb-1">
                 {bank.name}
               </h4>
