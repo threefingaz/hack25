@@ -2,111 +2,177 @@ import React, { useState } from 'react';
 
 const banks = [
   {
+    id: 'sparkasse',
+    name: 'Sparkasse',
+    fullName: 'Sparkassen-Finanzgruppe',
+    description: 'Germany\'s largest banking group',
+    logo: '🏛️', // Using emoji for demo reliability
+    color: 'red',
+    bgColor: 'bg-red-50',
+    borderColor: 'border-red-200',
+    hoverColor: 'hover:border-red-300',
+    selectedColor: 'ring-red-500',
+    popular: true,
+    priority: 1, // Show first
+    customers: '50M+ customers'
+  },
+  {
     id: 'deutsche-bank',
     name: 'Deutsche Bank',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/200px-Deutsche_Bank_logo_without_wordmark.svg.png',
-    popular: true
+    fullName: 'Deutsche Bank AG',
+    description: 'Leading international bank',
+    logo: '🏦',
+    color: 'blue',
+    bgColor: 'bg-blue-50',
+    borderColor: 'border-blue-200',
+    hoverColor: 'hover:border-blue-300',
+    selectedColor: 'ring-blue-500',
+    popular: false,
+    customers: '20M+ customers',
+    priority: 2
   },
   {
     id: 'commerzbank',
     name: 'Commerzbank',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Commerzbank_logo_2020.svg/200px-Commerzbank_logo_2020.svg.png',
-    popular: false
-  },
-  {
-    id: 'sparkasse',
-    name: 'Sparkasse',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Sparkasse.svg/200px-Sparkasse.svg.png',
-    popular: false
+    fullName: 'Commerzbank AG',
+    description: 'Major German commercial bank',
+    logo: '🟨',
+    color: 'yellow',
+    bgColor: 'bg-yellow-50',
+    borderColor: 'border-yellow-200',
+    hoverColor: 'hover:border-yellow-300',
+    selectedColor: 'ring-yellow-500',
+    popular: false,
+    customers: '11M+ customers',
+    priority: 3
   }
 ];
 
 const BankSelector = ({ onBankSelect, selectedBank }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [hoveredBank, setHoveredBank] = useState(null);
 
-  const handleSelect = (bank) => {
-    onBankSelect(bank);
-    setIsOpen(false);
+  const handleSelect = (bankId) => {
+    onBankSelect(bankId);
   };
 
-  const selectedBankData = banks.find(bank => bank.id === selectedBank);
-
   return (
-    <div className="relative">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        Select Your Bank
-      </label>
+    <div className="w-full">
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Select Your Bank</h3>
+        <p className="text-sm text-gray-600">
+          Choose your business bank to securely analyze your cash flow
+        </p>
+      </div>
       
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            {selectedBankData ? (
-              <>
-                <img 
-                  src={selectedBankData.logo} 
-                  alt={selectedBankData.name}
-                  className="h-6 w-auto mr-3"
-                />
-                <span className="text-gray-900">{selectedBankData.name}</span>
-              </>
-            ) : (
-              <span className="text-gray-500">Choose a bank...</span>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        {banks.sort((a, b) => a.priority - b.priority).map((bank) => (
+          <div
+            key={bank.id}
+            onClick={() => handleSelect(bank.id)}
+            onMouseEnter={() => setHoveredBank(bank.id)}
+            onMouseLeave={() => setHoveredBank(null)}
+            className={`
+              relative cursor-pointer transition-all duration-200 
+              ${bank.bgColor} ${bank.borderColor} 
+              border-2 rounded-xl p-6 
+              ${bank.hoverColor}
+              transform hover:scale-105 hover:shadow-lg
+              ${selectedBank === bank.id 
+                ? `ring-4 ${bank.selectedColor} ring-opacity-50 shadow-lg scale-105` 
+                : ''
+              }
+            `}
+          >
+            {/* Popular badge */}
+            {bank.popular && (
+              <div className="absolute -top-2 -right-2">
+                <div className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                  Most Popular
+                </div>
+              </div>
+            )}
+
+            {/* Bank Logo */}
+            <div className="text-center mb-4">
+              <div className="text-4xl mb-3">{bank.logo}</div>
+              <h4 className="text-xl font-bold text-gray-900 mb-1">
+                {bank.name}
+              </h4>
+              <p className="text-sm font-medium text-gray-600 mb-2">
+                {bank.fullName}
+              </p>
+              <p className="text-xs text-gray-500">
+                {bank.description}
+              </p>
+            </div>
+
+            {/* Bank Info */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-600">Customers:</span>
+                <span className="font-semibold text-gray-900">{bank.customers}</span>
+              </div>
+              
+              <div className="flex items-center text-sm text-green-600">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-xs">Secure connection</span>
+              </div>
+            </div>
+
+            {/* Selection Indicator */}
+            {selectedBank === bank.id && (
+              <div className="absolute top-3 left-3">
+                <div className="bg-green-500 text-white rounded-full p-1">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            )}
+
+            {/* Hover Effect */}
+            {hoveredBank === bank.id && selectedBank !== bank.id && (
+              <div className="absolute inset-0 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                <div className="bg-white rounded-full p-2 shadow-lg">
+                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                  </svg>
+                </div>
+              </div>
             )}
           </div>
-          <svg
-            className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`}
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
-        </div>
-      </button>
+        ))}
+      </div>
 
-      {isOpen && (
-        <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg">
-          <div className="py-1">
-            {banks.map((bank) => (
-              <button
-                key={bank.id}
-                onClick={() => handleSelect(bank.id)}
-                onMouseEnter={() => setHoveredBank(bank.id)}
-                onMouseLeave={() => setHoveredBank(null)}
-                className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-150 ${
-                  selectedBank === bank.id ? 'bg-blue-50' : ''
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <img 
-                      src={bank.logo} 
-                      alt={bank.name}
-                      className="h-8 w-auto mr-3"
-                    />
-                    <span className="text-gray-900 font-medium">{bank.name}</span>
-                  </div>
-                  {bank.popular && (
-                    <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
-                      Most Popular
-                    </span>
-                  )}
-                </div>
-              </button>
-            ))}
+      {/* Demo Notice */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex items-start">
+          <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+          </svg>
+          <div>
+            <h4 className="text-sm font-medium text-blue-800 mb-1">Demo Mode</h4>
+            <p className="text-sm text-blue-700">
+              This is a demonstration. No real bank connection will be made. 
+              Use credentials <span className="font-mono bg-blue-100 px-1 rounded">demo/demo</span> when prompted.
+            </p>
           </div>
         </div>
-      )}
+      </div>
 
-      {hoveredBank === null && !selectedBank && (
-        <div className="mt-2 flex items-center text-sm text-gray-500">
-          <svg className="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span>This is a demo - no real bank connection will be made</span>
+      {/* Selection Status */}
+      {selectedBank && (
+        <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm font-medium text-green-800">
+              {banks.find(b => b.id === selectedBank)?.name} selected
+            </span>
+          </div>
         </div>
       )}
     </div>

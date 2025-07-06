@@ -151,11 +151,13 @@ const BankConnectionPage = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-md mx-auto">
-            <h2 className="text-2xl font-semibold mb-6">Connect Your Bank Account</h2>
-            <p className="text-gray-600 mb-6">
-              Select your bank to securely analyze your cash flow and get instant credit decisions.
-            </p>
+          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-semibold text-gray-900 mb-4">Connect Your Bank Account</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Select your bank to securely analyze your cash flow and get instant credit decisions.
+              </p>
+            </div>
             
             <BankSelector 
               selectedBank={selectedBank}
@@ -163,22 +165,29 @@ const BankConnectionPage = () => {
             />
 
             {error && (
-              <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-600">{error}</p>
+              <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                  <p className="text-sm text-red-600 font-medium">{error}</p>
+                </div>
               </div>
             )}
 
-            <button
-              onClick={handleProceedToLogin}
-              disabled={!selectedBank}
-              className={`w-full mt-6 py-3 px-4 rounded-lg font-semibold transition-all duration-200 ${
-                selectedBank
-                  ? 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
-            >
-              Continue
-            </button>
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={handleProceedToLogin}
+                disabled={!selectedBank}
+                className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
+                  selectedBank
+                    ? 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transform hover:scale-105'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {selectedBank ? 'Continue to Login' : 'Select a Bank to Continue'}
+              </button>
+            </div>
           </div>
         );
 

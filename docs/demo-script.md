@@ -58,10 +58,14 @@
 **Action:** Navigate through bank connection
 **Speaking points:**
 - "First, Anna securely connects her bank account"
+- "Our card-based interface makes bank selection intuitive"
 - "We use read-only access with bank-grade security"
 
 **Demo:**
-- Select Sparkasse bank (most popular badge)
+- Show the three bank cards (Sparkasse with "Most Popular" badge)
+- Click on Sparkasse card to select it
+- Highlight the visual feedback and selection confirmation
+- Click "Continue to Login"
 - Enter demo credentials (demo/demo)
 - Show loading animation: "Securing connection..."
 - Display success message
