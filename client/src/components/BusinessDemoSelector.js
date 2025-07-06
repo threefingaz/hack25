@@ -47,8 +47,7 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
         time: 'Today, 14:20',
         icon: '🛒',
         iconBg: 'bg-blue-100'
-      },
-      featured: true
+      }
     },
     {
       id: 'maria',
@@ -102,7 +101,7 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
             key={persona.id}
             className={`relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
               selectedPersona === persona.id ? 'ring-4 ring-blue-500 shadow-2xl' : 'shadow-lg hover:shadow-xl'
-            } ${persona.featured ? 'md:scale-105' : ''}`}
+            }`}
             onClick={() => handlePersonaClick(persona)}
             style={{ minHeight: '500px' }}
           >
