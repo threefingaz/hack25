@@ -62,11 +62,15 @@
 - "We use read-only access with bank-grade security"
 
 **Demo:**
-- Show the three bank cards (Sparkasse with "Most Popular" badge)
-- Click on Sparkasse card to select it
+- Show the three bank cards with authentic logos
+- Click on Sparkasse card to select it ("Most Popular" badge)
 - Highlight the visual feedback and selection confirmation
 - Click "Continue to Login"
-- Enter demo credentials (demo/demo)
+- Show Deutsche Bank's authentic login form with pre-filled fields:
+  - Branch: 100, Account: 1234567, Sub-account: 00, PIN: ••••• 
+  - "Financial Status" dropdown, Session-TAN checkbox
+  - Security notice: "Deutsche Bank never asks for more than one TAN"
+- Click "Execute Login" (no typing needed - demo ready)
 - Show loading animation: "Securing connection..."
 - Display success message
 
