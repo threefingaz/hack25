@@ -127,39 +127,16 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
                   <p className="text-sm font-medium text-white/90 mb-2">{persona.business}</p>
                   <p className="text-xs text-white/80 mb-3">{persona.description}</p>
                 </div>
-                
-                <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg p-3 mb-4">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-xs font-medium text-white/80">Avg Monthly Income</span>
-                    <span className="text-lg font-bold text-white">{persona.averageMonthlyIncome}</span>
-                  </div>
-                  <div className="text-xs text-white/70">
-                    {persona.pattern}
-                  </div>
-                </div>
               </div>
               
-              {/* Bottom Section - Latest Transaction */}
+              {/* Bottom Section - Income Info */}
               <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 text-gray-900">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xl ${
-                      persona.latestTransaction.iconBg || 'bg-gray-100'
-                    }`}>
-                      {persona.latestTransaction.icon}
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">{persona.latestTransaction.description}</p>
-                      <p className="text-xs text-gray-500">{persona.latestTransaction.time}</p>
-                    </div>
-                  </div>
-                  <p className={`font-bold ${
-                    persona.latestTransaction.type === 'income' 
-                      ? 'text-green-600' 
-                      : 'text-gray-900'
-                  }`}>
-                    {persona.latestTransaction.amount}
-                  </p>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-medium text-gray-600">Avg Monthly Income</span>
+                  <span className="text-xl font-bold text-gray-900">{persona.averageMonthlyIncome}</span>
+                </div>
+                <div className="text-xs text-gray-600">
+                  {persona.pattern}
                 </div>
               </div>
               
