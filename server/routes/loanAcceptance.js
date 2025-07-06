@@ -30,7 +30,22 @@ router.post('/accept-loan', async (req, res) => {
     }
 
     // Check if offer exists and is not expired
-    const offer = offerStorage.get(offerId);
+    let offer = offerStorage.get(offerId);
+    
+    // For demo mode: create mock offer if it's the demo offer ID
+    if (!offer && offerId === 'demo_offer_123') {
+      offer = {
+        offerId: 'demo_offer_123',
+        amount: 1500,
+        dailyRate: 0.0005,
+        totalRepayment: 1578.75,
+        dailyPayment: 52.63,
+        repaymentDays: 30,
+        createdAt: new Date().toISOString()
+      };
+      console.log('🧪 Using demo offer for testing');
+    }
+    
     if (!offer) {
       return res.status(404).json({ 
         error: 'Offer not found or expired' 

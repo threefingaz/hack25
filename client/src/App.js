@@ -6,6 +6,8 @@ import BankConnectionPage from './pages/BankConnectionPage';
 import CashFlowAnalysisPage from './pages/CashFlowAnalysisPage';
 import CreditOfferPage from './pages/CreditOfferPage';
 import AcceptancePage from './pages/AcceptancePage';
+import TestAcceptance from './pages/TestAcceptance';
+import TestDashboard from './pages/TestDashboard';
 import SuccessDashboardPage from './pages/SuccessDashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -32,14 +34,13 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route path="/test-accept" element={<TestAcceptance />} />
+          <Route path="/test-dashboard" element={<TestDashboard />} />
           <Route 
             path="/accept" 
-            element={
-              <ProtectedRoute>
-                <AcceptancePage />
-              </ProtectedRoute>
-            } 
+            element={<AcceptancePage />}
           />
+          <Route path="/success-dashboard" element={<SuccessDashboardPage />} />
           <Route 
             path="/dashboard" 
             element={

@@ -13,13 +13,31 @@ const AcceptancePage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [loanData, setLoanData] = useState(null);
 
-  // Get offer from previous page
-  const offer = location.state?.offer;
+  // Get offer from previous page or localStorage for demo
+  let offer = location.state?.offer;
+  if (!offer) {
+    try {
+      const mockOfferStr = localStorage.getItem('mockOffer');
+      offer = mockOfferStr ? JSON.parse(mockOfferStr) : null;
+    } catch (e) {
+      console.error('Error parsing mock offer:', e);
+      offer = null;
+    }
+  }
 
   if (!offer) {
-    // Redirect back if no offer data
-    navigate('/credit-offer');
-    return null;
+    // For demo: create mock offer if none exists
+    const mockOffer = {
+      offerId: 'demo_offer_123',
+      loanAmount: 1500,
+      dailyInterestRate: 0.0005,
+      repaymentTerms: {
+        dailyPayment: 52.63,
+        numberOfDays: 30
+      }
+    };
+    localStorage.setItem('mockOffer', JSON.stringify(mockOffer));
+    offer = mockOffer;
   }
 
   const handleTermsAccepted = (consent) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
   const [showConfetti, setShowConfetti] = useState(false);
@@ -19,13 +19,15 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
     };
   }, []);
 
+  const handleContinue = useCallback(() => {
+    onContinue();
+  }, [onContinue]);
+
   useEffect(() => {
     if (autoRedirect && showMessage) {
       const interval = setInterval(() => {
         setCountdown(prev => {
           if (prev <= 1) {
-            clearInterval(interval);
-            onContinue();
             return 0;
           }
           return prev - 1;
@@ -34,7 +36,13 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
 
       return () => clearInterval(interval);
     }
-  }, [showMessage, autoRedirect, onContinue]);
+  }, [showMessage, autoRedirect]);
+
+  useEffect(() => {
+    if (autoRedirect && showMessage && countdown === 0) {
+      handleContinue();
+    }
+  }, [countdown, autoRedirect, showMessage, handleContinue]);
 
   // Generate confetti particles
   const generateConfetti = () => {
@@ -161,7 +169,7 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
           {/* Action Buttons */}
           <div className="space-y-3">
             <button
-              onClick={onContinue}
+              onClick={handleContinue}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
             >
               Continue to Dashboard
@@ -195,7 +203,7 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
       </div>
 
       {/* CSS for confetti fall animation */}
-      <style jsx>{`
+      <style>{`
         @keyframes fall {
           0% {
             transform: translateY(-100vh) rotate(0deg);

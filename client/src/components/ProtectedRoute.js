@@ -13,7 +13,19 @@ const ProtectedRoute = ({ children, requiresAccountId = false, requiresOffer = f
 
   // Check if user is trying to access acceptance page without an offer
   if (children.type?.name === 'AcceptancePage' && !offerId) {
-    return <Navigate to="/" replace />;
+    // For demo: allow direct access with mock offer
+    const mockOffer = {
+      offerId: 'demo_offer_123',
+      loanAmount: 1500,
+      dailyInterestRate: 0.0005,
+      repaymentTerms: {
+        dailyPayment: 52.63,
+        numberOfDays: 30
+      }
+    };
+    // Store mock offer for demo
+    localStorage.setItem('offerId', mockOffer.offerId);
+    localStorage.setItem('mockOffer', JSON.stringify(mockOffer));
   }
 
   // Check if user is trying to access offer page without cash flow analysis
