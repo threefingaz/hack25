@@ -121,9 +121,15 @@ const PersonaSelector = ({ onPersonaSelect }) => {
 
             {selectedPersona === persona.id && (
               <div className="mt-4 text-center">
-                <p className="text-sm text-green-600 font-medium">
-                  Great choice! Click "Get Started" to begin the demo.
-                </p>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
+                  <p className="text-sm text-green-700 font-medium mb-1">
+                    ✓ Demo selected! Starting application...
+                  </p>
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600 mr-2"></div>
+                    <span className="text-xs text-green-600">Redirecting in a moment</span>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -132,12 +138,12 @@ const PersonaSelector = ({ onPersonaSelect }) => {
 
       {selectedPersona && (
         <div className="text-center mt-12">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 inline-block">
-            <p className="text-green-800 font-medium mb-2">
-              Demo persona selected: {personas.find(p => p.id === selectedPersona)?.name}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 inline-block">
+            <p className="text-blue-800 font-medium mb-2">
+              ✨ Starting demo for {personas.find(p => p.id === selectedPersona)?.name}
             </p>
-            <p className="text-sm text-green-600">
-              All subsequent data and calculations will be based on this business profile.
+            <p className="text-sm text-blue-600">
+              You'll now experience their complete loan application journey.
             </p>
           </div>
         </div>

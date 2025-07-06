@@ -23,13 +23,10 @@ const HomePage = () => {
 
   const handlePersonaSelect = (persona) => {
     setSelectedPersona(persona);
-    // Auto-scroll to call to action after selection
+    // Auto-redirect to bank connection after persona selection
     setTimeout(() => {
-      const ctaSection = document.getElementById('cta-section');
-      if (ctaSection) {
-        ctaSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 500);
+      navigate('/connect');
+    }, 1500); // Give users time to see their selection
   };
 
   return (
@@ -93,36 +90,30 @@ const HomePage = () => {
       {/* Testimonials */}
       <TestimonialCarousel />
 
-      {/* CTA Section */}
-      <div id="cta-section" className="bg-blue-600 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              {selectedPersona 
-                ? `Experience the ${selectedPersona.name} demo and see your personalized credit offer`
-                : 'Join thousands of businesses getting faster access to capital'
-              }
-            </p>
-            <button
-              onClick={handleGetStarted}
-              className="bg-white text-blue-700 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg transform hover:scale-105"
-            >
-              {selectedPersona ? 'Start Demo Application' : 'Start Your Application'}
-            </button>
-            <p className="text-sm text-blue-200 mt-4">
-              Free analysis • No commitment • 2 minutes to complete
-            </p>
-            {selectedPersona && (
-              <p className="text-xs text-blue-300 mt-2">
-                Demo will use {selectedPersona.name}'s business profile
+      {/* CTA Section - Only show if no persona selected */}
+      {!selectedPersona && (
+        <div id="cta-section" className="bg-blue-600 py-16">
+          <div className="container mx-auto px-4 text-center">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Ready to Get Started?
+              </h2>
+              <p className="text-xl text-blue-100 mb-8">
+                Join thousands of businesses getting faster access to capital
               </p>
-            )}
+              <button
+                onClick={handleGetStarted}
+                className="bg-white text-blue-700 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg transform hover:scale-105"
+              >
+                Start Your Application
+              </button>
+              <p className="text-sm text-blue-200 mt-4">
+                Free analysis • No commitment • 2 minutes to complete
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

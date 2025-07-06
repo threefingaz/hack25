@@ -41,18 +41,20 @@
 
 **Demo:** Scroll to show impact metrics (1,247 businesses helped, €2.4M economic impact)
 
-### 2. Business Persona Selection (25 seconds)
+### 2. Business Persona Selection (20 seconds)
 **Action:** Scroll to persona selector
 **Speaking points:**
 - "Let's follow Anna Schmidt, who runs a food truck business"
 - "She has steady weekly income but traditional banks reject her due to limited credit history"
+- "Watch how selecting her profile automatically starts the demo"
 
 **Demo:** 
 - Click on Anna's persona card
 - Highlight €2,100 monthly income and weekly patterns
-- Click "Start Demo Application"
+- Show automatic "Starting demo" message with loading indicator
+- Automatic redirect to bank connection (no additional click needed)
 
-### 3. Bank Connection Flow (30 seconds)
+### 3. Bank Connection Flow (35 seconds)
 **Action:** Navigate through bank connection
 **Speaking points:**
 - "First, Anna securely connects her bank account"
