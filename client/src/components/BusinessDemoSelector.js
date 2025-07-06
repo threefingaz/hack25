@@ -14,15 +14,16 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
       name: 'Anna Schmidt',
       business: 'Food Truck Owner',
       photo: annaPhoto,
-      accountType: 'Privat - GBP',
-      balance: '3.126 £',
+      accountType: 'Business',
+      balance: '€2,847',
+      averageMonthlyIncome: '€2,100',
       latestTransaction: {
-        type: 'expense',
-        description: 'Kaffee in London',
-        amount: '-3,25 £',
-        time: 'Gestern, 09:02',
-        icon: '☕',
-        iconBg: 'bg-purple-100'
+        type: 'income',
+        description: 'Food Truck Sales',
+        amount: '+€342',
+        time: 'Today, 14:30',
+        icon: '🚚',
+        iconBg: 'bg-green-100'
       }
     },
     {
@@ -30,33 +31,35 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
       name: 'Maria Rodriguez',
       business: 'Event Planner',
       photo: mariaPhoto,
-      accountType: 'Privat',
-      balance: '6.012 €',
+      accountType: 'Business',
+      balance: '€1,923',
+      averageMonthlyIncome: '€1,800',
       latestTransaction: {
-        type: 'income',
-        description: 'Gehalt',
-        amount: '+2.550 €',
-        time: 'Heute, 11:28',
-        icon: '💰',
-        iconBg: 'bg-blue-100'
-      },
-      featured: true
+        type: 'expense',
+        description: 'Event Supplies',
+        amount: '-€156',
+        time: 'Yesterday, 16:20',
+        icon: '🎉',
+        iconBg: 'bg-purple-100'
+      }
     },
     {
       id: 'mehmet',
       name: 'Mehmet Özkan',
       business: 'Online Retailer',
       photo: mehmetPhoto,
-      accountType: 'Privat',
-      balance: '2.350 €',
+      accountType: 'Business',
+      balance: '€4,235',
+      averageMonthlyIncome: '€3,500',
       latestTransaction: {
-        type: 'expense',
-        description: 'Haushaltsrechnungen',
-        amount: '-225 €',
-        time: 'Heute fällig',
-        icon: '🏠',
-        iconBg: 'bg-purple-100'
-      }
+        type: 'income',
+        description: 'Online Order #4521',
+        amount: '+€89',
+        time: 'Today, 11:45',
+        icon: '🛒',
+        iconBg: 'bg-blue-100'
+      },
+      featured: true
     }
   ];
 
