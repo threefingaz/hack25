@@ -128,88 +128,98 @@
 ## Core Features (Hours 4-6)
 
 ### Cash Flow Visualization (F002)
-- [ ] Create CashFlowChart component using Chart.js
-- [ ] Configure chart as stacked bar chart
-- [ ] Set up data structure for 3 months of data
-- [ ] Implement green bars for income
-- [ ] Implement red bars for expenses
-- [ ] Add month labels on X-axis
-- [ ] Add Euro amount labels on Y-axis
-- [ ] Calculate total income per month
-- [ ] Calculate total expenses per month
-- [ ] Add chart title "Your Cash Flow Analysis"
+- [x] Create CashFlowChart component using Chart.js
+- [x] Configure chart as stacked bar chart
+- [x] Set up data structure for 3 months of data
+- [x] Implement green bars for income
+- [x] Implement red bars for expenses
+- [x] Add month labels on X-axis
+- [x] Add Euro amount labels on Y-axis
+- [x] Calculate total income per month
+- [x] Calculate total expenses per month
+- [x] Add chart title "Your Cash Flow Analysis"
 
 ### Chart Interactivity
-- [ ] Enable hover tooltips on bars
-- [ ] Format tooltip to show "Income: €X,XXX"
-- [ ] Format tooltip to show "Expenses: €X,XXX"
-- [ ] Add net cash flow to tooltip
-- [ ] Implement chart animations on load
-- [ ] Add responsive sizing for mobile
-- [ ] Create legend for income/expenses
-- [ ] Add grid lines for better readability
-- [ ] Format currency with thousand separators
-- [ ] Highlight current month differently
+- [x] Enable hover tooltips on bars
+- [x] Format tooltip to show "Income: €X,XXX"
+- [x] Format tooltip to show "Expenses: €X,XXX"
+- [x] Add net cash flow to tooltip
+- [x] Implement chart animations on load
+- [x] Add responsive sizing for mobile
+- [x] Create legend for income/expenses
+- [x] Add grid lines for better readability
+- [x] Format currency with thousand separators
+- [x] Highlight current month differently
 
 ### Cash Flow Summary Metrics
-- [ ] Create CashFlowSummary component
-- [ ] Calculate average monthly income
-- [ ] Calculate average monthly expenses
-- [ ] Calculate average net cash flow
-- [ ] Calculate cash flow volatility percentage
-- [ ] Display metrics in card layout
-- [ ] Add trend indicators (up/down arrows)
-- [ ] Highlight positive metrics in green
-- [ ] Highlight concerning metrics in amber
-- [ ] Add explanation tooltips for each metric
+- [x] Create CashFlowSummary component
+- [x] Calculate average monthly income
+- [x] Calculate average monthly expenses
+- [x] Calculate average net cash flow
+- [x] Calculate cash flow volatility percentage
+- [x] Display metrics in card layout
+- [x] Add trend indicators (up/down arrows)
+- [x] Highlight positive metrics in green
+- [x] Highlight concerning metrics in amber
+- [x] Add explanation tooltips for each metric
 
 ### Credit Decision Engine (F003)
-- [ ] Create creditEngine.js service file
-- [ ] Implement eligibility check function
-- [ ] Check average monthly income > €2,000
-- [ ] Calculate cash flow volatility
-- [ ] Check volatility < 40% for bonus points
-- [ ] Verify positive cash flow in 2 of 3 months
-- [ ] Calculate base loan amount (25% of monthly income)
-- [ ] Cap maximum loan at €2,500
-- [ ] Set interest rate at 0.05% daily
-- [ ] Calculate total repayment amount
+- [x] Create creditEngine.js service file
+- [x] Implement eligibility check function
+- [x] Check average monthly income > €2,000
+- [x] Calculate cash flow volatility
+- [x] Check volatility < 40% for bonus points
+- [x] Verify positive cash flow in 2 of 3 months
+- [x] Calculate base loan amount (25% of monthly income)
+- [x] Cap maximum loan at €2,500
+- [x] Set interest rate at 0.05% daily
+- [x] Calculate total repayment amount
 
 ### Credit Decision API
-- [ ] Create POST /api/credit-decision endpoint
-- [ ] Extract cash flow summary from request
-- [ ] Run credit engine calculations
-- [ ] Generate unique offer ID
-- [ ] Calculate repayment schedule
-- [ ] Determine number of days (amount/daily payment)
-- [ ] Add explanation for credit decision
-- [ ] Return decision in under 2 seconds
-- [ ] Include decision reasoning in response
-- [ ] Store offer in memory with expiration
+- [x] Create POST /api/credit-decision endpoint
+- [x] Extract cash flow summary from request
+- [x] Run credit engine calculations
+- [x] Generate unique offer ID
+- [x] Calculate repayment schedule
+- [x] Determine number of days (amount/daily payment)
+- [x] Add explanation for credit decision
+- [x] Return decision in under 2 seconds
+- [x] Include decision reasoning in response
+- [x] Store offer in memory with expiration
 
 ### Loan Offer Display (F004)
-- [ ] Create CreditOfferCard component
-- [ ] Display approved amount in 48px+ font
-- [ ] Show "You're approved for" heading
-- [ ] Display daily interest rate
-- [ ] Show total repayment amount
-- [ ] Calculate and show repayment period
-- [ ] Create visual representation of daily payments
-- [ ] Add "Why this offer?" expandable section
-- [ ] Include cash flow factors that led to approval
-- [ ] Add accept/decline buttons
+- [x] Create CreditOfferCard component
+- [x] Display approved amount in 48px+ font
+- [x] Show "You're approved for" heading
+- [x] Display daily interest rate
+- [x] Show total repayment amount
+- [x] Calculate and show repayment period
+- [x] Create visual representation of daily payments
+- [x] Add "Why this offer?" expandable section
+- [x] Include cash flow factors that led to approval
+- [x] Add accept/decline buttons
 
 ### Offer Explanation
-- [ ] Create OfferExplanation component
-- [ ] List positive factors (steady income, low volatility)
-- [ ] Show how loan amount was calculated
-- [ ] Explain daily repayment structure
-- [ ] Add comparison to traditional bank timeline
-- [ ] Include "No hidden fees" badge
-- [ ] Add "Instant disbursement" badge
-- [ ] Show BaFin regulation mention (mock)
-- [ ] Add trust indicators
-- [ ] Include FAQ dropdown items
+- [x] Create OfferExplanation component
+- [x] List positive factors (steady income, low volatility)
+- [x] Show how loan amount was calculated
+- [x] Explain daily repayment structure
+- [x] Add comparison to traditional bank timeline
+- [x] Include "No hidden fees" badge
+- [x] Add "Instant disbursement" badge
+- [x] Show BaFin regulation mention (mock)
+- [x] Add trust indicators
+- [x] Include FAQ dropdown items
+
+**✅ STORY COMPLETED: Core Features (Hours 4-6)**
+- Cash flow visualization with Chart.js implemented with interactive charts
+- Cash flow summary metrics with business health indicators
+- Credit decision engine with sophisticated risk assessment
+- Credit decision API with offer generation and storage
+- Credit offer display with detailed breakdown and visual timeline
+- Offer explanation with tabbed interface and FAQ section
+- Full integration between cash flow analysis and credit offers
+- Ready for next story: Digital Acceptance Flow
 
 ## Digital Acceptance Flow (Hours 6-8)
 
