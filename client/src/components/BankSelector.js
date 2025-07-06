@@ -4,40 +4,31 @@ const banks = [
   {
     id: 'sparkasse',
     name: 'Sparkasse',
-    fullName: 'Sparkassen-Finanzgruppe',
-    description: 'Germany\'s largest banking group',
     bgColor: 'bg-gray-50',
     borderColor: 'border-gray-200',
     hoverColor: 'hover:border-gray-300',
     selectedColor: 'ring-blue-500',
     popular: true,
-    priority: 1,
-    customers: '50M+ customers'
+    priority: 1
   },
   {
     id: 'deutsche-bank',
     name: 'Deutsche Bank',
-    fullName: 'Deutsche Bank AG',
-    description: 'Leading international bank',
     bgColor: 'bg-gray-50',
     borderColor: 'border-gray-200',
     hoverColor: 'hover:border-gray-300',
     selectedColor: 'ring-blue-500',
     popular: false,
-    customers: '20M+ customers',
     priority: 2
   },
   {
     id: 'commerzbank',
     name: 'Commerzbank',
-    fullName: 'Commerzbank AG',
-    description: 'Major German commercial bank',
     bgColor: 'bg-gray-50',
     borderColor: 'border-gray-200',
     hoverColor: 'hover:border-gray-300',
     selectedColor: 'ring-blue-500',
     popular: false,
-    customers: '11M+ customers',
     priority: 3
   }
 ];
@@ -58,7 +49,7 @@ const BankSelector = ({ onBankSelect, selectedBank }) => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {banks.sort((a, b) => a.priority - b.priority).map((bank) => (
           <div
             key={bank.id}
@@ -68,7 +59,7 @@ const BankSelector = ({ onBankSelect, selectedBank }) => {
             className={`
               relative cursor-pointer transition-all duration-200 
               ${bank.bgColor} ${bank.borderColor} 
-              border-2 rounded-xl p-6 
+              border-2 rounded-xl p-8 
               ${bank.hoverColor}
               transform hover:scale-105 hover:shadow-lg
               ${selectedBank === bank.id 
@@ -86,37 +77,16 @@ const BankSelector = ({ onBankSelect, selectedBank }) => {
               </div>
             )}
 
-            {/* Bank Logo */}
-            <div className="text-center mb-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+            {/* Bank Logo and Name */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-1">
+              <h4 className="text-xl font-bold text-gray-900">
                 {bank.name}
               </h4>
-              <p className="text-sm font-medium text-gray-600 mb-2">
-                {bank.fullName}
-              </p>
-              <p className="text-xs text-gray-500">
-                {bank.description}
-              </p>
-            </div>
-
-            {/* Bank Info */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">Customers:</span>
-                <span className="font-semibold text-gray-900">{bank.customers}</span>
-              </div>
-              
-              <div className="flex items-center text-sm text-green-600">
-                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-xs">Secure connection</span>
-              </div>
             </div>
 
             {/* Selection Indicator */}
