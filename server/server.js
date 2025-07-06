@@ -16,10 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 const bankConnectionRoutes = require('./routes/bankConnection');
 const transactionRoutes = require('./routes/transactions');
 const creditDecisionRoutes = require('./routes/creditDecision');
+const { router: loanAcceptanceRoutes } = require('./routes/loanAcceptance');
 
 app.use('/api', bankConnectionRoutes);
 app.use('/api', transactionRoutes);
 app.use('/api', creditDecisionRoutes);
+app.use('/api', loanAcceptanceRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
