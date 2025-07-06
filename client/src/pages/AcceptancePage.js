@@ -50,30 +50,49 @@ const AcceptancePage = () => {
     setIsProcessing(true);
 
     try {
+      const requestData = {
+        offerId: offer.offerId,
+        signature: signature,
+        termsAccepted: termsAccepted
+      };
+
+      console.log('Submitting loan acceptance:', {
+        offerId: requestData.offerId,
+        hasSignature: !!requestData.signature,
+        signatureDetails: {
+          fullName: requestData.signature?.fullName,
+          verified: requestData.signature?.verified,
+          method: requestData.signature?.method
+        },
+        hasTerms: !!requestData.termsAccepted,
+        termsDetails: {
+          gdprConsent: requestData.termsAccepted?.gdprConsent,
+          marketingConsent: requestData.termsAccepted?.marketingConsent
+        }
+      });
+
       // Submit loan acceptance to API
       const response = await fetch('/api/accept-loan', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          offerId: offer.offerId,
-          signature: signature,
-          termsAccepted: termsAccepted
-        }),
+        body: JSON.stringify(requestData),
       });
 
       const result = await response.json();
+      console.log('API Response:', { status: response.status, result });
 
       if (response.ok && result.success) {
         setLoanData(result);
         setCurrentStep('success');
       } else {
-        throw new Error(result.error || 'Failed to process loan acceptance');
+        const errorMessage = result.details ? `${result.error}: ${result.details}` : (result.error || 'Failed to process loan acceptance');
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Error accepting loan:', error);
-      alert('Failed to process loan acceptance. Please try again.');
+      alert(`Failed to process loan acceptance: ${error.message}\n\nPlease check that you have:\n• Provided a valid signature\n• Accepted all terms and conditions\n• Provided GDPR consent`);
     } finally {
       setIsProcessing(false);
     }
@@ -166,7 +185,7 @@ const AcceptancePage = () => {
           {currentStep === 'signature' && (
             <DigitalSignature 
               onSign={handleSignatureComplete}
-              accountHolder="Anna Schmidt" // In real app, this would come from account data
+              accountHolder={sessionStorage.getItem('selectedPersonaName') || "Anna Schmidt"}
             />
           )}
         </div>

@@ -17,25 +17,36 @@ router.post('/accept-loan', async (req, res) => {
       });
     }
 
-    if (!signature || !signature.fullName || !signature.verified) {
+    if (!signature || !signature.fullName || signature.verified !== true) {
+      console.error('Signature validation failed:', { 
+        hasSignature: !!signature, 
+        hasFullName: signature?.fullName, 
+        isVerified: signature?.verified 
+      });
       return res.status(400).json({ 
-        error: 'Valid signature is required' 
+        error: 'Valid signature is required',
+        details: 'Signature must include full name and be verified'
       });
     }
 
-    if (!termsAccepted || !termsAccepted.gdprConsent) {
+    if (!termsAccepted || termsAccepted.gdprConsent !== true) {
+      console.error('Terms validation failed:', { 
+        hasTerms: !!termsAccepted, 
+        gdprConsent: termsAccepted?.gdprConsent 
+      });
       return res.status(400).json({ 
-        error: 'GDPR consent is required' 
+        error: 'GDPR consent is required',
+        details: 'You must accept the terms and conditions and provide GDPR consent'
       });
     }
 
     // Check if offer exists and is not expired
     let offer = offerStorage.get(offerId);
     
-    // For demo mode: create mock offer if it's the demo offer ID
-    if (!offer && offerId === 'demo_offer_123') {
+    // For demo mode: create mock offer if it's the demo offer ID or if no offer exists
+    if (!offer && (offerId === 'demo_offer_123' || offerId.startsWith('demo_'))) {
       offer = {
-        offerId: 'demo_offer_123',
+        offerId: offerId,
         amount: 1500,
         dailyRate: 0.0005,
         totalRepayment: 1578.75,
@@ -43,7 +54,21 @@ router.post('/accept-loan', async (req, res) => {
         repaymentDays: 30,
         createdAt: new Date().toISOString()
       };
-      console.log('Demo offer created for testing');
+      console.log('Demo offer created for testing:', offerId);
+    }
+    
+    // Additional fallback: if still no offer, create one for any request (demo mode)
+    if (!offer && process.env.NODE_ENV !== 'production') {
+      offer = {
+        offerId: offerId,
+        amount: 1500,
+        dailyRate: 0.0005,
+        totalRepayment: 1578.75,
+        dailyPayment: 52.63,
+        repaymentDays: 30,
+        createdAt: new Date().toISOString()
+      };
+      console.log('Fallback demo offer created for development:', offerId);
     }
     
     if (!offer) {
