@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
 import PersonaSelector from '../components/PersonaSelector';
+import BusinessDemoSelector from '../components/BusinessDemoSelector';
 import ImpactMetrics from '../components/ImpactMetrics';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [selectedPersona, setSelectedPersona] = useState(null);
+  const [useNewSelector, setUseNewSelector] = useState(true);
 
   const handleGetStarted = () => {
     navigate('/connect');
@@ -37,10 +39,14 @@ const HomePage = () => {
         onWatchDemo={handleWatchDemo}
       />
 
-      {/* Persona Selector */}
-      <div id="persona-selector" className="bg-white py-16">
+      {/* Business Demo Selector */}
+      <div id="persona-selector" className="bg-gray-50 py-16">
         <div className="container mx-auto px-4">
-          <PersonaSelector onPersonaSelect={handlePersonaSelect} />
+          {useNewSelector ? (
+            <BusinessDemoSelector onPersonaSelect={handlePersonaSelect} />
+          ) : (
+            <PersonaSelector onPersonaSelect={handlePersonaSelect} />
+          )}
         </div>
       </div>
 
