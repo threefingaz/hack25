@@ -34,7 +34,18 @@ const BankConnectionPage = () => {
 
     // Simulate API call
     setTimeout(() => {
-      if (credentials.username === 'demo' && credentials.password === 'demo') {
+      // Handle Deutsche Bank specific credentials
+      if (selectedBank === 'deutsche-bank') {
+        if (credentials.branch && credentials.account && credentials.subAccount && credentials.pin) {
+          setIsLoading(false);
+          setCurrentStep(3);
+        } else {
+          setIsLoading(false);
+          setError('Please fill in all Deutsche Bank credentials');
+        }
+      } 
+      // Handle other banks with username/password
+      else if (credentials.username === 'demo' && credentials.password === 'demo') {
         setIsLoading(false);
         setCurrentStep(3);
       } else {
