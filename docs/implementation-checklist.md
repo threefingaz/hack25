@@ -340,52 +340,60 @@
 ## Demo Features (Hours 8-10)
 
 ### Demo Data Generator (F007)
-- [ ] Create PersonaSelector component
-- [ ] Display 3 persona cards with images
-- [ ] Add persona descriptions
-- [ ] Implement persona selection
-- [ ] Generate unique session ID per selection
-- [ ] Create transaction variations function
-- [ ] Add ±10% randomness to amounts
-- [ ] Ensure consistency within session
-- [ ] Add edge case persona (rejection)
-- [ ] Store selected persona in context
+- [x] Create PersonaSelector component
+- [x] Display 3 persona cards with images
+- [x] Add persona descriptions
+- [x] Implement persona selection
+- [x] Generate unique session ID per selection
+- [x] Create transaction variations function
+- [x] Add ±10% randomness to amounts
+- [x] Ensure consistency within session
+- [x] Add edge case persona (rejection)
+- [x] Store selected persona in context
 
 ### Landing Page Impact Metrics (F008)
-- [ ] Create ImpactMetrics component
-- [ ] Add "Time Saved" counter (animate to 13 days)
-- [ ] Add "Businesses Helped" counter (animate to 1,247)
-- [ ] Add "Economic Impact" counter (animate to €2.4M)
-- [ ] Implement count-up animation on scroll
-- [ ] Add explanatory text for each metric
-- [ ] Create metrics cards with icons
-- [ ] Add "Updated in real-time" badge
-- [ ] Include comparison graphics
-- [ ] Make metrics mobile-responsive
+- [x] Create ImpactMetrics component
+- [x] Add "Time Saved" counter (animate to 13 days)
+- [x] Add "Businesses Helped" counter (animate to 1,247)
+- [x] Add "Economic Impact" counter (animate to €2.4M)
+- [x] Implement count-up animation on scroll
+- [x] Add explanatory text for each metric
+- [x] Create metrics cards with icons
+- [x] Add "Updated in real-time" badge
+- [x] Include comparison graphics
+- [x] Make metrics mobile-responsive
 
 ### Hero Section
-- [ ] Create HeroSection component
-- [ ] Add compelling headline
-- [ ] Write subheadline explaining value
-- [ ] Add "Get Started" CTA button
-- [ ] Include "Watch Demo" video button (mock)
-- [ ] Add hero image or illustration
-- [ ] Implement parallax scroll effect
-- [ ] Add trust badges (BaFin, SSL, etc.)
-- [ ] Include "No credit check" badge
-- [ ] Animate elements on page load
+- [x] Create HeroSection component
+- [x] Add compelling headline
+- [x] Write subheadline explaining value
+- [x] Add "Get Started" CTA button
+- [x] Include "Watch Demo" video button (mock)
+- [x] Add hero image or illustration
+- [x] Implement parallax scroll effect
+- [x] Add trust badges (BaFin, SSL, etc.)
+- [x] Include "No credit check" badge
+- [x] Animate elements on page load
 
 ### Testimonial Carousel
-- [ ] Create TestimonialCarousel component
-- [ ] Add 3 testimonial objects with data
-- [ ] Include business name and owner
-- [ ] Add testimonial text (2-3 sentences)
-- [ ] Include loan amount and use case
-- [ ] Add business category badges
-- [ ] Implement auto-rotation every 5 seconds
-- [ ] Add manual navigation dots
-- [ ] Include quotation mark styling
-- [ ] Add subtle slide transition
+- [x] Create TestimonialCarousel component
+- [x] Add 3 testimonial objects with data
+- [x] Include business name and owner
+- [x] Add testimonial text (2-3 sentences)
+- [x] Include loan amount and use case
+- [x] Add business category badges
+- [x] Implement auto-rotation every 5 seconds
+- [x] Add manual navigation dots
+- [x] Include quotation mark styling
+- [x] Add subtle slide transition
+
+**✅ STORY COMPLETED: Demo Features (Hours 8-10)**
+- All persona selector components implemented with 3 business profiles and selection functionality
+- Complete impact metrics with animated counters and intersection observer triggers
+- Enhanced hero section with rotating text, animations, and compelling CTAs
+- Professional testimonial carousel with auto-rotation, manual navigation, and business details
+- Full integration with HomePage including persona-based demo flow
+- Ready for next story: Polish & Optimization
 
 ## Polish & Optimization (Hours 10-12)
 
