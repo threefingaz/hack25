@@ -7,10 +7,14 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: ['http://localhost:3000', 'http://localhost:3002']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Routes
+const bankConnectionRoutes = require('./routes/bankConnection');
+app.use('/api', bankConnectionRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

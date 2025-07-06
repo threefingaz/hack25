@@ -55,7 +55,7 @@
 - [x] Create SuccessDashboardPage.js component shell
 - [x] Set up React Router routes for all pages
 - [x] Create Navigation component for demo flow
-- [ ] Add route guards to prevent skipping steps
+- [x] Add route guards to prevent skipping steps
 - [x] Create shared Layout component with header/footer
 
 **✅ STORY COMPLETED: Project Setup & Foundation (Hours 0-2)**
@@ -70,52 +70,60 @@
 ## Bank Connection Flow (Hours 2-4)
 
 ### Bank Selection UI (F001)
-- [ ] Create BankSelector component with dropdown
-- [ ] Add bank logos for Deutsche Bank, Commerzbank, Sparkasse
-- [ ] Implement bank selection state management
-- [ ] Add "Most Popular" badge to Sparkasse
-- [ ] Create tooltip explaining this is a demo
-- [ ] Style dropdown with Tailwind classes
-- [ ] Add transition animations on selection
-- [ ] Disable proceed button until bank selected
-- [ ] Store selected bank in component state
-- [ ] Add visual feedback on bank selection
+- [x] Create BankSelector component with dropdown
+- [x] Add bank logos for Deutsche Bank, Commerzbank, Sparkasse
+- [x] Implement bank selection state management
+- [x] Add "Most Popular" badge to Sparkasse
+- [x] Create tooltip explaining this is a demo
+- [x] Style dropdown with Tailwind classes
+- [x] Add transition animations on selection
+- [x] Disable proceed button until bank selected
+- [x] Store selected bank in component state
+- [x] Add visual feedback on bank selection
 
 ### OAuth Mock Flow
-- [ ] Create LoginForm component with username/password fields
-- [ ] Add demo credentials hint text below form
-- [ ] Implement form validation (both fields required)
-- [ ] Create mock OAuth redirect screen
-- [ ] Add Sparkasse branding to login form
-- [ ] Implement 2-3 second loading animation
-- [ ] Create progress bar for "Connecting to your bank..."
-- [ ] Add step indicators (1. Select Bank, 2. Login, 3. Authorize)
-- [ ] Mock permission consent screen
-- [ ] Add "Authorize CashFlow Bridge" button
+- [x] Create LoginForm component with username/password fields
+- [x] Add demo credentials hint text below form
+- [x] Implement form validation (both fields required)
+- [x] Create mock OAuth redirect screen
+- [x] Add Sparkasse branding to login form
+- [x] Implement 2-3 second loading animation
+- [x] Create progress bar for "Connecting to your bank..."
+- [x] Add step indicators (1. Select Bank, 2. Login, 3. Authorize)
+- [x] Mock permission consent screen
+- [x] Add "Authorize CashFlow Bridge" button
 
 ### API Endpoints for Bank Connection
-- [ ] Create POST /api/connect-bank endpoint
-- [ ] Validate request body has bank and credentials
-- [ ] Check credentials match "demo/demo"
-- [ ] Generate mock session ID
-- [ ] Return success response with accountId
-- [ ] Add 2 second artificial delay for realism
-- [ ] Store session in memory (no database)
-- [ ] Create error response for invalid credentials
-- [ ] Add rate limiting to prevent spam
-- [ ] Log connection attempts for demo metrics
+- [x] Create POST /api/connect-bank endpoint
+- [x] Validate request body has bank and credentials
+- [x] Check credentials match "demo/demo"
+- [x] Generate mock session ID
+- [x] Return success response with accountId
+- [x] Add 2 second artificial delay for realism
+- [x] Store session in memory (no database)
+- [x] Create error response for invalid credentials
+- [x] Add rate limiting to prevent spam
+- [x] Log connection attempts for demo metrics
 
 ### Loading States and Feedback
-- [ ] Create LoadingSpinner component
-- [ ] Add pulsing animation to spinner
-- [ ] Create ProgressMessage component
-- [ ] Rotate messages: "Securing connection...", "Verifying credentials...", "Accessing account..."
-- [ ] Implement success animation (checkmark)
-- [ ] Add error state with retry button
-- [ ] Create smooth transitions between states
-- [ ] Add backdrop overlay during loading
-- [ ] Prevent user interaction during loading
-- [ ] Auto-redirect to cash flow page on success
+- [x] Create LoadingSpinner component
+- [x] Add pulsing animation to spinner
+- [x] Create ProgressMessage component
+- [x] Rotate messages: "Securing connection...", "Verifying credentials...", "Accessing account..."
+- [x] Implement success animation (checkmark)
+- [x] Add error state with retry button
+- [x] Create smooth transitions between states
+- [x] Add backdrop overlay during loading
+- [x] Prevent user interaction during loading
+- [x] Auto-redirect to cash flow page on success
+
+**✅ STORY COMPLETED: Bank Connection Flow (Hours 2-4)**
+- All bank selection UI tasks completed with dropdown and logos
+- OAuth mock flow fully implemented with login and authorization screens
+- API endpoint created with proper validation and rate limiting
+- Loading states and feedback mechanisms implemented
+- Route guards added to prevent flow skipping
+- Ready for next story: Core Features
 
 ## Core Features (Hours 4-6)
 
