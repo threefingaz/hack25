@@ -130,14 +130,6 @@ npm run build        # Build frontend for production
 cd client && npm test # Run frontend tests
 ```
 
-## Hackathon Achievement
-
-**Built in 48 hours** by a passionate team demonstrating:
-- **MVP Development** - Full working prototype
-- **User Experience** - Intuitive, conversion-focused design
-- **Technical Innovation** - Real-time cash flow analysis
-- **Market Validation** - Addresses real SMB lending pain points
-- **Scalable Architecture** - Production-ready foundation
 
 ## 📄 License
 
