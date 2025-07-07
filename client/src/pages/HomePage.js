@@ -1,53 +1,230 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import HeroSection from '../components/HeroSection';
-import PersonaSelector from '../components/PersonaSelector';
-import BusinessDemoSelector from '../components/BusinessDemoSelector';
 import ImpactMetrics from '../components/ImpactMetrics';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import Navigation from '../components/Navigation';
+// Import persona photos
+import annaPhoto from '../assets/anna-photo.jpg';
+import mehmetPhoto from '../assets/mehmet-photo.jpg';
+import mariaPhoto from '../assets/maria-photo.jpg';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [selectedPersona, setSelectedPersona] = useState(null);
-  const [useNewSelector, setUseNewSelector] = useState(true);
 
   const handleGetStarted = () => {
     navigate('/connect');
   };
 
-  const handleWatchDemo = () => {
-    // Scroll to persona selector for demo selection
-    const personaSection = document.getElementById('persona-selector');
-    if (personaSection) {
-      personaSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handlePersonaSelect = (persona) => {
-    setSelectedPersona(persona);
+    setSelectedPersona(persona.id);
+    // Store selected persona for session consistency
+    sessionStorage.setItem('selectedPersona', persona.id);
+    sessionStorage.setItem('selectedPersonaName', persona.name);
+    sessionStorage.setItem('selectedPersonaBusiness', persona.business);
+    
     // Auto-redirect to bank connection after persona selection
     setTimeout(() => {
       navigate('/connect');
     }, 1500); // Give users time to see their selection
   };
 
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <HeroSection 
-        onGetStarted={handleGetStarted}
-        onWatchDemo={handleWatchDemo}
-      />
+  const personas = [
+    {
+      id: 'anna',
+      name: 'Anna Schmidt',
+      business: 'Food Truck Owner',
+      description: 'Runs a popular food truck with steady weekly patterns',
+      photo: annaPhoto,
+      accountType: 'Business',
+      balance: '€2,847',
+      averageMonthlyIncome: '€2,100',
+      pattern: 'Weekly income patterns with weekend variations',
+      expectedLoan: '€525',
+      latestTransaction: {
+        type: 'income',
+        description: 'Weekend Food Sales',
+        amount: '+€287',
+        time: 'Today, 16:30',
+        icon: '🚚',
+        iconBg: 'bg-orange-100'
+      },
+      bgColor: 'bg-gray-900 text-white'
+    },
+    {
+      id: 'mehmet',
+      name: 'Mehmet Özkan',
+      business: 'Online Retailer',
+      description: 'E-commerce business with monthly promotional spikes',
+      photo: mehmetPhoto,
+      accountType: 'Business',
+      balance: '€4,235',
+      averageMonthlyIncome: '€3,500',
+      pattern: 'Monthly spikes with consistent daily base income',
+      expectedLoan: '€875',
+      latestTransaction: {
+        type: 'income',
+        description: 'Online Store Revenue',
+        amount: '+€156',
+        time: 'Today, 14:20',
+        icon: '🛒',
+        iconBg: 'bg-blue-100'
+      },
+      bgColor: 'bg-orange-100'
+    },
+    {
+      id: 'maria',
+      name: 'Maria Rodriguez',
+      business: 'Event Planner',
+      description: 'Freelance event planner with seasonal variations',
+      photo: mariaPhoto,
+      accountType: 'Business',
+      balance: '€1,923',
+      averageMonthlyIncome: '€1,800',
+      pattern: 'Seasonal patterns with holiday boosts',
+      expectedLoan: '€450',
+      latestTransaction: {
+        type: 'expense',
+        description: 'Event Equipment',
+        amount: '-€89',
+        time: 'Yesterday, 11:45',
+        icon: '🎉',
+        iconBg: 'bg-purple-100'
+      },
+      bgColor: 'bg-green-100'
+    }
+  ];
 
-      {/* Business Demo Selector */}
-      <div id="persona-selector" className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          {useNewSelector ? (
-            <BusinessDemoSelector onPersonaSelect={handlePersonaSelect} />
-          ) : (
-            <PersonaSelector onPersonaSelect={handlePersonaSelect} />
-          )}
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      
+      {/* Combined Hero and Persona Section */}
+      <div className="container mx-auto px-4 pt-24 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" style={{ minHeight: '700px' }}>
+          {/* Left side - Hero content */}
+          <div className="max-w-xl">
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              For businesses who need instant credit
+            </h1>
+            
+            <p className="text-xl text-gray-600 mb-2">
+              CashFlow Bridge is the{' '}
+              <span className="font-semibold text-gray-900">instant credit approval system</span>
+            </p>
+            <p className="text-xl text-gray-600 mb-8">
+              for businesses building a valuable future
+            </p>
+
+            <button
+              onClick={handleGetStarted}
+              className="bg-blue-600 text-white font-semibold text-lg px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-lg"
+            >
+              Get Started - Free Analysis
+            </button>
+
+            <p className="text-sm text-gray-500 mt-4">
+              No credit checks • Instant approval
+            </p>
+          </div>
+
+          {/* Right side - Persona cards */}
+          <div className="relative" style={{ minHeight: '650px' }}>
+            <div className="grid grid-cols-2 gap-4 h-full">
+              {/* Left column - Mehmet card */}
+              <div className="flex flex-col justify-center">
+                <div 
+                  onClick={() => handlePersonaSelect(personas[1])}
+                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 ${
+                    selectedPersona === personas[1].id ? 'ring-4 ring-blue-500' : ''
+                  }`}
+                  style={{ 
+                    height: '380px',
+                    backgroundImage: `url(${personas[1].photo})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'brightness(0.8)'
+                  }}
+                >
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+                  
+                  {/* Content */}
+                  <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
+                    <h2 className="text-3xl font-bold mb-2">{personas[1].name}</h2>
+                    <p className="text-lg font-medium mb-1">{personas[1].business}</p>
+                    <p className="text-sm opacity-80">{personas[1].description}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right column - Anna and Maria cards */}
+              <div className="flex flex-col gap-4">
+                {/* Top right card - Anna */}
+                <div 
+                  onClick={() => handlePersonaSelect(personas[0])}
+                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 ${
+                    selectedPersona === personas[0].id ? 'ring-4 ring-blue-500' : ''
+                  }`}
+                  style={{ 
+                    height: '320px',
+                    backgroundImage: `url(${personas[0].photo})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'brightness(0.95)'
+                  }}
+                >
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  
+                  {/* Content */}
+                  <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
+                    <h2 className="text-2xl font-bold mb-1">{personas[0].name}</h2>
+                    <p className="text-lg font-medium opacity-90">{personas[0].business}</p>
+                  </div>
+                </div>
+
+                {/* Bottom right card - Maria */}
+                <div 
+                  onClick={() => handlePersonaSelect(personas[2])}
+                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 ${
+                    selectedPersona === personas[2].id ? 'ring-4 ring-blue-500' : ''
+                  }`}
+                  style={{ 
+                    height: '300px',
+                    backgroundImage: `url(${personas[2].photo})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'brightness(0.85)'
+                  }}
+                >
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  
+                  {/* Content */}
+                  <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
+                    <h2 className="text-2xl font-bold mb-1">{personas[2].name}</h2>
+                    <p className="text-lg font-medium mb-1">{personas[2].business}</p>
+                    <p className="text-sm opacity-80">{personas[2].description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {selectedPersona && (
+          <div className="text-center mt-12">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 inline-block">
+              <p className="text-blue-800 font-medium mb-2">
+                ✨ Starting demo for {personas.find(p => p.id === selectedPersona)?.name}
+              </p>
+              <p className="text-sm text-blue-600">
+                You'll now experience their complete loan application journey.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* How It Works */}
@@ -96,30 +273,28 @@ const HomePage = () => {
       {/* Testimonials */}
       <TestimonialCarousel />
 
-      {/* CTA Section - Only show if no persona selected */}
-      {!selectedPersona && (
-        <div id="cta-section" className="bg-blue-600 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Ready to Get Started?
-              </h2>
-              <p className="text-xl text-blue-100 mb-8">
-                Join thousands of businesses getting faster access to capital
-              </p>
-              <button
-                onClick={handleGetStarted}
-                className="bg-white text-blue-700 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg transform hover:scale-105"
-              >
-                Start Your Application
-              </button>
-              <p className="text-sm text-blue-200 mt-4">
-                Free analysis • No commitment • 2 minutes to complete
-              </p>
-            </div>
+      {/* CTA Section */}
+      <div id="cta-section" className="bg-blue-600 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Ready to Get Started?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Join thousands of businesses getting faster access to capital
+            </p>
+            <button
+              onClick={handleGetStarted}
+              className="bg-white text-blue-700 font-bold text-lg px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg transform hover:scale-105"
+            >
+              Start Your Application
+            </button>
+            <p className="text-sm text-blue-200 mt-4">
+              Free analysis • No commitment • 2 minutes to complete
+            </p>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
