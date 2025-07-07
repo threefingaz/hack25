@@ -22,7 +22,7 @@ const HomePage = () => {
     sessionStorage.setItem('selectedPersona', persona.id);
     sessionStorage.setItem('selectedPersonaName', persona.name);
     sessionStorage.setItem('selectedPersonaBusiness', persona.business);
-    
+
     // Auto-redirect to bank connection after persona selection
     setTimeout(() => {
       navigate('/connect');
@@ -98,7 +98,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
+
       {/* Combined Hero and Persona Section */}
       <div className="container mx-auto px-4 pt-24 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" style={{ minHeight: '700px' }}>
@@ -107,7 +107,7 @@ const HomePage = () => {
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               For businesses who need instant credit
             </h1>
-            
+
             <p className="text-xl text-gray-600 mb-2">
               CashFlow Bridge is the{' '}
               <span className="font-semibold text-gray-900">instant credit approval system</span>
@@ -133,12 +133,12 @@ const HomePage = () => {
             <div className="grid grid-cols-2 gap-4 h-full">
               {/* Left column - Mehmet card */}
               <div className="flex flex-col justify-center">
-                <div 
+                <div
                   onClick={() => handlePersonaSelect(personas[1])}
-                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 ${
+                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 group ${
                     selectedPersona === personas[1].id ? 'ring-4 ring-blue-500' : ''
                   }`}
-                  style={{ 
+                  style={{
                     height: '380px',
                     backgroundImage: `url(${personas[1].photo})`,
                     backgroundSize: 'cover',
@@ -146,14 +146,30 @@ const HomePage = () => {
                     filter: 'brightness(0.8)'
                   }}
                 >
+                  {/* Demo Badge - hides on hover */}
+                  <div className="absolute top-4 left-4 z-20">
+                    <div className="bg-white text-black px-3 py-1 rounded-full text-xs font-semibold transition-opacity duration-300 group-hover:opacity-0">
+                      DEMO
+                    </div>
+                  </div>
+
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
-                  
-                  {/* Content */}
+
+                  {/* Content - changes on hover */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
-                    <h2 className="text-3xl font-bold mb-2">{personas[1].name}</h2>
-                    <p className="text-lg font-medium mb-1">{personas[1].business}</p>
-                    <p className="text-sm opacity-80">{personas[1].description}</p>
+                    {/* Default content */}
+                    <div className="transition-opacity duration-300 group-hover:opacity-0">
+                      <h2 className="text-3xl font-bold mb-2">{personas[1].name}</h2>
+                      <p className="text-lg font-medium mb-1">{personas[1].business}</p>
+                      <p className="text-sm opacity-80">{personas[1].description}</p>
+                    </div>
+
+                    {/* Hover content */}
+                    <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                      <h2 className="text-3xl font-bold mb-2">Mehmet's Experience</h2>
+                      <p className="text-lg opacity-90">Click to start the demo</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -161,12 +177,12 @@ const HomePage = () => {
               {/* Right column - Anna and Maria cards */}
               <div className="flex flex-col gap-4">
                 {/* Top right card - Anna */}
-                <div 
+                <div
                   onClick={() => handlePersonaSelect(personas[0])}
-                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 ${
+                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 group ${
                     selectedPersona === personas[0].id ? 'ring-4 ring-blue-500' : ''
                   }`}
-                  style={{ 
+                  style={{
                     height: '320px',
                     backgroundImage: `url(${personas[0].photo})`,
                     backgroundSize: 'cover',
@@ -174,23 +190,40 @@ const HomePage = () => {
                     filter: 'brightness(0.95)'
                   }}
                 >
+                  {/* Demo Badge - hides on hover */}
+                  <div className="absolute top-4 left-4 z-20">
+                    <div className="bg-white text-black px-3 py-1 rounded-full text-xs font-semibold transition-opacity duration-300 group-hover:opacity-0">
+                      DEMO
+                    </div>
+                  </div>
+
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  
-                  {/* Content */}
+
+                  {/* Content - changes on hover */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
-                    <h2 className="text-2xl font-bold mb-1">{personas[0].name}</h2>
-                    <p className="text-lg font-medium opacity-90">{personas[0].business}</p>
+                    {/* Default content */}
+                    <div className="transition-opacity duration-300 group-hover:opacity-0">
+                      <h2 className="text-2xl font-bold mb-1">{personas[0].name}</h2>
+                      <p className="text-lg font-medium mb-1">{personas[0].business}</p>
+                      <p className="text-sm opacity-80">{personas[0].description}</p>
+                    </div>
+
+                    {/* Hover content */}
+                    <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                      <h2 className="text-2xl font-bold mb-1">Anna's Experience</h2>
+                      <p className="text-base opacity-90">Click to start the demo</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Bottom right card - Maria */}
-                <div 
+                <div
                   onClick={() => handlePersonaSelect(personas[2])}
-                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-transform duration-300 cursor-pointer hover:scale-105 ${
+                  className={`relative w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 group ${
                     selectedPersona === personas[2].id ? 'ring-4 ring-blue-500' : ''
                   }`}
-                  style={{ 
+                  style={{
                     height: '300px',
                     backgroundImage: `url(${personas[2].photo})`,
                     backgroundSize: 'cover',
@@ -198,14 +231,30 @@ const HomePage = () => {
                     filter: 'brightness(0.85)'
                   }}
                 >
+                  {/* Demo Badge - hides on hover */}
+                  <div className="absolute top-4 left-4 z-20">
+                    <div className="bg-white text-black px-3 py-1 rounded-full text-xs font-semibold transition-opacity duration-300 group-hover:opacity-0">
+                      DEMO
+                    </div>
+                  </div>
+
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                  
-                  {/* Content */}
+
+                  {/* Content - changes on hover */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
-                    <h2 className="text-2xl font-bold mb-1">{personas[2].name}</h2>
-                    <p className="text-lg font-medium mb-1">{personas[2].business}</p>
-                    <p className="text-sm opacity-80">{personas[2].description}</p>
+                    {/* Default content */}
+                    <div className="transition-opacity duration-300 group-hover:opacity-0">
+                      <h2 className="text-2xl font-bold mb-1">{personas[2].name}</h2>
+                      <p className="text-lg font-medium mb-1">{personas[2].business}</p>
+                      <p className="text-sm opacity-80">{personas[2].description}</p>
+                    </div>
+
+                    {/* Hover content */}
+                    <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                      <h2 className="text-2xl font-bold mb-1">Maria's Experience</h2>
+                      <p className="text-base opacity-90">Click to start the demo</p>
+                    </div>
                   </div>
                 </div>
               </div>
