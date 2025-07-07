@@ -161,7 +161,6 @@ const HomePage = () => {
                     {/* Default content */}
                     <div className="transition-opacity duration-300 group-hover:opacity-0">
                       <h2 className="text-3xl font-bold mb-2">{personas[1].name}</h2>
-                      <p className="text-lg font-medium mb-1">{personas[1].business}</p>
                       <p className="text-sm opacity-80">{personas[1].description}</p>
                     </div>
 
@@ -205,7 +204,6 @@ const HomePage = () => {
                     {/* Default content */}
                     <div className="transition-opacity duration-300 group-hover:opacity-0">
                       <h2 className="text-2xl font-bold mb-1">{personas[0].name}</h2>
-                      <p className="text-lg font-medium mb-1">{personas[0].business}</p>
                       <p className="text-sm opacity-80">{personas[0].description}</p>
                     </div>
 
@@ -246,7 +244,6 @@ const HomePage = () => {
                     {/* Default content */}
                     <div className="transition-opacity duration-300 group-hover:opacity-0">
                       <h2 className="text-2xl font-bold mb-1">{personas[2].name}</h2>
-                      <p className="text-lg font-medium mb-1">{personas[2].business}</p>
                       <p className="text-sm opacity-80">{personas[2].description}</p>
                     </div>
 
