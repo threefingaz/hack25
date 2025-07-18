@@ -110,15 +110,15 @@ const CashFlowAnalysisPage = () => {
         bankName: 'Deutsche Bank AG',
         accountOpened: '2018-11-08',
         monthlyFlows: [
-          { month: '2024-10', income: 1600, expenses: 1400 },
-          { month: '2024-11', income: 1800, expenses: 1600 },
-          { month: '2024-12', income: 2000, expenses: 1800 }
+          { month: '2024-10', income: 2000, expenses: 1700 },
+          { month: '2024-11', income: 2200, expenses: 1900 },
+          { month: '2024-12', income: 2400, expenses: 2100 }
         ],
         summary: {
-          averageMonthlyIncome: 1800,
-          averageMonthlyExpenses: 1600,
-          averageNetCashFlow: 200,
-          volatility: 25,
+          averageMonthlyIncome: 2200,
+          averageMonthlyExpenses: 1900,
+          averageNetCashFlow: 300,
+          volatility: 18,
           positiveCashFlowMonths: 3,
           totalMonths: 3
         }
