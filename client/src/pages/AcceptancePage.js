@@ -17,10 +17,17 @@ const AcceptancePage = () => {
   let offer = location.state?.offer;
   if (!offer) {
     try {
-      const mockOfferStr = localStorage.getItem('mockOffer');
-      offer = mockOfferStr ? JSON.parse(mockOfferStr) : null;
+      // First try acceptingOffer (from CreditOfferPage)
+      const acceptingOfferStr = localStorage.getItem('acceptingOffer');
+      if (acceptingOfferStr) {
+        offer = JSON.parse(acceptingOfferStr);
+      } else {
+        // Fallback to creditOffer
+        const creditOfferStr = localStorage.getItem('creditOffer');
+        offer = creditOfferStr ? JSON.parse(creditOfferStr) : null;
+      }
     } catch (e) {
-      console.error('Error parsing mock offer:', e);
+      console.error('Error parsing offer:', e);
       offer = null;
     }
   }
@@ -154,23 +161,23 @@ const AcceptancePage = () => {
         {/* Loan Summary */}
         <div className="max-w-2xl mx-auto mb-8">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h3 className="font-semibold text-blue-900 mb-2">Loan Summary</h3>
+            <h3 className="font-semibold text-blue-900 mb-2">Weekly Credit Line Summary</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-blue-700">Amount:</span>
+                <span className="text-blue-700">Weekly Amount:</span>
                 <span className="font-semibold ml-2">€{offer.loanAmount?.toLocaleString('de-DE')}</span>
               </div>
               <div>
-                <span className="text-blue-700">Daily Rate:</span>
-                <span className="font-semibold ml-2">{(offer.dailyInterestRate * 100).toFixed(2)}%</span>
+                <span className="text-blue-700">Weekly Rate:</span>
+                <span className="font-semibold ml-2">{offer.weeklyInterestRate || '1.2'}%</span>
               </div>
               <div>
-                <span className="text-blue-700">Daily Payment:</span>
-                <span className="font-semibold ml-2">€{offer.repaymentTerms?.dailyPayment?.toLocaleString('de-DE')}</span>
+                <span className="text-blue-700">Total Weekly Payment:</span>
+                <span className="font-semibold ml-2">€{offer.repaymentTerms?.totalWeeklyPayment?.toLocaleString('de-DE') || ((offer.loanAmount * 1.012).toFixed(2))}</span>
               </div>
               <div>
-                <span className="text-blue-700">Term:</span>
-                <span className="font-semibold ml-2">{offer.repaymentTerms?.numberOfDays} days</span>
+                <span className="text-blue-700">Renewal:</span>
+                <span className="font-semibold ml-2">{offer.repaymentTerms?.renewalDate || 'Every Monday'}</span>
               </div>
             </div>
           </div>
@@ -185,7 +192,7 @@ const AcceptancePage = () => {
           {currentStep === 'signature' && (
             <DigitalSignature 
               onSign={handleSignatureComplete}
-              accountHolder={sessionStorage.getItem('selectedPersonaName') || "Anna Schmidt"}
+              accountHolder={localStorage.getItem('selectedPersonaName') || "Anna Schmidt"}
             />
           )}
         </div>
