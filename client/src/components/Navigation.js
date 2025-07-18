@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getButtonClasses, getContainerClasses } from '../design-system/utils';
+import { getButtonClasses, getContainerClasses, getTextClasses } from '../design-system/utils';
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
                 <svg 
                   className="w-5 h-5 text-white" 
                   fill="none" 
@@ -27,7 +27,7 @@ const Navigation = () => {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <span className={getTextClasses('h5') + ' group-hover:text-slate-700 transition-colors'}>
                 CashFlow Bridge
               </span>
             </div>
@@ -37,31 +37,31 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link 
               to="#features" 
-              className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors relative group"
+              className="text-gray-600 hover:text-slate-900 font-medium text-sm transition-colors relative group"
             >
               Features
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-900 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link 
               to="#use-cases" 
-              className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors relative group"
+              className="text-gray-600 hover:text-slate-900 font-medium text-sm transition-colors relative group"
             >
               Use Cases
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-900 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link 
               to="#resources" 
-              className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors relative group"
+              className="text-gray-600 hover:text-slate-900 font-medium text-sm transition-colors relative group"
             >
               Resources
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-900 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link 
               to="#pricing" 
-              className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors relative group"
+              className="text-gray-600 hover:text-slate-900 font-medium text-sm transition-colors relative group"
             >
               Pricing
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-900 transition-all duration-200 group-hover:w-full"></span>
             </Link>
           </div>
           
@@ -75,7 +75,7 @@ const Navigation = () => {
             </button>
             <button
               onClick={() => navigate('/connect')}
-              className={getButtonClasses('primary', 'sm')}
+              className={getButtonClasses('outline', 'sm') + ' !bg-slate-900 !text-white !border-slate-900 hover:!bg-slate-800'}
             >
               Get Started
             </button>

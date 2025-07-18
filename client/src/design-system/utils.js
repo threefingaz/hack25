@@ -201,11 +201,11 @@ export const getButtonClasses = (variant = 'primary', size = 'md', additionalCla
   const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-200 cursor-pointer border-none outline-none select-none focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed';
   
   const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-px hover:shadow-md active:translate-y-0 active:shadow-sm focus:ring-blue-500',
-    secondary: 'bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200 hover:border-gray-300 focus:ring-gray-500',
+    primary: 'bg-lime-300 text-slate-900 font-semibold hover:bg-lime-400 hover:-translate-y-px hover:shadow-md active:translate-y-0 active:shadow-sm focus:ring-lime-500',
+    secondary: 'bg-white text-slate-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus:ring-slate-500',
     success: 'bg-green-500 text-white hover:bg-green-600 hover:-translate-y-px hover:shadow-md focus:ring-green-500',
-    outline: 'bg-transparent text-blue-600 border border-blue-600 hover:bg-blue-50 hover:border-blue-700 hover:text-blue-700 focus:ring-blue-500',
-    ghost: 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:ring-gray-500'
+    outline: 'bg-transparent text-slate-900 border border-slate-900 hover:bg-slate-50 hover:border-slate-900 hover:text-slate-900 focus:ring-slate-500',
+    ghost: 'bg-transparent text-gray-600 hover:bg-gray-50 hover:text-slate-900 focus:ring-slate-500'
   };
   
   const sizeClasses = {
@@ -233,7 +233,7 @@ export const getInputClasses = (variant = 'default', additionalClasses = '') => 
   const baseClasses = 'w-full px-4 py-3 text-base leading-normal text-gray-900 bg-white border border-gray-300 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed placeholder:text-gray-400';
   
   const variantClasses = {
-    default: 'focus:border-blue-500 focus:ring-blue-200',
+    default: 'focus:border-slate-900 focus:ring-slate-200',
     error: 'border-red-500 focus:border-red-500 focus:ring-red-200',
     success: 'border-green-500 focus:border-green-500 focus:ring-green-200'
   };
@@ -253,7 +253,7 @@ export const getInputClasses = (variant = 'default', additionalClasses = '') => 
  * @returns {string} Combined class string
  */
 export const getCardClasses = (variant = 'default', padding = 'md', additionalClasses = '') => {
-  const baseClasses = 'bg-white rounded-xl border border-gray-200 transition-all duration-200';
+  const baseClasses = 'bg-white rounded-lg border border-gray-200 transition-all duration-200';
   
   const variantClasses = {
     default: 'shadow-sm',
@@ -285,6 +285,47 @@ export const getContainerClasses = (additionalClasses = '') => {
   const containerClasses = 'max-w-6xl mx-auto px-4 md:px-6';
   
   return [containerClasses, additionalClasses].filter(Boolean).join(' ');
+};
+
+/**
+ * Get text classes for consistent typography
+ * @param {string} variant - Text variant
+ * @param {string} additionalClasses - Additional CSS classes
+ * @returns {string} Combined class string
+ */
+export const getTextClasses = (variant = 'body', additionalClasses = '') => {
+  const variantClasses = {
+    h1: 'text-4xl font-bold leading-tight text-slate-900',
+    h2: 'text-3xl font-semibold leading-tight text-slate-900',
+    h3: 'text-2xl font-semibold leading-tight text-slate-900',
+    h4: 'text-xl font-semibold leading-tight text-slate-900',
+    h5: 'text-lg font-semibold leading-tight text-slate-900',
+    h6: 'text-base font-semibold leading-tight text-slate-900',
+    body: 'text-base font-normal leading-normal text-gray-700',
+    caption: 'text-sm font-normal leading-normal text-gray-500',
+    label: 'text-sm font-medium leading-normal text-gray-700',
+    mono: 'text-sm font-normal font-mono text-gray-700'
+  };
+  
+  return [variantClasses[variant] || variantClasses.body, additionalClasses].filter(Boolean).join(' ');
+};
+
+/**
+ * Get background classes for consistent surfaces
+ * @param {string} variant - Background variant
+ * @param {string} additionalClasses - Additional CSS classes
+ * @returns {string} Combined class string
+ */
+export const getBackgroundClasses = (variant = 'default', additionalClasses = '') => {
+  const variantClasses = {
+    default: 'bg-gray-50',      // Soft off-white (#F9F9F6)
+    surface: 'bg-white',         // Pure white surfaces
+    subtle: 'bg-gray-50',        // Alternative off-white (#FAFAFB)
+    navy: 'bg-slate-900',        // Dark navy (#101034)
+    lime: 'bg-lime-300'          // Lime green accent
+  };
+  
+  return [variantClasses[variant] || variantClasses.default, additionalClasses].filter(Boolean).join(' ');
 };
 
 /**
@@ -326,5 +367,7 @@ export default {
   getInputClasses,
   getCardClasses,
   getContainerClasses,
+  getTextClasses,
+  getBackgroundClasses,
   generateCSSCustomProperties
 };

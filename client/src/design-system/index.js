@@ -1,18 +1,19 @@
 // CashFlow Bridge Design System
-// A comprehensive design system for professional fintech interfaces
+// Modern fintech with minimalist tech execution - inspired by Wealthfront/Betterment
 
 /**
  * DESIGN PHILOSOPHY
  * 
- * CashFlow Bridge follows a professional, trustworthy design approach that builds confidence
- * in financial decisions. The system emphasizes clarity, data integrity, and user empowerment.
+ * CashFlow Bridge follows a modern fintech approach with minimalist tech execution.
+ * The system emphasizes trustworthiness, calm confidence, and financial empowerment.
  * 
  * Core Principles:
- * - Information clarity over decoration
- * - Professional trustworthiness
+ * - Trustworthy, calm, and financially empowering
+ * - Clean enterprise touches with modern fintech feel
+ * - Generous whitespace and breathing room
+ * - Professional navy and lime green accents
  * - Data-driven design decisions
  * - Accessible by default
- * - Consistent interaction patterns
  */
 
 // ============================================================================
@@ -20,73 +21,84 @@
 // ============================================================================
 
 export const designTokens = {
-  // Color System
+  // Color System - Modern fintech with navy and lime
   colors: {
-    // Primary brand colors - trust and professionalism
+    // Primary brand colors - dark navy for trust and authority
     primary: {
-      50: '#f0f9ff',
-      100: '#e0f2fe',
-      200: '#bae6fd',
-      300: '#7dd3fc',
-      400: '#38bdf8',
-      500: '#0ea5e9',  // Primary brand blue
-      600: '#0284c7',  // Primary dark
-      700: '#0369a1',
-      800: '#075985',
-      900: '#0c4a6e'
+      50: '#f8f9fb',
+      100: '#f1f3f6',
+      200: '#e1e7ed',
+      300: '#cbd5e0',
+      400: '#a0aec0',
+      500: '#718096',
+      600: '#4a5568',
+      700: '#2d3748',
+      800: '#1a202c',
+      900: '#101034',  // Dark navy - main brand color
+      950: '#0a0b1f'
     },
     
-    // Secondary colors - success and growth
+    // Secondary colors - lime green for CTAs and accents
     secondary: {
-      50: '#ecfdf5',
-      100: '#d1fae5',
-      200: '#a7f3d0',
-      300: '#6ee7b7',
-      400: '#34d399',
-      500: '#10b981',  // Success green
-      600: '#059669',
-      700: '#047857',
-      800: '#065f46',
-      900: '#064e3b'
+      50: '#f7fee7',
+      100: '#ecfccb',
+      200: '#d9f99d',
+      300: '#bef264',
+      400: '#a3e635',
+      500: '#84cc16',
+      600: '#65a30d',
+      700: '#4d7c0f',
+      800: '#365314',
+      900: '#1a2e05',
+      lime: '#D5EF6E'  // Lime green - CTA color
     },
     
-    // Neutral colors - professional and readable
+    // Accent colors - deep orange and teal for charts/highlights
+    accent: {
+      orange: '#ea580c',
+      teal: '#0d9488',
+      blue: '#0284c7'
+    },
+    
+    // Neutral colors - soft off-whites and clean greys
     neutral: {
       0: '#ffffff',
-      50: '#f9fafb',
-      100: '#f3f4f6',
-      200: '#e5e7eb',
+      50: '#F9F9F6',     // Soft off-white background
+      100: '#FAFAFB',    // Alternative off-white
+      200: '#E5E7EB',    // Light grey borders
       300: '#d1d5db',
       400: '#9ca3af',
       500: '#6b7280',
-      600: '#4b5563',
+      600: '#444444',    // Dark grey text
       700: '#374151',
       800: '#1f2937',
-      900: '#111827',
+      900: '#000000',    // Pure black for headings
       950: '#0f172a'
     },
     
-    // Semantic colors
+    // Semantic colors - clean and professional
     semantic: {
-      success: '#10b981',
+      success: '#10b981',   // Green for charts and success states
       warning: '#f59e0b',
       error: '#ef4444',
-      info: '#0ea5e9'
+      info: '#101034'      // Dark navy for info
     },
     
-    // Financial data colors
+    // Financial data colors - clean chart colors
     financial: {
-      positive: '#10b981',
-      negative: '#ef4444',
-      neutral: '#6b7280',
-      pending: '#f59e0b'
+      positive: '#10b981',  // Green for positive values
+      negative: '#ef4444',  // Red for negative values
+      neutral: '#6b7280',   // Grey for neutral
+      pending: '#f59e0b',   // Orange for pending
+      stocks: '#0284c7'     // Blue for US Stocks category
     }
   },
   
-  // Typography System
+  // Typography System - Clean Inter with display font for headlines
   typography: {
     fontFamily: {
       sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+      display: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],  // Large marketing headlines
       mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'monospace']
     },
     
@@ -147,28 +159,28 @@ export const designTokens = {
     64: '16rem'     // 256px
   },
   
-  // Border Radius
+  // Border Radius - Rounded but not overly playful
   borderRadius: {
     none: '0',
     sm: '0.125rem',   // 2px
-    DEFAULT: '0.25rem', // 4px
-    md: '0.375rem',   // 6px
-    lg: '0.5rem',     // 8px
-    xl: '0.75rem',    // 12px
-    '2xl': '1rem',    // 16px
+    DEFAULT: '0.375rem', // 6px
+    md: '0.5rem',     // 8px
+    lg: '0.75rem',    // 12px - main card radius
+    xl: '1rem',       // 16px - larger cards
+    '2xl': '1.25rem', // 20px
     '3xl': '1.5rem',  // 24px
     full: '9999px'
   },
   
-  // Shadow System
+  // Shadow System - Light elevation, subtle shadows
   shadows: {
-    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)'
+    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+    DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.04)',
+    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
+    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
+    inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.03)'
   },
   
   // Animation & Transitions
@@ -231,10 +243,11 @@ export const componentStyles = {
     
     variants: {
       primary: {
-        backgroundColor: designTokens.colors.primary[600],
-        color: designTokens.colors.neutral[0],
+        backgroundColor: designTokens.colors.secondary.lime,
+        color: designTokens.colors.primary[900],
+        fontWeight: designTokens.typography.fontWeight.semibold,
         '&:hover': {
-          backgroundColor: designTokens.colors.primary[700],
+          backgroundColor: designTokens.colors.secondary[400],
           transform: 'translateY(-1px)',
           boxShadow: designTokens.shadows.md
         },
@@ -245,11 +258,11 @@ export const componentStyles = {
       },
       
       secondary: {
-        backgroundColor: designTokens.colors.neutral[100],
-        color: designTokens.colors.neutral[700],
+        backgroundColor: designTokens.colors.neutral[0],
+        color: designTokens.colors.primary[900],
         border: `1px solid ${designTokens.colors.neutral[200]}`,
         '&:hover': {
-          backgroundColor: designTokens.colors.neutral[200],
+          backgroundColor: designTokens.colors.neutral[50],
           borderColor: designTokens.colors.neutral[300]
         }
       },
@@ -266,12 +279,12 @@ export const componentStyles = {
       
       outline: {
         backgroundColor: 'transparent',
-        color: designTokens.colors.primary[600],
-        border: `1px solid ${designTokens.colors.primary[600]}`,
+        color: designTokens.colors.primary[900],
+        border: `1px solid ${designTokens.colors.primary[900]}`,
         '&:hover': {
           backgroundColor: designTokens.colors.primary[50],
-          borderColor: designTokens.colors.primary[700],
-          color: designTokens.colors.primary[700]
+          borderColor: designTokens.colors.primary[900],
+          color: designTokens.colors.primary[900]
         }
       },
       
@@ -279,8 +292,8 @@ export const componentStyles = {
         backgroundColor: 'transparent',
         color: designTokens.colors.neutral[600],
         '&:hover': {
-          backgroundColor: designTokens.colors.neutral[100],
-          color: designTokens.colors.neutral[700]
+          backgroundColor: designTokens.colors.neutral[50],
+          color: designTokens.colors.primary[900]
         }
       }
     },
@@ -323,8 +336,8 @@ export const componentStyles = {
       transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1)',
       '&:focus': {
         outline: 'none',
-        borderColor: designTokens.colors.primary[500],
-        boxShadow: '0 0 0 2px rgba(14, 165, 233, 0.2)'
+        borderColor: designTokens.colors.primary[900],
+        boxShadow: '0 0 0 2px rgba(16, 16, 52, 0.2)'
       },
       '&:disabled': {
         backgroundColor: designTokens.colors.neutral[50],
@@ -399,7 +412,7 @@ export const componentStyles = {
       fontSize: designTokens.typography.fontSize['4xl'],
       fontWeight: designTokens.typography.fontWeight.bold,
       lineHeight: designTokens.typography.lineHeight.tight,
-      color: designTokens.colors.neutral[900],
+      color: designTokens.colors.primary[900],  // Dark navy for headings
       marginBottom: designTokens.spacing[6]
     },
     
@@ -407,7 +420,7 @@ export const componentStyles = {
       fontSize: designTokens.typography.fontSize['3xl'],
       fontWeight: designTokens.typography.fontWeight.semibold,
       lineHeight: designTokens.typography.lineHeight.tight,
-      color: designTokens.colors.neutral[900],
+      color: designTokens.colors.primary[900],  // Dark navy for headings
       marginBottom: designTokens.spacing[4]
     },
     
@@ -415,7 +428,7 @@ export const componentStyles = {
       fontSize: designTokens.typography.fontSize['2xl'],
       fontWeight: designTokens.typography.fontWeight.semibold,
       lineHeight: designTokens.typography.lineHeight.tight,
-      color: designTokens.colors.neutral[900],
+      color: designTokens.colors.primary[900],  // Dark navy for headings
       marginBottom: designTokens.spacing[3]
     },
     
@@ -480,10 +493,10 @@ export const layoutUtils = {
 
 export const themes = {
   light: {
-    background: designTokens.colors.neutral[50],
+    background: designTokens.colors.neutral[50],  // Soft off-white background
     surface: designTokens.colors.neutral[0],
     text: {
-      primary: designTokens.colors.neutral[900],
+      primary: designTokens.colors.primary[900],   // Dark navy for primary text
       secondary: designTokens.colors.neutral[600],
       disabled: designTokens.colors.neutral[400]
     },

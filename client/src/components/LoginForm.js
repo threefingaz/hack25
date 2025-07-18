@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getInputClasses, getButtonClasses, getCardClasses } from '../design-system/utils';
+import { getInputClasses, getButtonClasses, getCardClasses, getTextClasses } from '../design-system/utils';
 
 const LoginForm = ({ selectedBank, onSubmit }) => {
   // Prepopulated demo values based on bank selection
@@ -71,8 +71,8 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
               </svg>
             </div>
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900">Deutsche Bank Login</h2>
-              <p className="text-gray-600">Enter your banking credentials</p>
+              <h2 className={getTextClasses('h3')}>Deutsche Bank Login</h2>
+              <p className={getTextClasses('body')}>Enter your banking credentials</p>
             </div>
           </div>
         </div>
@@ -158,15 +158,15 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
           </div>
 
           {/* Security notice */}
-          <div className={getCardClasses('outline', 'sm') + ' bg-blue-50 border-l-4 border-blue-400 border-gray-200'}>
+          <div className={getCardClasses('outline', 'sm') + ' bg-slate-50 border-l-4 border-slate-400 border-gray-200'}>
             <div className="flex">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="h-5 w-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
               </div>
               <div className="ml-3">
-                <p className="text-sm text-blue-800">
+                <p className={getTextClasses('caption') + ' text-slate-800'}>
                   <strong>Deutsche Bank never asks for more than one TAN per transaction!</strong>
                 </p>
               </div>
@@ -179,9 +179,9 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
               <svg className="h-5 w-5 text-gray-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <div className="text-sm">
-                <p className="text-gray-800 font-medium">Demo Mode</p>
-                <p className="text-gray-700 mt-1">Fields are pre-filled with demo values for presentation. In real banking, you would enter your actual credentials.</p>
+              <div className={getTextClasses('caption')}>
+                <p className={getTextClasses('body') + ' font-medium'}>Demo Mode</p>
+                <p className={getTextClasses('body') + ' mt-1'}>Fields are pre-filled with demo values for presentation. In real banking, you would enter your actual credentials.</p>
               </div>
             </div>
           </div>
@@ -204,8 +204,8 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
   return (
     <div className={getCardClasses('elevated', 'lg') + ' max-w-md mx-auto'}>
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Login to {getBankName()}</h2>
-        <p className="text-gray-600">Enter your online banking credentials</p>
+        <h2 className={getTextClasses('h3') + ' mb-2'}>Login to {getBankName()}</h2>
+        <p className={getTextClasses('body')}>Enter your online banking credentials</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -243,15 +243,15 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
           )}
         </div>
 
-        <div className={getCardClasses('outline', 'sm') + ' bg-blue-50 border-blue-200'}>
+        <div className={getCardClasses('outline', 'sm') + ' bg-slate-50 border-slate-200'}>
           <div className="flex items-start">
-            <svg className="h-5 w-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-5 w-5 text-slate-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <div className="text-sm">
-              <p className="text-blue-800 font-medium">Demo Credentials</p>
-              <p className="text-blue-700 mt-1">Username: <span className="font-mono bg-white px-2 py-1 rounded">demo</span></p>
-              <p className="text-blue-700">Password: <span className="font-mono bg-white px-2 py-1 rounded">demo</span></p>
+            <div className={getTextClasses('caption')}>
+              <p className={getTextClasses('body') + ' font-medium'}>Demo Credentials</p>
+              <p className={getTextClasses('body') + ' mt-1'}>Username: <span className="font-mono bg-white px-2 py-1 rounded">demo</span></p>
+              <p className={getTextClasses('body')}>Password: <span className="font-mono bg-white px-2 py-1 rounded">demo</span></p>
             </div>
           </div>
         </div>
@@ -265,7 +265,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
       </form>
 
       <div className="mt-6 text-center">
-        <p className="text-xs text-gray-500">
+        <p className={getTextClasses('caption')}>
           Your credentials are encrypted and secure. We never store your banking passwords.
         </p>
       </div>
