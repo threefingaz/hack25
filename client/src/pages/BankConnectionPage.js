@@ -18,6 +18,10 @@ const BankConnectionPage = () => {
   const handleBankSelect = (bankId) => {
     setSelectedBank(bankId);
     setError(null);
+    // Auto-proceed to login step after bank selection
+    setTimeout(() => {
+      setCurrentStep(2);
+    }, 500); // Small delay to show the selection visually
   };
 
   const handleProceedToLogin = () => {
@@ -186,19 +190,16 @@ const BankConnectionPage = () => {
               </div>
             )}
 
-            <div className="mt-8 flex justify-center">
-              <button
-                onClick={handleProceedToLogin}
-                disabled={!selectedBank}
-                className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
-                  selectedBank
-                    ? 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transform hover:scale-105'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                {selectedBank ? 'Continue to Login' : 'Select a Bank to Continue'}
-              </button>
-            </div>
+            {selectedBank && (
+              <div className="mt-8 flex justify-center">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-blue-800 font-medium">Bank selected - proceeding to login...</span>
+                </div>
+              </div>
+            )}
           </div>
         );
 
