@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CashFlowChart from '../components/CashFlowChart';
 import CashFlowSummary from '../components/CashFlowSummary';
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import CashFlowTips from '../components/tips/CashFlowTips';
 
 const CashFlowAnalysisPage = () => {
   const navigate = useNavigate();
@@ -392,18 +393,9 @@ const CashFlowAnalysisPage = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Weekly Cash Flow Analysis</h1>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-blue-900">Germany's First Weekly Credit Line</h2>
-                  <p className="text-sm text-blue-700">Analyzing your patterns for weekly credit that renews every Monday</p>
-                </div>
-              </div>
+            <div className="mb-6">
+              <p className="text-sm text-gray-600 mb-2">Germany's First Weekly Credit Line</p>
+              <p className="text-base text-gray-800">Analyzing your patterns for weekly credit that renews every Monday</p>
             </div>
             {cashFlowData?.persona && (
               <div>
@@ -459,13 +451,8 @@ const CashFlowAnalysisPage = () => {
                 </div>
 
                 {/* Security Notice */}
-                <div className="pb-4 border-b border-gray-200">
-                  <div className="flex items-center text-xs text-gray-600">
-                    <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    <span>Read-only access • Bank-grade encryption • No transaction capability</span>
-                  </div>
+                <div className="pb-6 border-b border-gray-200">
+                  <p className="text-xs text-gray-500">Read-only access • Bank-grade encryption • No transaction capability</p>
                 </div>
               </div>
             )}
@@ -482,9 +469,21 @@ const CashFlowAnalysisPage = () => {
             {cashFlowData?.summary && (
               <CashFlowSummary summary={cashFlowData.summary} />
             )}
+
+            {/* Cash Flow Tips */}
+            {cashFlowData?.summary && (
+              <CashFlowTips 
+                cashFlowSummary={cashFlowData.summary}
+                persona={localStorage.getItem('selectedPersona')}
+                layout="default"
+                theme="light"
+                maxTips={4}
+                className="mt-8"
+              />
+            )}
           </div>
 
-          {/* Conditional Action Button - Only show if likely to be approved */}
+          {/* Conditional Action Button - Sticky at bottom */}
           {cashFlowData?.summary && 
            cashFlowData.summary.averageMonthlyIncome >= 2000 && 
            cashFlowData.summary.averageNetCashFlow > 0 && 

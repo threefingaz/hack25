@@ -6,6 +6,7 @@ import AuthorizationScreen from '../components/AuthorizationScreen';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ProgressMessage from '../components/ProgressMessage';
 import StepIndicator from '../components/StepIndicator';
+import { getContainerClasses, getCardClasses } from '../design-system/utils';
 
 const BankConnectionPage = () => {
   const navigate = useNavigate();
@@ -129,7 +130,7 @@ const BankConnectionPage = () => {
   const renderStep = () => {
     if (isSuccess) {
       return (
-        <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-md mx-auto">
+        <div className={getCardClasses('elevated', 'lg') + ' max-w-md mx-auto'}>
           <div className="text-center space-y-6">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,7 +152,7 @@ const BankConnectionPage = () => {
 
     if (isLoading) {
       return (
-        <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-md mx-auto">
+        <div className={getCardClasses('elevated', 'lg') + ' max-w-md mx-auto'}>
           <div className="space-y-6">
             <LoadingSpinner size="large" />
             <ProgressMessage />
@@ -166,10 +167,10 @@ const BankConnectionPage = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-4xl mx-auto">
+          <div className={getCardClasses('elevated', 'lg') + ' max-w-4xl mx-auto'}>
             <div className="text-center mb-8">
               <h2 className="text-3xl font-semibold text-gray-900 mb-4">Connect Your Bank Account</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Select your bank to securely analyze your cash flow and get instant credit decisions.
               </p>
             </div>
@@ -180,7 +181,7 @@ const BankConnectionPage = () => {
             />
 
             {error && (
-              <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className={getCardClasses('outline', 'sm') + ' mt-6 bg-red-50 border-red-200'}>
                 <div className="flex items-center">
                   <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -192,7 +193,7 @@ const BankConnectionPage = () => {
 
             {selectedBank && (
               <div className="mt-8 flex justify-center">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center">
+                <div className={getCardClasses('outline', 'sm') + ' bg-blue-50 border-blue-200 flex items-center'}>
                   <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -227,8 +228,8 @@ const BankConnectionPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 px-4">Connect Your Bank</h1>
+      <div className={getContainerClasses('py-8')}>
+        <h1 className="text-3xl font-bold text-center mb-8">Connect Your Bank</h1>
         
         <StepIndicator currentStep={currentStep} />
 

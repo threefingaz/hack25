@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getInputClasses, getButtonClasses, getCardClasses } from '../design-system/utils';
 
 const LoginForm = ({ selectedBank, onSubmit }) => {
   // Prepopulated demo values based on bank selection
@@ -61,7 +62,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
   // Deutsche Bank specific form
   if (selectedBank === 'deutsche-bank') {
     return (
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+      <div className={getCardClasses('elevated', 'lg') + ' max-w-2xl mx-auto'}>
         <div className="mb-8">
           <div className="flex items-center mb-4">
             <div className="w-12 h-12 bg-blue-800 rounded flex items-center justify-center mr-4">
@@ -89,9 +90,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
                 id="branch"
                 value={formData.branch}
                 onChange={(e) => handleInputChange('branch', e.target.value)}
-                className={`w-full px-3 py-3 border rounded-lg bg-gray-100 text-center font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.branch ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`${getInputClasses(errors.branch ? 'error' : 'default')} bg-gray-100 text-center font-mono`}
                 maxLength="3"
                 placeholder="100"
               />
@@ -110,9 +109,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
                 id="account"
                 value={formData.account}
                 onChange={(e) => handleInputChange('account', e.target.value)}
-                className={`w-full px-3 py-3 border rounded-lg bg-gray-100 text-center font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.account ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`${getInputClasses(errors.account ? 'error' : 'default')} bg-gray-100 text-center font-mono`}
                 maxLength="7"
                 placeholder="1234567"
               />
@@ -131,9 +128,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
                 id="subAccount"
                 value={formData.subAccount}
                 onChange={(e) => handleInputChange('subAccount', e.target.value)}
-                className={`w-full px-3 py-3 border rounded-lg bg-gray-100 text-center font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.subAccount ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`${getInputClasses(errors.subAccount ? 'error' : 'default')} bg-gray-100 text-center font-mono`}
                 maxLength="2"
                 placeholder="00"
               />
@@ -152,9 +147,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
                 id="pin"
                 value={formData.pin}
                 onChange={(e) => handleInputChange('pin', e.target.value)}
-                className={`w-full px-3 py-3 border rounded-lg bg-gray-100 text-center font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  errors.pin ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`${getInputClasses(errors.pin ? 'error' : 'default')} bg-gray-100 text-center font-mono`}
                 maxLength="5"
                 placeholder="•••••"
               />
@@ -164,9 +157,8 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
             </div>
           </div>
 
-
           {/* Security notice */}
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-6">
+          <div className={getCardClasses('outline', 'sm') + ' bg-blue-50 border-l-4 border-blue-400 border-gray-200'}>
             <div className="flex">
               <div className="flex-shrink-0">
                 <svg className="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
@@ -182,7 +174,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
           </div>
 
           {/* Demo notice */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className={getCardClasses('outline', 'sm') + ' bg-gray-50'}>
             <div className="flex items-start">
               <svg className="h-5 w-5 text-gray-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -196,7 +188,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center"
+            className={getButtonClasses('primary', 'lg') + ' w-full flex items-center justify-center'}
           >
             Execute Login
             <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +202,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
 
   // Generic form for other banks
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+    <div className={getCardClasses('elevated', 'lg') + ' max-w-md mx-auto'}>
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-2">Login to {getBankName()}</h2>
         <p className="text-gray-600">Enter your online banking credentials</p>
@@ -226,9 +218,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
             id="username"
             value={formData.username}
             onChange={(e) => handleInputChange('username', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.username ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={getInputClasses(errors.username ? 'error' : 'default')}
             placeholder="Enter your username"
           />
           {errors.username && (
@@ -245,9 +235,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
             id="password"
             value={formData.password}
             onChange={(e) => handleInputChange('password', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.password ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={getInputClasses(errors.password ? 'error' : 'default')}
             placeholder="Enter your password"
           />
           {errors.password && (
@@ -255,7 +243,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
           )}
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className={getCardClasses('outline', 'sm') + ' bg-blue-50 border-blue-200'}>
           <div className="flex items-start">
             <svg className="h-5 w-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -270,7 +258,7 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className={getButtonClasses('primary', 'md') + ' w-full'}
         >
           Continue to Authorization
         </button>

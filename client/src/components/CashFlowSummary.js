@@ -121,10 +121,10 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
         {metrics.map((metric, index) => (
           <div 
             key={index} 
-            className={`text-center p-4 bg-white rounded-lg border transition-shadow ${
+            className={`text-center p-4 bg-white rounded-lg border ${
               metric.highlight 
-                ? 'border-blue-300 bg-blue-50 hover:shadow-lg' 
-                : 'border-gray-200 hover:shadow-md'
+                ? 'border-blue-300 bg-blue-50' 
+                : 'border-gray-200'
             }`}
           >
             <div className="flex items-center justify-center mb-2">
