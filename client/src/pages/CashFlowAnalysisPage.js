@@ -17,20 +17,23 @@ const CashFlowAnalysisPage = () => {
   const fetchCashFlowData = async () => {
     try {
       const accountId = localStorage.getItem('accountId');
+      console.log('CashFlowAnalysisPage - fetchCashFlowData - accountId:', accountId);
+      console.log('CashFlowAnalysisPage - fetchCashFlowData - localStorage selectedPersona:', localStorage.getItem('selectedPersona'));
       if (!accountId) {
         navigate('/connect');
         return;
       }
 
       let apiData = null;
-      try {
-        const response = await fetch(`http://localhost:3001/api/cash-flow/${accountId}`);
-        if (response.ok) {
-          apiData = await response.json();
-        }
-      } catch (apiError) {
-        console.log('API not available, using demo data');
-      }
+      // Temporarily disable API to ensure demo data is used for persona testing
+      // try {
+      //   const response = await fetch(`http://localhost:3001/api/cash-flow/${accountId}`);
+      //   if (response.ok) {
+      //     apiData = await response.json();
+      //   }
+      // } catch (apiError) {
+      //   console.log('API not available, using demo data');
+      // }
 
       // Fallback to demo data if API fails
       if (!apiData) {
@@ -47,8 +50,11 @@ const CashFlowAnalysisPage = () => {
 
   // Generate demo data for when API is not available
   const generateDemoData = (accountId) => {
-    const personas = [
-      { 
+    const selectedPersona = localStorage.getItem('selectedPersona');
+    console.log('CashFlowAnalysisPage - selectedPersona from localStorage:', selectedPersona);
+    
+    const personas = {
+      anna: { 
         name: 'Anna Schmidt', 
         accountType: 'Business Current Account', 
         iban: 'DE89 1001 0010 0532 0130 00',
@@ -56,9 +62,22 @@ const CashFlowAnalysisPage = () => {
         accountNumber: '0532013000',
         bankCode: '10010010',
         bankName: 'Deutsche Bank AG',
-        accountOpened: '2019-03-15'
+        accountOpened: '2019-03-15',
+        monthlyFlows: [
+          { month: '2024-10', income: 2150, expenses: 1850 },
+          { month: '2024-11', income: 2300, expenses: 1950 },
+          { month: '2024-12', income: 2450, expenses: 2100 }
+        ],
+        summary: {
+          averageMonthlyIncome: 2300,
+          averageMonthlyExpenses: 1967,
+          averageNetCashFlow: 333,
+          volatility: 15,
+          positiveCashFlowMonths: 3,
+          totalMonths: 3
+        }
       },
-      { 
+      mehmet: { 
         name: 'Mehmet Özkan', 
         accountType: 'Business Premium Account', 
         iban: 'DE89 1001 0010 9012 3456 78',
@@ -66,9 +85,22 @@ const CashFlowAnalysisPage = () => {
         accountNumber: '9012345678',
         bankCode: '10010010',
         bankName: 'Deutsche Bank AG',
-        accountOpened: '2020-07-22'
+        accountOpened: '2020-07-22',
+        monthlyFlows: [
+          { month: '2024-10', income: 3200, expenses: 2800 },
+          { month: '2024-11', income: 3500, expenses: 3000 },
+          { month: '2024-12', income: 3800, expenses: 3200 }
+        ],
+        summary: {
+          averageMonthlyIncome: 3500,
+          averageMonthlyExpenses: 3000,
+          averageNetCashFlow: 500,
+          volatility: 20,
+          positiveCashFlowMonths: 3,
+          totalMonths: 3
+        }
       },
-      { 
+      maria: { 
         name: 'Maria Rodriguez', 
         accountType: 'Business Current Account', 
         iban: 'DE89 1001 0010 1098 7654 32',
@@ -76,36 +108,90 @@ const CashFlowAnalysisPage = () => {
         accountNumber: '1098765432',
         bankCode: '10010010',
         bankName: 'Deutsche Bank AG',
-        accountOpened: '2018-11-08'
+        accountOpened: '2018-11-08',
+        monthlyFlows: [
+          { month: '2024-10', income: 1600, expenses: 1400 },
+          { month: '2024-11', income: 1800, expenses: 1600 },
+          { month: '2024-12', income: 2000, expenses: 1800 }
+        ],
+        summary: {
+          averageMonthlyIncome: 1800,
+          averageMonthlyExpenses: 1600,
+          averageNetCashFlow: 200,
+          volatility: 25,
+          positiveCashFlowMonths: 3,
+          totalMonths: 3
+        }
+      },
+      thomas: { 
+        name: 'Thomas Mueller', 
+        accountType: 'Business Current Account', 
+        iban: 'DE89 1001 0010 0432 1234 56',
+        bic: 'DEUTDEFFXXX',
+        accountNumber: '0432123456',
+        bankCode: '10010010',
+        bankName: 'Deutsche Bank AG',
+        accountOpened: '2024-08-15',
+        monthlyFlows: [
+          { month: '2024-10', income: 400, expenses: 650 },
+          { month: '2024-11', income: 600, expenses: 700 },
+          { month: '2024-12', income: 800, expenses: 750 }
+        ],
+        summary: {
+          averageMonthlyIncome: 600,
+          averageMonthlyExpenses: 700,
+          averageNetCashFlow: -100,
+          volatility: 60,
+          positiveCashFlowMonths: 1,
+          totalMonths: 3
+        }
+      },
+      stefan: { 
+        name: 'Stefan Weber', 
+        accountType: 'Business Current Account', 
+        iban: 'DE89 1001 0010 0856 7890 12',
+        bic: 'DEUTDEFFXXX',
+        accountNumber: '0856789012',
+        bankCode: '10010010',
+        bankName: 'Deutsche Bank AG',
+        accountOpened: '2019-06-10',
+        monthlyFlows: [
+          { month: '2024-10', income: 1800, expenses: 2000 },
+          { month: '2024-11', income: 1400, expenses: 1800 },
+          { month: '2024-12', income: 1000, expenses: 1600 }
+        ],
+        summary: {
+          averageMonthlyIncome: 1400,
+          averageMonthlyExpenses: 1800,
+          averageNetCashFlow: -400,
+          volatility: 35,
+          positiveCashFlowMonths: 0,
+          totalMonths: 3
+        }
       }
-    ];
-    const personaIndex = Math.abs((accountId || 'demo').charCodeAt(4) || 0) % personas.length;
-    const selectedPersona = personas[personaIndex];
+    };
+    
+    const persona = personas[selectedPersona] || personas.anna;
+    console.log('CashFlowAnalysisPage - Using persona:', selectedPersona, persona.name);
     
     return {
       accountId,
       persona: {
-        name: selectedPersona.name,
-        accountType: selectedPersona.accountType,
-        iban: selectedPersona.iban,
-        bic: selectedPersona.bic,
-        accountNumber: selectedPersona.accountNumber,
-        bankCode: selectedPersona.bankCode,
-        bankName: selectedPersona.bankName,
-        accountOpened: selectedPersona.accountOpened
+        name: persona.name,
+        accountType: persona.accountType,
+        iban: persona.iban,
+        bic: persona.bic,
+        accountNumber: persona.accountNumber,
+        bankCode: persona.bankCode,
+        bankName: persona.bankName,
+        accountOpened: persona.accountOpened
       },
-      monthlyFlows: [
-        { month: '2024-10', income: 2150, expenses: 1850 },
-        { month: '2024-11', income: 2300, expenses: 1950 },
-        { month: '2024-12', income: 2450, expenses: 2100 }
-      ],
+      monthlyFlows: persona.monthlyFlows,
       summary: {
-        averageMonthlyIncome: 2300,
-        averageMonthlyExpenses: 1967,
-        averageNetCashFlow: 333,
-        volatility: 15,
-        positiveCashFlowMonths: 3,
-        totalMonths: 3
+        ...persona.summary,
+        averageWeeklyIncome: Math.round(persona.summary.averageMonthlyIncome / 4.33),
+        weeklyPattern: persona.summary.averageNetCashFlow > 0 ? 'Strong' : 'Declining',
+        competitivePosition: persona.summary.averageMonthlyIncome < 2000 ? 'Below requirements' : 'Perfect for weekly credit'
       }
     };
   };
@@ -115,24 +201,25 @@ const CashFlowAnalysisPage = () => {
     try {
       let offerData = null;
       
-      try {
-        const response = await fetch('http://localhost:3001/api/credit-decision', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            accountId: localStorage.getItem('accountId'),
-            cashFlowSummary: cashFlowData.summary
-          }),
-        });
+      // Temporarily disable API to ensure demo data is used for persona testing
+      // try {
+      //   const response = await fetch('http://localhost:3001/api/credit-decision', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({
+      //       accountId: localStorage.getItem('accountId'),
+      //       cashFlowSummary: cashFlowData.summary
+      //     }),
+      //   });
 
-        if (response.ok) {
-          offerData = await response.json();
-        }
-      } catch (apiError) {
-        console.log('API not available, using demo credit decision');
-      }
+      //   if (response.ok) {
+      //     offerData = await response.json();
+      //   }
+      // } catch (apiError) {
+      //   console.log('API not available, using demo credit decision');
+      // }
 
       // Fallback to demo credit offer if API fails
       if (!offerData) {
@@ -149,31 +236,108 @@ const CashFlowAnalysisPage = () => {
     }
   };
 
-  // Generate demo credit offer
+  // Generate demo credit offer for weekly model
   const generateDemoCreditOffer = (summary) => {
-    const loanAmount = Math.min(Math.round(summary.averageMonthlyIncome * 0.25), 2500);
-    const dailyPayment = Math.ceil(loanAmount * 0.1);
-    const numberOfDays = Math.ceil(loanAmount / dailyPayment);
-    const totalInterest = Math.round((loanAmount * 0.05 / 100) * numberOfDays * 100) / 100;
+    const weeklyIncome = Math.round(summary.averageMonthlyIncome / 4.33);
+    console.log('generateDemoCreditOffer - summary:', summary);
+    console.log('generateDemoCreditOffer - averageMonthlyIncome:', summary.averageMonthlyIncome);
+    console.log('generateDemoCreditOffer - weeklyIncome:', weeklyIncome);
+    
+    // Check rejection criteria - Different scenarios
+    // 1. Very low income (below €1000/month) - early stage business
+    if (summary.averageMonthlyIncome < 1000) {
+      console.log('REJECTING: Very low income (early stage)', summary.averageMonthlyIncome);
+      return {
+        offerId: `demo_rejection_${Math.random().toString(36).substr(2, 9)}`,
+        approved: false,
+        reason: 'Business too early-stage for credit',
+        referral: {
+          partner: 'StartUp Accelerator Program',
+          reason: 'Your business is too early-stage for credit. Focus on fundamentals first.',
+          actionable: 'Improve pricing, reduce costs, and grow revenue to €2K+/month',
+          alternativeAction: 'Consider business mentoring or startup incubator programs'
+        }
+      };
+    }
+    
+    // 2. Medium income but below stability threshold (€1000-€2000) - growth stage
+    if (summary.averageMonthlyIncome < 2000) {
+      console.log('REJECTING: Income below stability threshold', summary.averageMonthlyIncome);
+      return {
+        offerId: `demo_rejection_${Math.random().toString(36).substr(2, 9)}`,
+        approved: false,
+        reason: 'Insufficient monthly income stability',
+        referral: {
+          partner: 'Silvr',
+          reason: 'Your business is growing! Once you reach €5K+ monthly revenue, Silvr offers great terms.',
+          actionable: 'Focus on growth for 3-6 months',
+          alternativeAction: 'Come back when you hit €2K monthly'
+        }
+      };
+    }
+    
+    if (summary.averageNetCashFlow <= 0) {
+      return {
+        offerId: `demo_rejection_${Math.random().toString(36).substr(2, 9)}`,
+        approved: false,
+        reason: 'Negative average net cash flow',
+        referral: {
+          partner: 'Business Turnaround Consultant',
+          reason: 'Credit won\'t help negative cash flow. You need strategic changes first.',
+          actionable: 'Cut costs by 20% or increase prices',
+          alternativeAction: 'Consider pivoting your business model'
+        }
+      };
+    }
+    
+    if (summary.volatility > 50) {
+      return {
+        offerId: `demo_rejection_${Math.random().toString(36).substr(2, 9)}`,
+        approved: false,
+        reason: 'Cash flow too volatile for weekly credit',
+        referral: {
+          partner: 'iwoca',
+          reason: 'Your revenue is strong but variable. iwoca specializes in seasonal businesses.',
+          actionable: 'They offer monthly terms up to €200K',
+          alternativeAction: 'Try smoothing revenue with subscriptions'
+        }
+      };
+    }
+    
+    // If approved, generate offer
+    const loanAmount = Math.min(Math.round(weeklyIncome * 0.5), 5000);
+    const weeklyInterest = Math.round(loanAmount * 0.012 * 100) / 100;
+    const totalWeeklyPayment = loanAmount + weeklyInterest;
     
     return {
       offerId: `demo_offer_${Math.random().toString(36).substr(2, 9)}`,
       approved: true,
       loanAmount: loanAmount,
       currency: 'EUR',
-      dailyInterestRate: 0.05,
+      weeklyInterestRate: 1.2,
       repaymentTerms: {
-        dailyPayment: dailyPayment,
-        numberOfDays: numberOfDays,
-        totalInterest: totalInterest,
-        totalRepayment: loanAmount + totalInterest,
-        effectiveAPR: 18.25
+        weeklyPayment: loanAmount,
+        weeklyInterest: weeklyInterest,
+        totalWeeklyPayment: totalWeeklyPayment,
+        renewalDate: 'Every Monday',
+        effectiveAPR: 65.0,
+        flexibleTerms: 'Skip a week anytime with 24hr notice'
       },
       explanation: {
-        summary: `Based on your average monthly income of €${summary.averageMonthlyIncome} and ${summary.volatility}% cash flow volatility, you qualify for a €${loanAmount} loan.`,
-        calculation: `This represents ${Math.round((loanAmount / summary.averageMonthlyIncome) * 100)}% of your monthly income, ensuring comfortable repayment.`,
-        strengths: ['Steady monthly income', 'Low cash flow volatility', 'Consistent positive cash flow'],
-        comparison: 'Traditional banks would typically take 14-21 days for this decision. We did it in seconds using your real cash flow data.'
+        summary: `Based on your average weekly revenue of €${weeklyIncome}, you qualify for a €${loanAmount} weekly credit line.`,
+        calculation: `This is ${Math.round((loanAmount / weeklyIncome) * 100)}% of your weekly revenue - designed to match your business cycle perfectly.`,
+        strengths: ['Strong weekly revenue', 'Predictable weekly patterns', 'Perfect fit for weekly credit'],
+        weeklyBenefit: 'Renews every Monday morning, giving you fresh working capital exactly when you need it.',
+        comparison: 'Unlike monthly loans, our weekly credit matches your cash flow pattern - pay back what you earned, keep what you need.'
+      },
+      competitiveAdvantage: {
+        title: 'Perfect for micro-businesses',
+        points: [
+          `€${loanAmount} weekly - below Silvr's €5K minimum`,
+          'Weekly terms vs iwoca\'s monthly only',
+          'No fixed monthly payments like traditional banks',
+          'Renews automatically every Monday'
+        ]
       },
       offerValidUntil: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
     };
@@ -227,7 +391,20 @@ const CashFlowAnalysisPage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Cash Flow Analysis</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Weekly Cash Flow Analysis</h1>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold text-blue-900">Germany's First Weekly Credit Line</h2>
+                  <p className="text-sm text-blue-700">Analyzing your patterns for weekly credit that renews every Monday</p>
+                </div>
+              </div>
+            </div>
             {cashFlowData?.persona && (
               <div>
                 {/* Account Holder */}
@@ -307,27 +484,53 @@ const CashFlowAnalysisPage = () => {
             )}
           </div>
 
-          {/* Sticky Action Button */}
-          <div className="mt-12 sticky bottom-8 z-10">
-            <div className="bg-white rounded-xl shadow-2xl border-2 border-blue-200 p-6">
-              <div className="flex flex-col sm:flex-row items-center justify-between">
-                <div className="text-center sm:text-left mb-4 sm:mb-0">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">
-                    Get Your Credit Offer
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    Instant decision based on your cash flow analysis
-                  </p>
+          {/* Conditional Action Button - Only show if likely to be approved */}
+          {cashFlowData?.summary && 
+           cashFlowData.summary.averageMonthlyIncome >= 2000 && 
+           cashFlowData.summary.averageNetCashFlow > 0 && 
+           cashFlowData.summary.volatility <= 50 ? (
+            <div className="mt-12 sticky bottom-8 z-10">
+              <div className="bg-white rounded-xl shadow-2xl border-2 border-blue-200 p-6">
+                <div className="flex flex-col sm:flex-row items-center justify-between">
+                  <div className="text-center sm:text-left mb-4 sm:mb-0">
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">
+                      Get Your Weekly Credit Line
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Instant weekly credit decision • Renews every Monday
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleProceedToOffer}
+                    className="bg-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transform hover:scale-105 w-full sm:w-auto text-lg"
+                  >
+                    Get Weekly Credit →
+                  </button>
                 </div>
-                <button
-                  onClick={handleProceedToOffer}
-                  className="bg-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transform hover:scale-105 w-full sm:w-auto text-lg"
-                >
-                  Get My Offer →
-                </button>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="mt-12 sticky bottom-8 z-10">
+              <div className="bg-amber-50 rounded-xl shadow-2xl border-2 border-amber-200 p-6">
+                <div className="flex flex-col sm:flex-row items-center justify-between">
+                  <div className="text-center sm:text-left mb-4 sm:mb-0">
+                    <h3 className="text-lg font-bold text-amber-900 mb-1">
+                      Ready for Credit Assessment
+                    </h3>
+                    <p className="text-sm text-amber-700">
+                      See if you qualify for weekly credit • Instant decision
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleProceedToOffer}
+                    className="bg-amber-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-amber-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 shadow-lg transform hover:scale-105 w-full sm:w-auto text-lg"
+                  >
+                    Check Eligibility →
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

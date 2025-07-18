@@ -2,15 +2,17 @@
 
 **Hackathon Version - 8-12 Hour Development Sprint**
 
-Version 1.0 | Date: January 2025 | Status: Hackathon MVP
+Version 2.0 | Date: January 2025 | Status: Hackathon MVP - Competitive Positioning Update
 
 ---
 
 ## Executive Summary
 
-This PRD defines the minimal viable product for CashFlow Bridge to be built during an 8-12 hour hackathon sprint. The scope is intentionally limited to demonstrate core value proposition: **instant credit approval based on cash flow analysis**.
+This PRD defines the minimal viable product for CashFlow Bridge to be built during an 8-12 hour hackathon sprint. Based on competitive analysis revealing a **69% underserved micro-business segment** and **0% market coverage for weekly credit cycles**, we're repositioning as the first specialized weekly micro-credit solution for German cash-flow businesses.
 
-**Core Demo Flow**: Anna connects her bank account → System analyzes cash flow → Instant credit offer → Digital acceptance → Success confirmation
+**Core Value Proposition**: Weekly credit lines (€500-€5K) approved in 2 minutes for food trucks, market vendors, and seasonal businesses - addressing the gap left by competitors like Silvr (€5K+ loans) and iwoca (monthly terms).
+
+**Core Demo Flow**: Max (Berlin food truck owner) connects his bank → System recognizes weekly cash patterns → €800 weekly credit line approved in 2 minutes → Digital acceptance → Weekly credit dashboard activated
 
 ---
 
@@ -18,36 +20,38 @@ This PRD defines the minimal viable product for CashFlow Bridge to be built duri
 
 ### Feature Breakdown for 8-12 Hour Sprint
 
-| Feature ID | Feature Name            | Kano Category | Build vs Mock        | Time Estimate |
-| ---------- | ----------------------- | ------------- | -------------------- | ------------- |
-| F001       | Bank Account Connection | Basic         | Mock UI, Real OAuth  | 2 hours       |
-| F002       | Cash Flow Visualization | Performance   | Build                | 2 hours       |
-| F003       | Instant Credit Decision | Basic         | Build (Simple Rules) | 2 hours       |
-| F004       | Loan Offer Display      | Basic         | Build                | 1 hour        |
-| F005       | Digital Acceptance      | Basic         | Mock                 | 0.5 hours     |
-| F006       | Success Dashboard       | Performance   | Build                | 1.5 hours     |
-| F007       | Demo Data Generator     | Excitement    | Build                | 1 hour        |
-| F008       | Impact Metrics Display  | Excitement    | Build                | 1 hour        |
-| F009       | Responsive Design       | Performance   | Partial              | 1 hour        |
+| Feature ID | Feature Name                    | Kano Category | Build vs Mock        | Time Estimate |
+| ---------- | ------------------------------- | ------------- | -------------------- | ------------- |
+| F001       | Bank Account Connection         | Basic         | Mock UI, Real OAuth  | 2 hours       |
+| F002       | Weekly Cash Flow Pattern Viz    | Performance   | Build                | 2 hours       |
+| F003       | 2-Minute Credit Decision        | Basic         | Build (Pattern Rules)| 2 hours       |
+| F004       | Weekly Credit Line Display      | Basic         | Build                | 1 hour        |
+| F005       | Digital Acceptance              | Basic         | Mock                 | 0.5 hours     |
+| F006       | Weekly Credit Dashboard         | Excitement    | Build                | 1.5 hours     |
+| F007       | Micro-Business Data Generator   | Excitement    | Build                | 1 hour        |
+| F008       | Competitive Advantage Display   | Excitement    | Build                | 1 hour        |
+| F009       | Mobile-First Design             | Performance   | Partial              | 1 hour        |
+| F010       | Smart Rejection Referral Flow   | Excitement    | Build                | 0.5 hours     |
 
-**Total Estimated Time**: 12 hours (allows for integration and debugging)
+**Total Estimated Time**: 12.5 hours (allows for integration and debugging)
 
 ### Kano Analysis Rationale
 
 **Basic (Must-Have for Demo):**
 
-- Bank connection, credit decision, and loan offer are essential to demonstrate value
-- Without these, the demo fails
+- Bank connection, 2-minute credit decision, and weekly credit line are essential to demonstrate our unique value vs Silvr/iwoca
+- Without these, we can't show our competitive advantage
 
 **Performance (Linear Satisfaction):**
 
-- Cash flow visualization and dashboard improve demo quality proportionally
-- Nice to have but can be simplified if time runs short
+- Weekly pattern visualization and mobile design directly address micro-business needs
+- Differentiates us from enterprise-focused competitors
 
 **Excitement (Delighters):**
 
-- Demo data generator and impact metrics create "wow" moments
-- Build only if core features are complete
+- Weekly credit dashboard shows what NO competitor offers
+- Competitive advantage metrics highlight our blue ocean opportunity
+- Smart rejection referrals show industry leadership and generate goodwill
 
 ---
 
@@ -62,29 +66,29 @@ This PRD defines the minimal viable product for CashFlow Bridge to be built duri
 - FR001.3: Show loading animation for 2-3 seconds to simulate API call
 - FR001.4: Display success message with connected account details
 
-**F002: Cash Flow Visualization**
+**F002: Weekly Cash Flow Pattern Visualization**
 
-- FR002.1: Display last 3 months of transaction data in graph format
-- FR002.2: Show income (green) vs expenses (red) as stacked bar chart
-- FR002.3: Calculate and display average monthly cash flow
-- FR002.4: Highlight cash flow patterns (weekly/monthly cycles)
+- FR002.1: Display last 12 weeks of transaction data with weekly grouping
+- FR002.2: Show weekly revenue patterns with peak days highlighted (Fri-Sun for food trucks)
+- FR002.3: Calculate and display average weekly cash flow with volatility indicator
+- FR002.4: Highlight weekly business cycles with pattern recognition (e.g., "Strong weekend sales detected")
 
-**F003: Instant Credit Decision**
+**F003: 2-Minute Credit Decision**
 
-- FR003.1: Calculate creditworthiness based on simple rules:
-  - Average monthly income > €2,000: Eligible
-  - Cash flow volatility < 40%: Bonus points
-  - Positive cash flow 2 of 3 months: Required
-- FR003.2: Generate loan offer: 25% of average monthly income (max €2,500)
-- FR003.3: Set interest rate: 0.05% daily (fixed for demo)
-- FR003.4: Display decision in <2 seconds after analysis
+- FR003.1: Calculate creditworthiness based on weekly patterns:
+  - Average weekly revenue > €500: Eligible
+  - Weekly pattern consistency > 60%: Bonus points
+  - Positive weekly cash flow 8 of 12 weeks: Required
+- FR003.2: Generate weekly credit line: 30% of average weekly revenue (€500-€5,000 range)
+- FR003.3: Set daily rate: 0.1% (higher than monthly competitors but justified by flexibility)
+- FR003.4: Display decision in <2 seconds with "2 minutes vs 13 days" comparison
 
-**F004: Loan Offer Display**
+**F004: Weekly Credit Line Display**
 
-- FR004.1: Show loan amount in large, clear text
-- FR004.2: Display key terms: amount, daily rate, repayment period
-- FR004.3: Include "Why this offer?" explanation based on cash flow
-- FR004.4: Provide accept/decline buttons
+- FR004.1: Show weekly credit line amount with "renews every Monday" messaging
+- FR004.2: Display flexible terms: weekly amount, daily deduction from revenue, no fixed term
+- FR004.3: Include "Perfect for your business" with weekly pattern insights
+- FR004.4: Show competitor comparison: "Silvr: €5K minimum, iwoca: Monthly terms only"
 
 **F005: Digital Acceptance (Mock)**
 
@@ -93,26 +97,41 @@ This PRD defines the minimal viable product for CashFlow Bridge to be built duri
 - FR005.3: Simulate e-signature with typed name field
 - FR005.4: Show success animation upon acceptance
 
-**F006: Success Dashboard**
+**F006: Weekly Credit Dashboard**
 
-- FR006.1: Display loan status (Approved, Amount, Next Payment)
-- FR006.2: Show simplified repayment schedule
-- FR006.3: Include "Share Your Success" social proof element
-- FR006.4: Display next steps for the user
+- FR006.1: Display current week's available credit and usage
+- FR006.2: Show next 4 weeks forecast based on seasonal patterns
+- FR006.3: Include daily revenue tracker with automatic repayment visualization
+- FR006.4: Add "Weather Impact" indicator for outdoor businesses (mock)
 
-**F007: Demo Data Generator**
+**F007: Micro-Business Data Generator**
 
-- FR007.1: Create 3 pre-built personas with realistic transaction data
-- FR007.2: Generate random variations for live demos
-- FR007.3: Ensure all personas qualify for different loan amounts
-- FR007.4: Include edge cases (one rejection scenario)
+- FR007.1: Create 3 cash-flow business personas:
+  - Max: Berlin food truck (€2,800/week, strong Fri-Sun)
+  - Ayşe: Munich Christmas market vendor (€4,200/week, seasonal peaks)
+  - Carlos: Hamburg festival caterer (€1,500/week, event-based)
+- FR007.2: Generate realistic weekly patterns with weather impact
+- FR007.3: Ensure personas qualify for €800, €1,200, and €500 weekly lines
+- FR007.4: Include rejection personas:
+  - Thomas: Traditional retailer (monthly patterns → iwoca referral)
+  - Stefan: Restaurant owner (needs €15K → Silvr referral)
 
-**F008: Impact Metrics Display**
+**F008: Competitive Advantage Display**
 
-- FR008.1: Show "Time Saved: 13 days vs traditional bank"
-- FR008.2: Display "Businesses Helped: 1,247" (static but impressive)
-- FR008.3: Include "Economic Impact: €2.4M enabled" counter
-- FR008.4: Add testimonial carousel (3 static testimonials)
+- FR008.1: Show "2 minutes vs 13 days (banks) vs 2 days (iwoca)"
+- FR008.2: Display "46% of German micro-businesses underserved"
+- FR008.3: Include "First weekly credit solution in Germany" badge
+- FR008.4: Add competitor comparison table showing our unique position
+
+**F010: Smart Rejection Referral Flow**
+
+- FR010.1: Detect rejection reason (loan size too large, monthly patterns, etc.)
+- FR010.2: Match to appropriate competitor:
+  - Large loans (>€5K): Refer to Silvr or Teylor
+  - Monthly patterns: Refer to iwoca or Funding Circle
+  - Traditional retail: Refer to auxmoney
+- FR010.3: Display personalized message: "While weekly credit isn't right for you, our partner [Competitor] specializes in your business type"
+- FR010.4: Show referral links with tracking codes (mock for demo)
 
 ### Non-Functional Requirements (Hackathon Adjusted)
 
@@ -142,16 +161,16 @@ This PRD defines the minimal viable product for CashFlow Bridge to be built duri
 
 ## 3. User Workflows & Journeys
 
-### Primary User Journey: Anna's Loan Application
+### Primary User Journey: Max's Weekly Credit Line Application
 
 ```
 Start
   |
   v
 Landing Page (30 sec)
-  ├─ View impact metrics
-  ├─ Read value proposition
-  └─ Click "Get Started"
+  ├─ View "First Weekly Credit in Germany"
+  ├─ See competitor comparison
+  └─ Select "Max - Berlin Food Truck"
   |
   v
 Bank Connection (45 sec)
@@ -160,45 +179,70 @@ Bank Connection (45 sec)
   └─ Authorize connection
   |
   v
-Cash Flow Analysis (30 sec)
-  ├─ View transaction visualization
-  ├─ See income/expense patterns
-  └─ Click "Get Credit Offer"
+Weekly Pattern Analysis (30 sec)
+  ├─ View 12-week revenue patterns
+  ├─ See "Strong weekend sales" insight
+  └─ Click "Get Weekly Credit Line"
   |
   v
-Credit Decision (15 sec)
-  ├─ View approved amount
-  ├─ Understand terms
-  └─ Click "Accept Offer"
+2-Minute Decision (15 sec)
+  ├─ View €800/week credit line
+  ├─ See "Renews every Monday"
+  └─ Click "Activate Credit Line"
   |
   v
 Digital Acceptance (20 sec)
   ├─ Check consent box
   ├─ Type name for signature
-  └─ Click "Finalize"
+  └─ Click "Start Using Today"
   |
   v
-Success Dashboard (20 sec)
-  ├─ View loan details
-  ├─ See next steps
+Weekly Credit Dashboard (20 sec)
+  ├─ View current week availability
+  ├─ See 4-week forecast
   └─ [Demo Complete]
 ```
 
 **Total Journey Time**: 2.5 minutes (perfect for demo)
 
+### Alternative Journey: Traditional Retailer Rejection
+
+```
+Start → Select "Thomas - Traditional Retailer" → Bank Connection
+  |
+  v
+Monthly Pattern Analysis
+  ├─ View steady monthly patterns
+  └─ Click "Get Weekly Credit Line"
+  |
+  v
+Rejection with Smart Referral (30 sec)
+  ├─ "Your business has monthly patterns"
+  ├─ "Perfect for iwoca's flexible terms"
+  └─ Show referral link with benefits
+  |
+  v
+Referral Tracking
+  └─ [Positive exit experience]
+```
+
 ### Identified Friction Points & Solutions
 
 1. **Bank Selection Confusion**
-   - Solution: Pre-select most common bank
-   - Add tooltip explaining this is a demo
+   - Solution: Pre-select Sparkasse (most common for micro-businesses)
+   - Add "Works with all German banks" reassurance
 
-2. **Analysis Wait Time**
-   - Solution: Use progress bar with explanatory text
-   - "Analyzing 847 transactions..."
+2. **Weekly Pattern Recognition**
+   - Solution: Highlight patterns visually with weekend peaks
+   - "Analyzing your Friday-Sunday revenue spikes..."
 
-3. **Terms Understanding**
-   - Solution: Use simple language and visuals
-   - "You pay back €25 per day for 20 days"
+3. **Weekly vs Monthly Understanding**
+   - Solution: Clear comparison graphics
+   - "€800 available every Monday vs €3,200 locked for a month"
+
+4. **Rejection Disappointment**
+   - Solution: Positive referral messaging
+   - "We found the perfect lender for your business type!"
 
 ---
 
@@ -236,8 +280,8 @@ Success Dashboard (20 sec)
 **Backend (Express):**
 
 - `server.js` - Main server file
-- `mockData.js` - Pre-built transaction data
-- `creditEngine.js` - Simple rule-based logic
+- `weeklyMockData.js` - Weekly pattern transaction data
+- `weeklyCredItEngine.js` - Pattern recognition logic
 - `routes.js` - API endpoints
 
 **Key Technical Decisions:**
@@ -253,18 +297,27 @@ Success Dashboard (20 sec)
 ```
 POST /api/connect-bank
   Request: { bank: "sparkasse", credentials: {...} }
-  Response: { success: true, accountId: "demo123" }
+  Response: { success: true, accountId: "demo123", businessType: "food_truck" }
 
-GET /api/cash-flow/:accountId
-  Response: { transactions: [...], summary: {...} }
+GET /api/weekly-patterns/:accountId
+  Response: { weeklyData: [...], patterns: { peakDays: ["Fri", "Sat", "Sun"], avgWeekly: 2800 } }
 
-POST /api/credit-decision
-  Request: { accountId: "demo123", cashFlowSummary: {...} }
-  Response: { approved: true, amount: 2000, terms: {...} }
+POST /api/weekly-credit-decision
+  Request: { accountId: "demo123", weeklyPatterns: {...} }
+  Response: { approved: true, weeklyAmount: 800, renewalDay: "Monday", competitors: {...} }
 
-POST /api/accept-loan
-  Request: { offerId: "offer123", signature: "Anna Schmidt" }
-  Response: { loanId: "loan123", status: "active" }
+POST /api/activate-credit-line
+  Request: { creditLineId: "weekly123", signature: "Max Mueller" }
+  Response: { creditLineId: "weekly123", status: "active", dashboard: {...} }
+
+POST /api/rejection-referral
+  Request: { accountId: "demo123", rejectionReason: "monthly_patterns" }
+  Response: { 
+    referralPartner: "iwoca", 
+    message: "Perfect for monthly cash flows",
+    referralUrl: "https://iwoca.de?ref=cashflowbridge&code=CB2025",
+    alternativePartners: ["Funding Circle", "auxmoney"]
+  }
 ```
 
 ---
@@ -291,61 +344,82 @@ Scenario: Visual feedback during connection
   And the process should complete within 3 seconds
 ```
 
-### Feature: Cash Flow Visualization
+### Feature: Weekly Pattern Visualization
 
 ```gherkin
-Scenario: Display transaction analysis
-  Given my bank account is connected
-  When the cash flow page loads
-  Then I should see a bar chart with 3 months of data
-  And income bars should be green
-  And expense bars should be red
-  And I should see "Average Monthly Cash Flow: €1,847"
+Scenario: Display weekly pattern analysis
+  Given my bank account is connected as a food truck
+  When the weekly pattern page loads
+  Then I should see a line chart with 12 weeks of data
+  And Friday-Sunday peaks should be highlighted
+  And weekday valleys should be visible
+  And I should see "Average Weekly Revenue: €2,800"
 
-Scenario: Interactive chart elements
-  Given the cash flow chart is displayed
-  When I hover over a specific month
-  Then I should see a tooltip with exact amounts
-  And the tooltip should show "Income: €4,200, Expenses: €2,950"
+Scenario: Pattern recognition display
+  Given the weekly pattern chart is displayed
+  When I view the pattern insights
+  Then I should see "Strong weekend business detected"
+  And I should see "78% of revenue from Fri-Sun"
+  And I should see "Weather impact: -15% on rainy days"
 ```
 
-### Feature: Instant Credit Decision
+### Feature: 2-Minute Weekly Credit Decision
 
 ```gherkin
-Scenario: Eligible user receives offer
-  Given my average monthly income is €4,000
-  And my cash flow volatility is 25%
-  When I click "Get Credit Offer"
-  Then I should see a credit offer within 2 seconds
-  And the offered amount should be €1,000
-  And the daily rate should be "0.05%"
+Scenario: Food truck receives weekly credit line
+  Given my average weekly revenue is €2,800
+  And my weekend pattern consistency is 78%
+  When I click "Get Weekly Credit Line"
+  Then I should see approval within 2 seconds
+  And the weekly credit line should be €800
+  And I should see "Approved in 2 minutes vs 13 days at banks"
 
-Scenario: Clear offer presentation
-  Given I have received a credit offer
+Scenario: Competitive advantage display
+  Given I have received a weekly credit approval
   When the offer is displayed
-  Then I should see the amount in large text (48px+)
-  And I should see "You're approved for"
-  And I should see a breakdown of repayment terms
-  And I should see why I qualified
+  Then I should see "€800 available every Monday"
+  And I should see competitor comparison table
+  And I should see "Only weekly credit in Germany"
+  And I should see automatic repayment visualization
 ```
 
-### Feature: Demo Data Generator
+### Feature: Micro-Business Persona Selection
 
 ```gherkin
-Scenario: Multiple persona options
+Scenario: Cash-flow business persona options
   Given I am on the landing page
-  When I click "Try Demo"
-  Then I should see persona selection options
-  And I should see "Anna - Food Truck Owner"
-  And I should see "Mehmet - Online Retailer"
-  And I should see "Maria - Event Planner"
+  When I view the demo options
+  Then I should see persona cards
+  And I should see "Max - Berlin Food Truck (Fri-Sun peaks)"
+  And I should see "Ayşe - Munich Market Vendor (Seasonal)"
+  And I should see "Carlos - Hamburg Caterer (Event-based)"
 
-Scenario: Consistent persona data
-  Given I select "Anna - Food Truck Owner"
+Scenario: Weekly pattern persona data
+  Given I select "Max - Berlin Food Truck"
   When I complete the flow
-  Then her data should show weekly income patterns
-  And her average income should be €2,100/month
-  And she should qualify for a €525 loan
+  Then his data should show strong weekend peaks
+  And his average weekly revenue should be €2,800
+  And he should qualify for €800 weekly credit line
+```
+
+### Feature: Smart Rejection Referral
+
+```gherkin
+Scenario: Traditional retailer gets helpful referral
+  Given I select "Thomas - Traditional Retailer"
+  And his data shows steady monthly patterns
+  When the credit decision is made
+  Then I should see "Your business fits better with monthly credit"
+  And I should see "iwoca specializes in businesses like yours"
+  And I should see a referral link with tracking code
+  And I should see 2-3 alternative lender options
+
+Scenario: Large loan request gets appropriate referral
+  Given a user requests more than €5,000
+  When they are rejected for exceeding our limits
+  Then they should see "For loans over €5K, we recommend Silvr"
+  And they should see benefits of Silvr for larger amounts
+  And the referral should include our partner code
 ```
 
 ---
@@ -370,17 +444,17 @@ Scenario: Consistent persona data
 
 **Hours 4-6: Core Features**
 
-- Build cash flow visualization
-- Implement credit decision engine
-- Create offer display component
+- Build weekly pattern visualization
+- Implement weekly credit decision engine
+- Create competitive comparison display
 - Wire up data flow
 
 **Hours 6-8: Polish & Integration**
 
 - Add animations and transitions
-- Implement success dashboard
-- Create demo data variations
-- Style with Tailwind
+- Implement weekly credit dashboard
+- Create micro-business personas
+- Style with mobile-first Tailwind
 
 **Hours 8-10: Testing & Refinement**
 
@@ -391,16 +465,16 @@ Scenario: Consistent persona data
 
 **Hours 10-12: Demo Preparation**
 
-- Create landing page with impact metrics
-- Add testimonials and social proof
-- Practice demo flow
-- Prepare backup plans
+- Create landing page with competitive positioning
+- Add "First in Germany" messaging
+- Practice micro-business demo flow
+- Prepare competitor comparison slides
 
 ### Critical Path Items
 
-1. **Must Complete by Hour 6**: Core flow (connect → analyze → offer)
-2. **Must Complete by Hour 8**: All visual components
-3. **Must Complete by Hour 10**: Bug-free demo flow
+1. **Must Complete by Hour 6**: Weekly pattern recognition → 2-minute decision
+2. **Must Complete by Hour 8**: Competitive positioning visuals
+3. **Must Complete by Hour 10**: Micro-business persona demos
 
 ---
 
@@ -410,19 +484,19 @@ Scenario: Consistent persona data
 
 | Risk                               | Impact   | Probability | Mitigation                                      | Owner    |
 | ---------------------------------- | -------- | ----------- | ----------------------------------------------- | -------- |
-| Chart library integration issues   | High     | Medium      | Pre-test Chart.js setup; Have table backup      | Dev1     |
-| Styling takes longer than expected | Medium   | High        | Use Tailwind templates; Simplify design         | Designer |
+| Weekly pattern viz complexity      | High     | Medium      | Pre-build sample patterns; Simplify to line chart| Dev1     |
+| Mobile responsiveness issues       | Medium   | High        | Test on phones early; Focus on key screens only  | Designer |
 | Demo crashes during presentation   | Critical | Low         | Practice multiple times; Have video backup      | All      |
-| Credit logic too complex           | Medium   | Medium      | Start with simple rules; Add complexity if time | Dev2     |
+| Competitive messaging unclear      | High     | Medium      | Create clear comparison table; Test with audience| Dev2     |
 
 ### Assumptions
 
 | Assumption                          | Validation          | Impact if False           |
 | ----------------------------------- | ------------------- | ------------------------- |
-| Team familiar with React/Node       | Pre-hackathon check | Switch to vanilla JS      |
-| Chart.js works with our data format | Hour 1 spike        | Use simple CSS bars       |
-| 8-12 hours is sufficient            | Hourly checkpoints  | Cut features per priority |
-| Demo environment is stable          | Test setup early    | Run locally instead       |
+| Audience understands weekly credit  | Test pitch early    | Add more education slides |
+| Chart.js handles weekly grouping    | Hour 1 spike        | Pre-aggregate data        |
+| Mobile demo works on stage          | Test presenter phone| Use laptop for demo       |
+| Competitive angle resonates         | Practice with jury  | Focus on speed benefit    |
 
 ### Issues
 
@@ -449,8 +523,8 @@ Scenario: Consistent persona data
 - [ ] Install Node.js, npm, Git
 - [ ] Create React app template
 - [ ] Set up GitHub repository
-- [ ] Test Chart.js in sandbox
-- [ ] Prepare demo transaction data
+- [ ] Test Chart.js weekly grouping
+- [ ] Prepare micro-business transaction patterns
 
 ### Hour 0 Checklist
 
@@ -463,9 +537,9 @@ Scenario: Consistent persona data
 ### Demo Day Checklist
 
 - [ ] Demo tested 3+ times
-- [ ] Backup video recorded
-- [ ] All personas data verified
-- [ ] Presentation mode ready
-- [ ] Team roles for demo defined
+- [ ] Competitive slides ready
+- [ ] All micro-business personas verified
+- [ ] Mobile demo tested
+- [ ] "First in Germany" messaging clear
 
-This PRD provides a realistic, achievable specification for building CashFlow Bridge MVP in 8-12 hours, with clear priorities and fallback options for hackathon success.
+This PRD positions CashFlow Bridge as the first weekly micro-credit solution in Germany, targeting the 69% underserved micro-business segment with a unique offering that competitors like Silvr (€5K+ minimum) and iwoca (monthly terms only) don't address.

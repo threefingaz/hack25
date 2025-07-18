@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import DashboardLayout from '../components/DashboardLayout';
+import DashboardCashFlow from '../components/DashboardCashFlow';
 import RepaymentSchedule from '../components/RepaymentSchedule';
 import ShareSuccess from '../components/ShareSuccess';
 import NextSteps from '../components/NextSteps';
@@ -64,6 +65,7 @@ const SuccessDashboardPage = () => {
   
   const tabs = [
     { id: 'overview', label: 'Overview' },
+    { id: 'cashflow', label: 'Cash Flow Analysis' },
     { id: 'schedule', label: 'Payment Schedule' },
     { id: 'share', label: 'Share & Earn' },
     { id: 'nextsteps', label: 'Next Steps' }
@@ -124,6 +126,10 @@ const SuccessDashboardPage = () => {
         <div className="max-w-6xl mx-auto">
           {activeTab === 'overview' && (
             <DashboardLayout loanData={loanData} />
+          )}
+          
+          {activeTab === 'cashflow' && (
+            <DashboardCashFlow loanData={loanData} />
           )}
           
           {activeTab === 'schedule' && (

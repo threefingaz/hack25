@@ -212,6 +212,101 @@ const generateTransactions = (personaType, startDate = new Date('2024-10-01')) =
           ));
         }
         break;
+        
+      case 'thomas': // Caterer - Too early stage (rejection)
+        // Very low and irregular income
+        if (Math.random() < 0.3) { // Only 30% of days have income
+          const income = addVariance(40, 0.6); // €40 ± 60% (very volatile)
+          transactions.push(generateTransaction(
+            currentDate,
+            income,
+            'Catering gig',
+            'income',
+            'income'
+          ));
+        }
+        
+        // High expenses relative to income
+        if (dayOfMonth === 1) {
+          transactions.push(generateTransaction(
+            currentDate,
+            -600,
+            'Kitchen rental',
+            'rent',
+            'expense'
+          ));
+        }
+        
+        // Frequent supply purchases
+        if (Math.random() < 0.4) {
+          const supplies = addVariance(-80, 0.3);
+          transactions.push(generateTransaction(
+            currentDate,
+            supplies,
+            'Food ingredients',
+            'supplies',
+            'expense'
+          ));
+        }
+        break;
+        
+      case 'stefan': // Market vendor - Negative cash flow (rejection)
+        // Declining income pattern
+        const monthsSinceStart = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24 * 30));
+        const declineMultiplier = Math.max(0.3, 1 - (monthsSinceStart * 0.15));
+        
+        if (dayOfWeek === 6) { // Saturday market
+          const income = addVariance(100 * declineMultiplier, 0.3);
+          transactions.push(generateTransaction(
+            currentDate,
+            income,
+            'Market stall sales',
+            'income',
+            'income'
+          ));
+        }
+        
+        if (dayOfWeek === 3) { // Wednesday market
+          const income = addVariance(60 * declineMultiplier, 0.4);
+          transactions.push(generateTransaction(
+            currentDate,
+            income,
+            'Midweek market sales',
+            'income',
+            'income'
+          ));
+        }
+        
+        // Fixed expenses remain high
+        if (dayOfMonth === 1) {
+          transactions.push(generateTransaction(
+            currentDate,
+            -400,
+            'Market stall rental',
+            'rent',
+            'expense'
+          ));
+          transactions.push(generateTransaction(
+            currentDate,
+            -300,
+            'Storage unit',
+            'rent',
+            'expense'
+          ));
+        }
+        
+        // Weekly supply costs
+        if (dayOfWeek === 1) {
+          const supplies = addVariance(-250, 0.2);
+          transactions.push(generateTransaction(
+            currentDate,
+            supplies,
+            'Produce wholesale purchase',
+            'supplies',
+            'expense'
+          ));
+        }
+        break;
     }
   }
   
@@ -248,6 +343,30 @@ const personas = {
     averageMonthlyIncome: 1800,
     pattern: 'Seasonal patterns with holiday boosts',
     transactions: generateTransactions('maria')
+  },
+  
+  thomas: {
+    id: 'thomas',
+    name: 'Thomas Mueller',
+    business: 'Caterer',
+    description: 'Early-stage catering business with irregular income',
+    averageMonthlyIncome: 600,
+    pattern: 'Very irregular income, high volatility',
+    transactions: generateTransactions('thomas'),
+    rejectionReason: 'Too early stage - income below €1,000/month minimum',
+    referralSuggestion: 'Consider Silvr after reaching €5K+ monthly revenue'
+  },
+  
+  stefan: {
+    id: 'stefan',
+    name: 'Stefan Weber',
+    business: 'Market Vendor',
+    description: 'Declining produce stand business',
+    averageMonthlyIncome: 800,
+    pattern: 'Declining revenue trend, negative cash flow',
+    transactions: generateTransactions('stefan'),
+    rejectionReason: 'Negative cash flow trend - business is declining',
+    referralSuggestion: 'Focus on business turnaround before seeking credit'
   }
 };
 
