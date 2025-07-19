@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { getButtonClasses, getCardClasses, getTextClasses } from '../design-system/utils';
 
 const TermsAndConditions = ({ onAccept }) => {
   const [hasReadTerms, setHasReadTerms] = useState(false);
@@ -37,8 +38,8 @@ const TermsAndConditions = ({ onAccept }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-semibold mb-4">Terms & Conditions</h2>
+    <div className={getCardClasses('elevated', 'md')}>
+      <h2 className={getTextClasses('h2') + ' mb-4'}>Terms & Conditions</h2>
       
       {/* Scrollable Terms Container */}
       <div 
@@ -92,10 +93,10 @@ const TermsAndConditions = ({ onAccept }) => {
 
       {/* Action Buttons */}
       <div className="flex gap-4 mb-6">
-        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className={getButtonClasses('outline', 'sm')}>
           📄 Print Terms
         </button>
-        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className={getButtonClasses('outline', 'sm')}>
           💾 Download PDF
         </button>
       </div>
@@ -109,7 +110,7 @@ const TermsAndConditions = ({ onAccept }) => {
             checked={agreeChecked}
             onChange={(e) => setAgreeChecked(e.target.checked)}
             disabled={!hasReadTerms}
-            className="mt-1 w-4 h-4 text-blue-600 rounded focus:ring-blue-500 disabled:opacity-50"
+            className="mt-1 w-4 h-4 text-slate-600 rounded focus:ring-slate-500 disabled:opacity-50"
           />
           <label htmlFor="agree-terms" className={`text-sm ${!hasReadTerms ? 'text-gray-400' : 'text-gray-700'}`}>
             <span className="font-semibold">I have read and agree to the Terms & Conditions</span>
@@ -127,7 +128,7 @@ const TermsAndConditions = ({ onAccept }) => {
             id="gdpr-consent"
             checked={gdprConsent}
             onChange={(e) => setGdprConsent(e.target.checked)}
-            className="mt-1 w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+            className="mt-1 w-4 h-4 text-slate-600 rounded focus:ring-slate-500"
           />
           <label htmlFor="gdpr-consent" className="text-sm text-gray-700">
             <span className="font-semibold">GDPR Data Processing Consent (Required)</span>
@@ -143,7 +144,7 @@ const TermsAndConditions = ({ onAccept }) => {
             id="marketing-consent"
             checked={marketingConsent}
             onChange={(e) => setMarketingConsent(e.target.checked)}
-            className="mt-1 w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+            className="mt-1 w-4 h-4 text-slate-600 rounded focus:ring-slate-500"
           />
           <label htmlFor="marketing-consent" className="text-sm text-gray-700">
             <span className="font-semibold">Marketing Communications (Optional)</span>
@@ -158,11 +159,7 @@ const TermsAndConditions = ({ onAccept }) => {
       <button
         onClick={handleContinue}
         disabled={!isFormValid}
-        className={`w-full py-3 px-6 rounded-lg font-semibold transition-all ${
-          isFormValid
-            ? 'bg-blue-600 hover:bg-blue-700 text-white'
-            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-        }`}
+        className={isFormValid ? getButtonClasses('primary', 'lg') + ' w-full' : 'w-full py-3 px-6 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed transition-all'}
       >
         Continue to Digital Signature
       </button>

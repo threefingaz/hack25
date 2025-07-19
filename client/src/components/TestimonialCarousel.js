@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getCardClasses, getTextClasses } from '../design-system/utils';
 
 const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -97,10 +98,10 @@ const TestimonialCarousel = () => {
             onMouseLeave={() => setIsPaused(false)}
           >
             {/* Main testimonial display */}
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 shadow-lg border border-blue-100 min-h-[400px] flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 shadow-lg border border-slate-100 min-h-[400px] flex flex-col justify-between">
               <div>
                 {/* Quote icon */}
-                <div className="text-blue-600 mb-6">
+                <div className="text-slate-600 mb-6">
                   <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
                   </svg>
@@ -129,7 +130,7 @@ const TestimonialCarousel = () => {
                     <div className="font-bold text-gray-900 text-lg">
                       {testimonials[currentIndex].name}
                     </div>
-                    <div className="text-blue-600 font-medium">
+                    <div className="text-slate-700 font-medium">
                       {testimonials[currentIndex].business}
                     </div>
                     <div className="text-sm text-gray-500">
@@ -180,7 +181,7 @@ const TestimonialCarousel = () => {
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-200 ${
                   index === currentIndex
-                    ? 'bg-blue-600 w-8'
+                    ? 'bg-slate-600 w-8'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               />
@@ -197,11 +198,11 @@ const TestimonialCarousel = () => {
 
           {/* Call to action */}
           <div className="text-center mt-12">
-            <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-              <p className="text-blue-800 font-medium mb-4">
+            <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
+              <p className="text-slate-800 font-medium mb-4">
                 Join {testimonials.length > 1000 ? '1,000+' : '100+'} businesses already growing with CashFlow Bridge
               </p>
-              <div className="flex items-center justify-center text-sm text-blue-600">
+              <div className="flex items-center justify-center text-sm text-slate-600">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>

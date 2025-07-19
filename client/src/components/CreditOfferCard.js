@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getButtonClasses, getCardClasses, getTextClasses } from '../design-system/utils';
 
 const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -8,37 +9,37 @@ const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
   const { loanAmount, repaymentTerms, weeklyInterestRate } = offer;
 
   return (
-    <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+    <div className={getCardClasses('elevated', 'none') + ' shadow-xl overflow-hidden'}>
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 text-center">
-        <h2 className="text-2xl font-medium mb-2">Your weekly credit line</h2>
-        <div className="text-6xl font-bold mb-2">
+      <div className="bg-gradient-to-r from-lime-400 to-lime-500 text-slate-900 p-8 text-center -mx-8 -mt-8 mb-8">
+        <h2 className={getTextClasses('h3') + ' text-2xl text-slate-900 mb-2'}>Your weekly credit line</h2>
+        <div className="text-6xl font-bold mb-2 text-slate-900">
           €{new Intl.NumberFormat('de-DE').format(loanAmount)}
         </div>
-        <p className="text-blue-100">Renews every Monday</p>
+        <p className="text-slate-700">Renews every Monday</p>
       </div>
 
       {/* Main Details */}
       <div className="p-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">Weekly Interest Rate</p>
-            <p className="text-2xl font-semibold text-gray-900">{weeklyInterestRate || 1.2}%</p>
-            <p className="text-xs text-gray-500 mt-1">Fixed rate</p>
+            <p className={getTextClasses('label') + ' mb-1'}>Weekly Interest Rate</p>
+            <p className={getTextClasses('h3') + ' text-2xl'}>{weeklyInterestRate || 1.2}%</p>
+            <p className={getTextClasses('caption') + ' mt-1'}>Fixed rate</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">Weekly Payment</p>
-            <p className="text-2xl font-semibold text-gray-900">
+            <p className={getTextClasses('label') + ' mb-1'}>Weekly Payment</p>
+            <p className={getTextClasses('h3') + ' text-2xl'}>
               €{repaymentTerms.weeklyPayment || loanAmount}
             </p>
-            <p className="text-xs text-gray-500 mt-1">+ interest</p>
+            <p className={getTextClasses('caption') + ' mt-1'}>+ interest</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">Renewal Date</p>
-            <p className="text-2xl font-semibold text-gray-900">
+            <p className={getTextClasses('label') + ' mb-1'}>Renewal Date</p>
+            <p className={getTextClasses('h3') + ' text-2xl'}>
               {repaymentTerms.renewalDate || 'Monday'}
             </p>
-            <p className="text-xs text-gray-500 mt-1">Every week</p>
+            <p className={getTextClasses('caption') + ' mt-1'}>Every week</p>
           </div>
         </div>
 
@@ -67,19 +68,19 @@ const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
 
         {/* Visual Weekly Timeline */}
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">Weekly Credit Cycle</h4>
+          <h4 className={getTextClasses('h6') + ' mb-3'}>Weekly Credit Cycle</h4>
           <div className="relative">
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full animate-pulse"></div>
+              <div className="h-full bg-gradient-to-r from-slate-600 to-slate-700 rounded-full animate-pulse"></div>
             </div>
-            <div className="flex justify-between mt-2 text-xs text-gray-600">
+            <div className={"flex justify-between mt-2 " + getTextClasses('caption')}>
               <span>Monday</span>
               <span>Credit Available</span>
               <span>Next Monday</span>
             </div>
           </div>
           <div className="mt-2 text-center">
-            <p className="text-xs text-gray-500">
+            <p className={getTextClasses('caption')}>
               {repaymentTerms.flexibleTerms || 'Skip a week anytime with 24hr notice'}
             </p>
           </div>
@@ -88,12 +89,12 @@ const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
         {/* Why This Offer Button */}
         <button
           onClick={() => setShowDetails(!showDetails)}
-          className="w-full text-left mb-6 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200"
+          className="w-full text-left mb-6 p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors duration-200"
         >
           <div className="flex justify-between items-center">
-            <span className="font-medium text-blue-900">Why weekly credit?</span>
+            <span className={getTextClasses('h6') + ' text-slate-900'}>Why weekly credit?</span>
             <svg
-              className={`w-5 h-5 text-blue-600 transform transition-transform duration-200 ${
+              className={`w-5 h-5 text-slate-600 transform transition-transform duration-200 ${
                 showDetails ? 'rotate-180' : ''
               }`}
               fill="none"
@@ -123,7 +124,7 @@ const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
               <p className="text-sm text-gray-600">{offer.explanation?.summary}</p>
               <p className="text-sm text-gray-600 mt-2">{offer.explanation?.calculation}</p>
               {offer.explanation?.weeklyBenefit && (
-                <p className="text-sm text-blue-700 mt-2 font-medium">{offer.explanation.weeklyBenefit}</p>
+                <p className={getTextClasses('body') + ' text-slate-700 mt-2 font-medium'}>{offer.explanation.weeklyBenefit}</p>
               )}
             </div>
             
@@ -134,7 +135,7 @@ const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
                 <ul className="space-y-1">
                   {offer.competitiveAdvantage.points.map((point, index) => (
                     <li key={index} className="flex items-start">
-                      <svg className="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-slate-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-xs text-gray-600">{point}</span>
@@ -172,20 +173,20 @@ const CreditOfferCard = ({ offer, onAccept, onDecline }) => {
         <div className="flex gap-4">
           <button
             onClick={onAccept}
-            className="flex-1 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className={getButtonClasses('primary', 'lg') + ' flex-1 font-semibold'}
           >
-            Accept Weekly Credit
+            ACCEPT WEEKLY CREDIT
           </button>
           <button
             onClick={onDecline}
-            className="flex-1 bg-gray-100 text-gray-700 font-semibold py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className={getButtonClasses('secondary', 'lg') + ' flex-1'}
           >
             Decline
           </button>
         </div>
 
         {/* Disclaimer */}
-        <p className="text-xs text-gray-500 text-center mt-4">
+        <p className={getTextClasses('caption') + ' text-center mt-4'}>
           By accepting, you agree to our terms and conditions. This weekly credit offer is valid until{' '}
           {new Date(offer.offerValidUntil).toLocaleString()}.
         </p>

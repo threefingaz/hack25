@@ -4,6 +4,7 @@ import CashFlowChart from '../components/CashFlowChart';
 import CashFlowSummary from '../components/CashFlowSummary';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 import CashFlowTips from '../components/tips/CashFlowTips';
+import { getButtonClasses, getContainerClasses, getCardClasses, getTextClasses, getBackgroundClasses } from '../design-system/utils';
 
 const CashFlowAnalysisPage = () => {
   const navigate = useNavigate();
@@ -346,8 +347,8 @@ const CashFlowAnalysisPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
+      <div className={"min-h-screen " + getBackgroundClasses('default')}>
+        <div className={getContainerClasses('py-8')}>
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
               <div className="animate-pulse">
@@ -369,14 +370,14 @@ const CashFlowAnalysisPage = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
+          <div className={getCardClasses('outline', 'md') + ' bg-red-50 border-red-200 max-w-md'}>
             <svg className="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <p className="text-red-600 mb-4">{error}</p>
+            <p className={getTextClasses('body') + ' text-red-600 mb-4'}>{error}</p>
             <button
               onClick={fetchCashFlowData}
-              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+              className={getButtonClasses('outline', 'md') + ' !border-red-600 !text-red-600 hover:!bg-red-50'}
             >
               Try Again
             </button>
@@ -392,10 +393,10 @@ const CashFlowAnalysisPage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Weekly Cash Flow Analysis</h1>
+            <h1 className={getTextClasses('h1') + ' text-2xl sm:text-3xl mb-6'}>Weekly Cash Flow Analysis</h1>
             <div className="mb-6">
-              <p className="text-sm text-gray-600 mb-2">Germany's First Weekly Credit Line</p>
-              <p className="text-base text-gray-800">Analyzing your patterns for weekly credit that renews every Monday</p>
+              <p className={getTextClasses('caption') + ' mb-2'}>Germany's First Weekly Credit Line</p>
+              <p className={getTextClasses('body') + ' text-base'}>Analyzing your patterns for weekly credit that renews every Monday</p>
             </div>
             {cashFlowData?.persona && (
               <div>
@@ -403,12 +404,12 @@ const CashFlowAnalysisPage = () => {
                 <div className="pb-4 border-b border-gray-200 mb-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="text-xl font-bold text-gray-900">{cashFlowData.persona.name || 'Maria Rodriguez'}</h2>
-                      <p className="text-sm text-gray-600">{cashFlowData.persona.accountType || 'Business Current Account'}</p>
+                      <h2 className={getTextClasses('h3')}>{cashFlowData.persona.name || 'Maria Rodriguez'}</h2>
+                      <p className={getTextClasses('body')}>{cashFlowData.persona.accountType || 'Business Current Account'}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Account Since</p>
-                      <p className="text-sm font-semibold text-gray-700">
+                      <p className={getTextClasses('caption') + ' uppercase tracking-wide'}>Account Since</p>
+                      <p className={getTextClasses('body') + ' font-semibold'}>
                         {cashFlowData.persona.accountOpened ? 
                           new Date(cashFlowData.persona.accountOpened).toLocaleDateString('en-GB', { 
                             year: 'numeric', 
@@ -424,35 +425,35 @@ const CashFlowAnalysisPage = () => {
                 <div className="mb-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Bank</p>
-                      <p className="text-sm font-semibold text-gray-900">{cashFlowData.persona.bankName || 'Deutsche Bank AG'}</p>
+                      <p className={getTextClasses('caption') + ' uppercase tracking-wide mb-1'}>Bank</p>
+                      <p className={getTextClasses('body') + ' font-semibold text-slate-900'}>{cashFlowData.persona.bankName || 'Deutsche Bank AG'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">IBAN</p>
-                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.iban || 'DE89 1001 0010 1098 7654 32'}</p>
+                      <p className={getTextClasses('caption') + ' uppercase tracking-wide mb-1'}>IBAN</p>
+                      <p className={getTextClasses('mono') + ' text-gray-700'}>{cashFlowData.persona.iban || 'DE89 1001 0010 1098 7654 32'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">BIC/SWIFT</p>
-                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.bic || 'DEUTDEFFXXX'}</p>
+                      <p className={getTextClasses('caption') + ' uppercase tracking-wide mb-1'}>BIC/SWIFT</p>
+                      <p className={getTextClasses('mono') + ' text-gray-700'}>{cashFlowData.persona.bic || 'DEUTDEFFXXX'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Account Number</p>
-                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.accountNumber || '1098765432'}</p>
+                      <p className={getTextClasses('caption') + ' uppercase tracking-wide mb-1'}>Account Number</p>
+                      <p className={getTextClasses('mono') + ' text-gray-700'}>{cashFlowData.persona.accountNumber || '1098765432'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Bank Code</p>
-                      <p className="text-sm font-mono text-gray-700">{cashFlowData.persona.bankCode || '10010010'}</p>
+                      <p className={getTextClasses('caption') + ' uppercase tracking-wide mb-1'}>Bank Code</p>
+                      <p className={getTextClasses('mono') + ' text-gray-700'}>{cashFlowData.persona.bankCode || '10010010'}</p>
                     </div>
                     <div className="flex items-center">
                       <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                      <span className="text-sm text-gray-600">Account Active</span>
+                      <span className={getTextClasses('body')}>Account Active</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Security Notice */}
                 <div className="pb-6 border-b border-gray-200">
-                  <p className="text-xs text-gray-500">Read-only access • Bank-grade encryption • No transaction capability</p>
+                  <p className={getTextClasses('caption')}>Read-only access • Bank-grade encryption • No transaction capability</p>
                 </div>
               </div>
             )}
@@ -489,42 +490,42 @@ const CashFlowAnalysisPage = () => {
            cashFlowData.summary.averageNetCashFlow > 0 && 
            cashFlowData.summary.volatility <= 50 ? (
             <div className="mt-12 sticky bottom-8 z-10">
-              <div className="bg-white rounded-xl shadow-2xl border-2 border-blue-200 p-6">
+              <div className={getCardClasses('elevated', 'md') + ' shadow-2xl border-2 border-slate-200'}>
                 <div className="flex flex-col sm:flex-row items-center justify-between">
                   <div className="text-center sm:text-left mb-4 sm:mb-0">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">
+                    <h3 className={getTextClasses('h4') + ' mb-1'}>
                       Get Your Weekly Credit Line
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className={getTextClasses('body')}>
                       Instant weekly credit decision • Renews every Monday
                     </p>
                   </div>
                   <button
                     onClick={handleProceedToOffer}
-                    className="bg-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transform hover:scale-105 w-full sm:w-auto text-lg"
+                    className={getButtonClasses('primary', 'lg') + ' shadow-lg transform hover:scale-105 w-full sm:w-auto font-bold'}
                   >
-                    Get Weekly Credit →
+                    GET WEEKLY CREDIT →
                   </button>
                 </div>
               </div>
             </div>
           ) : (
             <div className="mt-12 sticky bottom-8 z-10">
-              <div className="bg-amber-50 rounded-xl shadow-2xl border-2 border-amber-200 p-6">
+              <div className={getCardClasses('elevated', 'md') + ' bg-amber-50 shadow-2xl border-2 border-amber-200'}>
                 <div className="flex flex-col sm:flex-row items-center justify-between">
                   <div className="text-center sm:text-left mb-4 sm:mb-0">
-                    <h3 className="text-lg font-bold text-amber-900 mb-1">
+                    <h3 className={getTextClasses('h4') + ' text-amber-900 mb-1'}>
                       Ready for Credit Assessment
                     </h3>
-                    <p className="text-sm text-amber-700">
+                    <p className={getTextClasses('body') + ' text-amber-700'}>
                       See if you qualify for weekly credit • Instant decision
                     </p>
                   </div>
                   <button
                     onClick={handleProceedToOffer}
-                    className="bg-amber-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-amber-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 shadow-lg transform hover:scale-105 w-full sm:w-auto text-lg"
+                    className={getButtonClasses('outline', 'lg') + ' !bg-amber-600 !text-white !border-amber-600 hover:!bg-amber-700 shadow-lg transform hover:scale-105 w-full sm:w-auto font-bold'}
                   >
-                    Check Eligibility →
+                    CHECK ELIGIBILITY →
                   </button>
                 </div>
               </div>

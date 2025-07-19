@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { getButtonClasses, getCardClasses, getTextClasses } from '../design-system/utils';
 
 const DigitalSignature = ({ onSign, accountHolder = "Anna Schmidt" }) => {
   const [fullName, setFullName] = useState('');
@@ -75,13 +76,13 @@ const DigitalSignature = ({ onSign, accountHolder = "Anna Schmidt" }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-semibold mb-4">Digital Signature</h2>
+    <div className={getCardClasses('elevated', 'md')}>
+      <h2 className={getTextClasses('h2') + ' mb-4'}>Digital Signature</h2>
       
       {/* Legal Notice */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-        <h3 className="font-semibold text-blue-900 mb-2">Legal Digital Signature</h3>
-        <p className="text-sm text-blue-800">
+      <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+        <h3 className="font-semibold text-slate-900 mb-2">Legal Digital Signature</h3>
+        <p className="text-sm text-slate-800">
           Your digital signature will be legally binding and equivalent to a handwritten signature under German and EU electronic signature laws. 
           This signature confirms your identity and consent to the loan agreement.
         </p>
@@ -98,7 +99,7 @@ const DigitalSignature = ({ onSign, accountHolder = "Anna Schmidt" }) => {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           placeholder={`Enter: ${accountHolder}`}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 ${
             fullName && !isNameValid ? 'border-red-500 bg-red-50' : 'border-gray-300'
           }`}
         />
@@ -122,7 +123,7 @@ const DigitalSignature = ({ onSign, accountHolder = "Anna Schmidt" }) => {
             onClick={() => setSignatureMethod('type')}
             className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all ${
               signatureMethod === 'type'
-                ? 'border-blue-500 bg-blue-50 text-blue-700'
+                ? 'border-slate-600 bg-slate-50 text-slate-700'
                 : 'border-gray-300 hover:border-gray-400'
             }`}
           >
@@ -137,7 +138,7 @@ const DigitalSignature = ({ onSign, accountHolder = "Anna Schmidt" }) => {
             onClick={() => setSignatureMethod('draw')}
             className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all ${
               signatureMethod === 'draw'
-                ? 'border-blue-500 bg-blue-50 text-blue-700'
+                ? 'border-slate-600 bg-slate-50 text-slate-700'
                 : 'border-gray-300 hover:border-gray-400'
             }`}
           >
@@ -230,11 +231,7 @@ const DigitalSignature = ({ onSign, accountHolder = "Anna Schmidt" }) => {
       <button
         onClick={handleSign}
         disabled={!isSignatureValid}
-        className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all ${
-          isSignatureValid
-            ? 'bg-green-600 hover:bg-green-700 text-white shadow-lg'
-            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-        }`}
+        className={isSignatureValid ? getButtonClasses('primary', 'lg') + ' w-full shadow-lg' : 'w-full py-4 px-6 rounded-lg font-semibold text-lg bg-gray-300 text-gray-500 cursor-not-allowed transition-all'}
       >
         {isSignatureValid ? '🔐 Sign Loan Agreement' : 'Complete All Fields to Sign'}
       </button>

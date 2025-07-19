@@ -1,4 +1,5 @@
 import React from 'react';
+import { getCardClasses, getTextClasses } from '../design-system/utils';
 
 const CashFlowSummary = ({ summary, isDashboard = false }) => {
   if (!summary) return null;
@@ -82,7 +83,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
       case 'negative':
         return 'text-red-600';
       default:
-        return 'text-gray-900';
+        return 'text-slate-900';
     }
   };
 
@@ -112,7 +113,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
 
   return (
     <div>
-      <h3 className="text-xl font-bold text-gray-900 mb-6">
+      <h3 className={getTextClasses('h3') + ' mb-6'}>
         {isDashboard ? 'Your Cash Flow Metrics' : 'Weekly Cash Flow Analysis'}
       </h3>
       
@@ -123,7 +124,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
             key={index} 
             className={`text-center p-4 bg-white rounded-lg border ${
               metric.highlight 
-                ? 'border-blue-300 bg-blue-50' 
+                ? 'border-slate-300 bg-slate-50' 
                 : 'border-gray-200'
             }`}
           >
@@ -133,10 +134,10 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
             <p className={`text-lg font-bold ${getTrendColor(metric.trend, metric.value)} mb-1`}>
               {formatValue(metric.value, metric.format)}
             </p>
-            <p className="text-xs text-gray-600 leading-tight">{metric.label}</p>
+            <p className={getTextClasses('caption') + ' leading-tight'}>{metric.label}</p>
             {metric.highlight && (
               <div className="mt-2">
-                <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                <span className="inline-block bg-slate-100 text-slate-800 text-xs px-2 py-1 rounded-full">
                   Weekly Focus
                 </span>
               </div>
@@ -146,7 +147,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
       </div>
 
       {/* Weekly Credit Readiness */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className={getCardClasses('default', 'md') + ' mb-6'}>
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-lg font-semibold text-gray-900">Weekly Credit Readiness</h4>
           <div className="flex items-center">
@@ -165,7 +166,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
             <div className="flex items-center">
               <div className="w-24 bg-gray-200 rounded-full h-2 mr-3">
                 <div 
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-500"
+                  className="bg-slate-600 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${Math.min((weeklyIncome / 500) * 100, 100)}%` }}
                 ></div>
               </div>
@@ -194,11 +195,11 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
 
       {/* Competitive Advantage - Only show during application flow */}
       {!isDashboard && (
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-6">
+        <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg border border-slate-200 p-6">
           <h4 className="text-lg font-semibold text-gray-900 mb-3">Why Weekly Credit Works for You</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
@@ -209,7 +210,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
             </div>
           </div>
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -220,7 +221,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
             </div>
           </div>
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
@@ -231,7 +232,7 @@ const CashFlowSummary = ({ summary, isDashboard = false }) => {
             </div>
           </div>
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>

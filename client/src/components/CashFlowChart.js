@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import LoadingSkeleton from './LoadingSkeleton';
+import { getCardClasses, getTextClasses } from '../design-system/utils';
 
 // Lazy load Chart.js components
 const Chart = React.lazy(() => 
@@ -36,9 +37,9 @@ const Chart = React.lazy(() =>
 const CashFlowChart = ({ monthlyFlows }) => {
   if (!monthlyFlows || monthlyFlows.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className={getCardClasses('elevated', 'md')}>
         <div className="text-center py-12">
-          <p className="text-gray-500">No cash flow data available</p>
+          <p className={getTextClasses('body')}>No cash flow data available</p>
         </div>
       </div>
     );
@@ -159,15 +160,15 @@ const CashFlowChart = ({ monthlyFlows }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+    <div className={getCardClasses('elevated', 'sm') + ' md:p-6'}>
       <div className="relative" style={{ height: window.innerWidth < 768 ? '300px' : '400px' }}>
         <Suspense fallback={<LoadingSkeleton type="chart" />}>
           <Chart data={data} options={options} />
         </Suspense>
       </div>
-      <div className="mt-4 text-sm text-gray-600 text-center">
+      <div className={"mt-4 text-center " + getTextClasses('caption')}>
         <span className="inline-flex items-center">
-          <span className="w-3 h-3 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+          <span className="w-3 h-3 bg-slate-600 rounded-full mr-2 animate-pulse"></span>
           Latest 3 months of cash flow data
         </span>
       </div>

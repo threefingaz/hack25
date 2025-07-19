@@ -174,14 +174,14 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
           </div>
 
           {/* Demo notice */}
-          <div className={getCardClasses('outline', 'sm') + ' bg-gray-50'}>
+          <div className={getCardClasses('outline', 'sm') + ' bg-fuchsia-50 border-fuchsia-200'}>
             <div className="flex items-start">
-              <svg className="h-5 w-5 text-gray-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 text-fuchsia-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div className={getTextClasses('caption')}>
-                <p className={getTextClasses('body') + ' font-medium'}>Demo Mode</p>
-                <p className={getTextClasses('body') + ' mt-1'}>Fields are pre-filled with demo values for presentation. In real banking, you would enter your actual credentials.</p>
+                <p className={getTextClasses('body') + ' font-medium text-fuchsia-800'}>Demo Mode</p>
+                <p className={getTextClasses('body') + ' mt-1 text-fuchsia-700'}>Fields are pre-filled with demo values for presentation. In real banking, you would enter your actual credentials.</p>
               </div>
             </div>
           </div>
@@ -243,15 +243,15 @@ const LoginForm = ({ selectedBank, onSubmit }) => {
           )}
         </div>
 
-        <div className={getCardClasses('outline', 'sm') + ' bg-slate-50 border-slate-200'}>
+        <div className={getCardClasses('outline', 'sm') + ' bg-fuchsia-50 border-fuchsia-200'}>
           <div className="flex items-start">
-            <svg className="h-5 w-5 text-slate-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-5 w-5 text-fuchsia-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div className={getTextClasses('caption')}>
-              <p className={getTextClasses('body') + ' font-medium'}>Demo Credentials</p>
-              <p className={getTextClasses('body') + ' mt-1'}>Username: <span className="font-mono bg-white px-2 py-1 rounded">demo</span></p>
-              <p className={getTextClasses('body')}>Password: <span className="font-mono bg-white px-2 py-1 rounded">demo</span></p>
+              <p className={getTextClasses('body') + ' font-medium text-fuchsia-800'}>Demo Credentials</p>
+              <p className={getTextClasses('body') + ' mt-1 text-fuchsia-700'}>Username: <span className="font-mono bg-fuchsia-100 px-2 py-1 rounded">demo</span></p>
+              <p className={getTextClasses('body') + ' text-fuchsia-700'}>Password: <span className="font-mono bg-fuchsia-100 px-2 py-1 rounded">demo</span></p>
             </div>
           </div>
         </div>

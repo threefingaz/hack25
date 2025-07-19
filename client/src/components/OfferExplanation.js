@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getCardClasses, getTextClasses } from '../design-system/utils';
 
 const OfferExplanation = ({ offer, className = '' }) => {
   const [activeTab, setActiveTab] = useState('calculation');
@@ -68,7 +69,7 @@ const OfferExplanation = ({ offer, className = '' }) => {
               onClick={() => setActiveTab(tab.id)}
               className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors duration-200 ${
                 activeTab === tab.id
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-slate-900 text-slate-900'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -107,19 +108,19 @@ const OfferExplanation = ({ offer, className = '' }) => {
 
             <div>
               <h4 className="font-medium text-gray-900 mb-3">Daily Repayment Structure:</h4>
-              <div className="bg-blue-50 rounded-lg p-4">
+              <div className="bg-slate-50 rounded-lg p-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                   <div>
-                    <p className="font-medium text-blue-900">Daily Payment</p>
-                    <p className="text-blue-800">€{offer.repaymentTerms.dailyPayment}</p>
+                    <p className="font-medium text-slate-900">Daily Payment</p>
+                    <p className="text-slate-800">€{offer.repaymentTerms.dailyPayment}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-blue-900">Number of Days</p>
-                    <p className="text-blue-800">{offer.repaymentTerms.numberOfDays}</p>
+                    <p className="font-medium text-slate-900">Number of Days</p>
+                    <p className="text-slate-800">{offer.repaymentTerms.numberOfDays}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-blue-900">Total Interest</p>
-                    <p className="text-blue-800">€{offer.repaymentTerms.totalInterest}</p>
+                    <p className="font-medium text-slate-900">Total Interest</p>
+                    <p className="text-slate-800">€{offer.repaymentTerms.totalInterest}</p>
                   </div>
                 </div>
               </div>
@@ -194,8 +195,8 @@ const OfferExplanation = ({ offer, className = '' }) => {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-800">
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <p className="text-sm text-slate-800">
                 <strong>{offer.explanation?.comparison}</strong>
               </p>
             </div>
@@ -211,7 +212,7 @@ const OfferExplanation = ({ offer, className = '' }) => {
                     CashFlow Bridge operates under BaFin (German Federal Financial Supervisory Authority) regulations, ensuring your financial data protection and fair lending practices.
                   </p>
                   <p className="text-xs text-gray-600">
-                    License Number: BaFin-ABC-123456 (Demo)
+                    License Number: <span className="bg-fuchsia-100 text-fuchsia-800 px-1 rounded font-mono">BaFin-ABC-123456 (Demo)</span>
                   </p>
                 </div>
               </div>

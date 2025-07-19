@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CashFlowChart from './CashFlowChart';
 import CashFlowSummary from './CashFlowSummary';
+import { getCardClasses, getTextClasses } from '../design-system/utils';
 
 const DashboardCashFlow = ({ loanData }) => {
   const [cashFlowData, setCashFlowData] = useState(null);
@@ -197,51 +198,51 @@ const DashboardCashFlow = ({ loanData }) => {
       )}
       
       {/* Approval Factors */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-blue-900 mb-4">Why You Were Approved</h3>
+      <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">Why You Were Approved</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-medium text-blue-900">Strong Weekly Revenue</p>
-              <p className="text-xs text-blue-700">€{Math.round(cashFlowData.summary.averageMonthlyIncome / 4.33)}/week average</p>
+              <p className="text-sm font-medium text-slate-900">Strong Weekly Revenue</p>
+              <p className="text-xs text-slate-700">€{Math.round(cashFlowData.summary.averageMonthlyIncome / 4.33)}/week average</p>
             </div>
           </div>
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-medium text-blue-900">Positive Cash Flow</p>
-              <p className="text-xs text-blue-700">€{cashFlowData.summary.averageNetCashFlow}/month net</p>
+              <p className="text-sm font-medium text-slate-900">Positive Cash Flow</p>
+              <p className="text-xs text-slate-700">€{cashFlowData.summary.averageNetCashFlow}/month net</p>
             </div>
           </div>
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-medium text-blue-900">Low Volatility</p>
-              <p className="text-xs text-blue-700">{cashFlowData.summary.volatility}% variation</p>
+              <p className="text-sm font-medium text-slate-900">Low Volatility</p>
+              <p className="text-xs text-slate-700">{cashFlowData.summary.volatility}% variation</p>
             </div>
           </div>
           <div className="flex items-start">
-            <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
+            <div className="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center mr-3 mt-0.5">
               <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-medium text-blue-900">Consistent Performance</p>
-              <p className="text-xs text-blue-700">{cashFlowData.summary.positiveCashFlowMonths}/{cashFlowData.summary.totalMonths} positive months</p>
+              <p className="text-sm font-medium text-slate-900">Consistent Performance</p>
+              <p className="text-xs text-slate-700">{cashFlowData.summary.positiveCashFlowMonths}/{cashFlowData.summary.totalMonths} positive months</p>
             </div>
           </div>
         </div>

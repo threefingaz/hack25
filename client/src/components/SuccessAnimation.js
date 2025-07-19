@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { getButtonClasses, getCardClasses, getTextClasses } from '../design-system/utils';
 
 const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
   const [showConfetti, setShowConfetti] = useState(false);
@@ -94,7 +95,7 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
       )}
 
       {/* Main Content */}
-      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 text-center relative">
+      <div className={getCardClasses('elevated', 'lg') + ' rounded-2xl shadow-2xl max-w-md w-full mx-4 text-center relative'}>
         {/* Checkmark Animation */}
         <div className="mb-6">
           <div 
@@ -125,11 +126,11 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
 
         {/* Success Message */}
         <div className={`transition-all duration-1000 ${showMessage ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 className={getTextClasses('h1') + ' text-3xl mb-2'}>
             Congratulations!
           </h1>
           
-          <p className="text-gray-600 mb-4">
+          <p className={getTextClasses('body') + ' mb-4'}>
             Your loan has been approved and processed successfully.
           </p>
 
@@ -145,23 +146,23 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
           </div>
 
           {/* Key Benefits */}
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-slate-50 rounded-lg p-4 mb-6">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="text-center">
-                <div className="font-semibold text-blue-800">Instant</div>
-                <div className="text-blue-600">Approval</div>
+                <div className="font-semibold text-slate-800">Instant</div>
+                <div className="text-slate-600">Approval</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-blue-800">No Hidden</div>
-                <div className="text-blue-600">Fees</div>
+                <div className="font-semibold text-slate-800">No Hidden</div>
+                <div className="text-slate-600">Fees</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-blue-800">Digital</div>
-                <div className="text-blue-600">Process</div>
+                <div className="font-semibold text-slate-800">Digital</div>
+                <div className="text-slate-600">Process</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-blue-800">Secure</div>
-                <div className="text-blue-600">Platform</div>
+                <div className="font-semibold text-slate-800">Secure</div>
+                <div className="text-slate-600">Platform</div>
               </div>
             </div>
           </div>
@@ -170,7 +171,7 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
           <div className="space-y-3">
             <button
               onClick={handleContinue}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+              className={getButtonClasses('primary', 'lg') + ' w-full'}
             >
               Continue to Dashboard
             </button>
@@ -190,11 +191,11 @@ const SuccessAnimation = ({ amount, onContinue, autoRedirect = true }) => {
                 Encrypted
               </div>
               <div className="flex items-center">
-                <span className="text-blue-500 mr-1">BaFin</span>
+                <span className="text-slate-500 mr-1">BaFin</span>
                 Regulated
               </div>
               <div className="flex items-center">
-                <span className="text-purple-500 mr-1">GDPR</span>
+                <span className="text-slate-500 mr-1">GDPR</span>
                 Compliant
               </div>
             </div>

@@ -157,7 +157,7 @@ const BankConnectionPage = () => {
             <LoadingSpinner size="large" />
             <ProgressMessage />
             <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-blue-600 h-2 rounded-full animate-pulse" style={{ width: '75%' }}></div>
+              <div className="bg-slate-600 h-2 rounded-full animate-pulse" style={{ width: '75%' }}></div>
             </div>
           </div>
         </div>

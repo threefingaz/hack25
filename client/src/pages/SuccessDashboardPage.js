@@ -4,6 +4,7 @@ import DashboardLayout from '../components/DashboardLayout';
 import DashboardCashFlow from '../components/DashboardCashFlow';
 import RepaymentSchedule from '../components/RepaymentSchedule';
 import NextSteps from '../components/NextSteps';
+import { getButtonClasses, getContainerClasses, getCardClasses, getTextClasses, getBackgroundClasses } from '../design-system/utils';
 
 const SuccessDashboardPage = () => {
   const location = useLocation();
@@ -88,9 +89,9 @@ const SuccessDashboardPage = () => {
   
   if (!loanData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className={"min-h-screen flex items-center justify-center " + getBackgroundClasses('surface')}>
         <div className="bg-white rounded-lg shadow-lg p-8 text-center max-w-md">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-600 mx-auto mb-4"></div>
           <h2 className="text-xl font-semibold mb-2">Loading Dashboard...</h2>
           <p className="text-gray-600">Preparing your loan information</p>
         </div>
@@ -99,12 +100,12 @@ const SuccessDashboardPage = () => {
   }
   
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-6">
+    <div className={"min-h-screen " + getBackgroundClasses('surface')}>
+      <div className={getContainerClasses('py-16')}>
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold text-gray-800">
+            <h1 className={getTextClasses('h1') + ' text-3xl'}>
               Your CashFlow Bridge Dashboard
             </h1>
             <div className="flex items-center space-x-4">
@@ -131,8 +132,8 @@ const SuccessDashboardPage = () => {
             <div className="pb-4 border-b border-gray-200 mb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">{loanData.personaName || 'Business Owner'}</h2>
-                  <p className="text-sm text-gray-600">Business Premium Account</p>
+                  <h2 className={getTextClasses('h3')}>{loanData.personaName || 'Business Owner'}</h2>
+                  <p className={getTextClasses('body')}>Business Premium Account</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-500 uppercase tracking-wide">Account Since</p>
@@ -220,7 +221,7 @@ const SuccessDashboardPage = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors ${
                     activeTab === tab.id
-                      ? 'border-indigo-500 text-indigo-600'
+                      ? 'border-slate-900 text-slate-900'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
