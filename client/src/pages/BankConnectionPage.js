@@ -152,7 +152,7 @@ const BankConnectionPage = () => {
 
     if (isLoading) {
       return (
-        <div className={getCardClasses('elevated', 'lg') + ' max-w-md mx-auto'}>
+        <div className="max-w-md mx-auto">
           <div className="space-y-6">
             <LoadingSpinner size="large" />
             <ProgressMessage />
@@ -167,7 +167,7 @@ const BankConnectionPage = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className={getCardClasses('elevated', 'lg') + ' max-w-4xl mx-auto'}>
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className={getTextClasses('h2') + ' mb-4'}>Connect Your Bank Account</h2>
               <p className={getTextClasses('body') + ' text-lg max-w-2xl mx-auto leading-relaxed'}>
@@ -229,8 +229,6 @@ const BankConnectionPage = () => {
   return (
     <div className={"min-h-screen " + getBackgroundClasses('default')}>
       <div className={getContainerClasses('py-8')}>
-        <h1 className={getTextClasses('h2') + ' text-center mb-8'}>Connect Your Bank</h1>
-        
         <StepIndicator currentStep={currentStep} />
 
         {renderStep()}

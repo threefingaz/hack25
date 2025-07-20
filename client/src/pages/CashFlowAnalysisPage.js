@@ -476,7 +476,7 @@ const CashFlowAnalysisPage = () => {
               <CashFlowTips 
                 cashFlowSummary={cashFlowData.summary}
                 persona={localStorage.getItem('selectedPersona')}
-                layout="default"
+                layout="cards"
                 theme="light"
                 maxTips={4}
                 className="mt-8"

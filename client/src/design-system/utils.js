@@ -295,8 +295,8 @@ export const getContainerClasses = (additionalClasses = '') => {
  */
 export const getTextClasses = (variant = 'body', additionalClasses = '') => {
   const variantClasses = {
-    h1: 'text-4xl font-bold leading-tight text-slate-900',
-    h2: 'text-3xl font-semibold leading-tight text-slate-900',
+    h1: 'text-4xl font-bold leading-tight text-slate-900 font-["Playfair_Display",serif]',
+    h2: 'text-3xl font-semibold leading-tight text-slate-900 font-["Playfair_Display",serif]',
     h3: 'text-2xl font-semibold leading-tight text-slate-900',
     h4: 'text-xl font-semibold leading-tight text-slate-900',
     h5: 'text-lg font-semibold leading-tight text-slate-900',

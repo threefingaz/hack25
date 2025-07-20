@@ -37,10 +37,8 @@ const Chart = React.lazy(() =>
 const CashFlowChart = ({ monthlyFlows }) => {
   if (!monthlyFlows || monthlyFlows.length === 0) {
     return (
-      <div className={getCardClasses('elevated', 'md')}>
-        <div className="text-center py-12">
-          <p className={getTextClasses('body')}>No cash flow data available</p>
-        </div>
+      <div className="text-center py-12">
+        <p className={getTextClasses('body')}>No cash flow data available</p>
       </div>
     );
   }
@@ -93,35 +91,7 @@ const CashFlowChart = ({ monthlyFlows }) => {
         }
       },
       tooltip: {
-        callbacks: {
-          label: function(context) {
-            let label = context.dataset.label || '';
-            if (label) {
-              label += ': €';
-            }
-            const value = context.parsed.y;
-            label += new Intl.NumberFormat('de-DE').format(value);
-            
-            // Add net cash flow to tooltip for income
-            if (context.datasetIndex === 0) {
-              const monthData = monthlyFlows[context.dataIndex];
-              const netFlow = monthData.income - monthData.expenses;
-              return [
-                label,
-                `Net Cash Flow: €${new Intl.NumberFormat('de-DE').format(netFlow)}`
-              ];
-            }
-            return label;
-          }
-        },
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        titleColor: 'white',
-        bodyColor: 'white',
-        borderColor: 'rgba(255, 255, 255, 0.1)',
-        borderWidth: 1,
-        padding: 12,
-        displayColors: true,
-        intersect: false
+        enabled: false
       }
     },
     scales: {
@@ -154,13 +124,12 @@ const CashFlowChart = ({ monthlyFlows }) => {
       easing: 'easeInOutQuart'
     },
     interaction: {
-      mode: 'index',
-      intersect: false
+      mode: false
     }
   };
 
   return (
-    <div className={getCardClasses('elevated', 'sm') + ' md:p-6'}>
+    <div>
       <div className="relative" style={{ height: window.innerWidth < 768 ? '300px' : '400px' }}>
         <Suspense fallback={<LoadingSkeleton type="chart" />}>
           <Chart data={data} options={options} />

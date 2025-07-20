@@ -19,7 +19,7 @@ export const tipStyles = {
     },
     cards: {
       container: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4',
-      item: 'p-6 rounded-xl shadow-sm border hover:shadow-md transition-shadow',
+      item: 'p-6 rounded-xl shadow-sm border',
       title: 'text-lg font-bold mb-3',
       description: 'text-gray-700 mb-4',
       impact: 'text-sm text-blue-600 font-medium'
@@ -105,7 +105,7 @@ export const tipStyles = {
 
   // Interactive states
   states: {
-    hover: 'hover:bg-gray-50 transition-colors duration-200',
+    hover: '',
     focus: 'focus:ring-2 focus:ring-blue-500 focus:outline-none',
     active: 'transform active:scale-95'
   },

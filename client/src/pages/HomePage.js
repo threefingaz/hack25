@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import ImpactMetrics from "../components/ImpactMetrics";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import Navigation from "../components/Navigation";
-import { getButtonClasses, getContainerClasses, getCardClasses, getTextClasses, getBackgroundClasses } from "../design-system/utils";
+import {
+  getButtonClasses,
+  getContainerClasses,
+  getCardClasses,
+  getTextClasses,
+  getBackgroundClasses,
+} from "../design-system/utils";
 // Import persona photos
 import annaPhoto from "../assets/anna-photo.jpg";
 import mehmetPhoto from "../assets/mehmet-photo.jpg";
@@ -23,7 +29,7 @@ const HomePage = () => {
     localStorage.setItem("selectedPersona", persona.id);
     localStorage.setItem("selectedPersonaName", persona.name);
     localStorage.setItem("selectedPersonaBusiness", persona.business);
-    console.log('HomePage - Persona selected:', persona.id, persona.name);
+    console.log("HomePage - Persona selected:", persona.id, persona.name);
 
     // Auto-redirect to bank connection after persona selection
     setTimeout(() => {
@@ -140,33 +146,43 @@ const HomePage = () => {
   ];
 
   return (
-    <div className={"min-h-screen " + getBackgroundClasses('default')}>
+    <div className={"min-h-screen " + getBackgroundClasses("default")}>
       <Navigation />
 
       {/* Combined Hero and Persona Section */}
-      <div className={getContainerClasses('pt-24 pb-16')}>
+      <div className={getContainerClasses("pt-24 pb-16")}>
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
           style={{ minHeight: "700px" }}
         >
           {/* Left side - Hero content */}
           <div className="max-w-xl">
-            <h1 className={getTextClasses('h1') + ' text-5xl lg:text-6xl leading-tight mb-8'}>
+            <h1
+              className={
+                getTextClasses("h1") +
+                " text-5xl lg:text-6xl leading-tight mb-8"
+              }
+            >
               Germany's first{" "}
               <span className="text-slate-900">weekly credit line</span>
             </h1>
 
-            <p className={getTextClasses('body') + ' text-xl mb-2'}>
+            <p className={getTextClasses("body") + " text-xl mb-2"}>
               CashFlow Bridge is the{" "}
               <span className="font-semibold text-slate-900">
                 weekly micro-credit platform
               </span>
             </p>
-            <p className={getTextClasses('body') + ' text-xl mb-6'}>
+            <p className={getTextClasses("body") + " text-xl mb-6"}>
               for cash-flow businesses who need flexible funding
             </p>
 
-            <div className={getCardClasses('outline', 'sm') + ' bg-slate-50 border-slate-200 mb-8'}>
+            <div
+              className={
+                getCardClasses("outline", "sm") +
+                " bg-slate-50 border-slate-200 mb-8"
+              }
+            >
               <div className="flex items-start text-sm text-slate-800">
                 <svg
                   className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0"
@@ -182,9 +198,12 @@ const HomePage = () => {
                   />
                 </svg>
                 <div>
-                  <strong className="text-slate-900">€500-€5,000 weekly credit</strong>
+                  <strong className="text-slate-900">
+                    €500-€5,000 weekly credit
+                  </strong>
                   <div className="text-slate-700 mt-1">
-                    Below Silvr's €5K minimum • Weekly terms vs iwoca's monthly only
+                    Below Silvr's €5K minimum • Weekly terms vs iwoca's monthly
+                    only
                   </div>
                 </div>
               </div>
@@ -192,22 +211,20 @@ const HomePage = () => {
 
             <button
               onClick={handleGetStarted}
-              className={getButtonClasses('primary', 'lg') + ' text-lg mb-4'}
+              className={getButtonClasses("primary", "lg") + " text-lg mb-4"}
             >
-              GET WEEKLY CREDIT - FREE ANALYSIS
+              Get weekly free analysis
             </button>
 
-            <p className={getTextClasses('caption') + ' mb-3'}>
+            <p className={getTextClasses("caption") + " mb-3"}>
               No credit checks • Renews every Monday • Skip weeks anytime
             </p>
-            
+
             {/* Rejection flow links */}
             <div className="flex flex-wrap gap-2 text-xs">
               <button
                 onClick={() =>
-                  handlePersonaSelect(
-                    personas.find((p) => p.id === "thomas"),
-                  )
+                  handlePersonaSelect(personas.find((p) => p.id === "thomas"))
                 }
                 className="text-red-600 hover:text-red-700 underline"
               >
@@ -216,9 +233,7 @@ const HomePage = () => {
               <span className="text-gray-400">•</span>
               <button
                 onClick={() =>
-                  handlePersonaSelect(
-                    personas.find((p) => p.id === "stefan"),
-                  )
+                  handlePersonaSelect(personas.find((p) => p.id === "stefan"))
                 }
                 className="text-red-600 hover:text-red-700 underline"
               >
@@ -255,7 +270,7 @@ const HomePage = () => {
                   </div>
 
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
                   {/* Content - changes on hover */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
@@ -308,7 +323,7 @@ const HomePage = () => {
                   </div>
 
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
                   {/* Content - changes on hover */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
@@ -358,7 +373,7 @@ const HomePage = () => {
                   </div>
 
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/1ç0 to-transparent" />
 
                   {/* Content - changes on hover */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
@@ -390,12 +405,17 @@ const HomePage = () => {
 
         {selectedPersona && (
           <div className="text-center mt-12">
-            <div className={getCardClasses('outline', 'sm') + ' bg-slate-50 border-slate-200 inline-block'}>
-              <p className={getTextClasses('body') + ' font-medium mb-2'}>
+            <div
+              className={
+                getCardClasses("outline", "sm") +
+                " bg-slate-50 border-slate-200 inline-block"
+              }
+            >
+              <p className={getTextClasses("body") + " font-medium mb-2"}>
                 Starting demo for{" "}
                 {personas.find((p) => p.id === selectedPersona)?.name}
               </p>
-              <p className={getTextClasses('caption')}>
+              <p className={getTextClasses("caption")}>
                 You'll now experience their complete loan application journey.
               </p>
             </div>
@@ -404,10 +424,10 @@ const HomePage = () => {
       </div>
 
       {/* How It Works */}
-      <div className={getBackgroundClasses('surface') + ' py-16'}>
+      <div className={getBackgroundClasses("surface") + " py-16"}>
         <div className={getContainerClasses()}>
           <div className="max-w-4xl mx-auto">
-            <h2 className={getTextClasses('h2') + ' text-center mb-12'}>
+            <h2 className={getTextClasses("h2") + " text-center mb-12"}>
               How It Works
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -427,10 +447,10 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <h3 className={getTextClasses('h4') + ' mb-3'}>
+                <h3 className={getTextClasses("h4") + " mb-3"}>
                   1. Connect Your Bank
                 </h3>
-                <p className={getTextClasses('body') + ' leading-relaxed'}>
+                <p className={getTextClasses("body") + " leading-relaxed"}>
                   Securely connect your business bank account in seconds
                 </p>
               </div>
@@ -450,34 +470,22 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <h3 className={getTextClasses('h4') + ' mb-3'}>
+                <h3 className={getTextClasses("h4") + " mb-3"}>
                   2. Analyze Weekly Patterns
                 </h3>
-                <p className={getTextClasses('body') + ' leading-relaxed'}>
+                <p className={getTextClasses("body") + " leading-relaxed"}>
                   We analyze your weekly cash flow patterns for perfect credit
                   fit
                 </p>
               </div>
               <div className="text-center">
                 <div className="bg-slate-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                  <svg
-                    className="w-8 h-8 text-slate-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                    />
-                  </svg>
+                  <span className="text-3xl font-bold text-slate-900">€</span>
                 </div>
-                <h3 className={getTextClasses('h4') + ' mb-3'}>
+                <h3 className={getTextClasses("h4") + " mb-3"}>
                   3. Get Weekly Credit
                 </h3>
-                <p className={getTextClasses('body') + ' leading-relaxed'}>
+                <p className={getTextClasses("body") + " leading-relaxed"}>
                   Receive your weekly credit line that renews every Monday
                 </p>
               </div>
@@ -487,10 +495,10 @@ const HomePage = () => {
       </div>
 
       {/* Competitive Advantage */}
-      <div className={getBackgroundClasses('default') + ' py-16'}>
+      <div className={getBackgroundClasses("default") + " py-16"}>
         <div className={getContainerClasses()}>
           <div className="max-w-4xl mx-auto">
-            <h2 className={getTextClasses('h2') + ' text-center mb-12'}>
+            <h2 className={getTextClasses("h2") + " text-center mb-12"}>
               Why Choose Weekly Credit?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -510,10 +518,10 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <h3 className={getTextClasses('h4') + ' mb-3'}>
+                <h3 className={getTextClasses("h4") + " mb-3"}>
                   Perfect for Micro-Businesses
                 </h3>
-                <p className={getTextClasses('body') + ' leading-relaxed'}>
+                <p className={getTextClasses("body") + " leading-relaxed"}>
                   €500-€5,000 weekly credit - below Silvr's €5K minimum, above
                   daily lenders
                 </p>
@@ -534,10 +542,10 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <h3 className={getTextClasses('h4') + ' mb-3'}>
+                <h3 className={getTextClasses("h4") + " mb-3"}>
                   Matches Your Cycle
                 </h3>
-                <p className={getTextClasses('body') + ' leading-relaxed'}>
+                <p className={getTextClasses("body") + " leading-relaxed"}>
                   Weekly terms vs iwoca's monthly only - perfect for food
                   trucks, market vendors
                 </p>
@@ -558,93 +566,193 @@ const HomePage = () => {
                     />
                   </svg>
                 </div>
-                <h3 className={getTextClasses('h4') + ' mb-3'}>
+                <h3 className={getTextClasses("h4") + " mb-3"}>
                   Maximum Flexibility
                 </h3>
-                <p className={getTextClasses('body') + ' leading-relaxed'}>
+                <p className={getTextClasses("body") + " leading-relaxed"}>
                   Renews every Monday, skip weeks with 24hr notice - no fixed
                   payments
                 </p>
               </div>
             </div>
 
-            <div className={getCardClasses('default', 'md') + ' mt-12 bg-white'}>
-              <h3 className={getTextClasses('h4') + ' mb-6 text-center'}>
+            <div
+              className={getCardClasses("default", "md") + " mt-12 bg-white"}
+            >
+              <h3 className={getTextClasses("h4") + " mb-6 text-center"}>
                 How We Compare
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className={"text-left py-3 px-4 font-semibold " + getTextClasses('body')}>Feature</th>
+                      <th
+                        className={
+                          "text-left py-3 px-4 font-semibold " +
+                          getTextClasses("body")
+                        }
+                      >
+                        Feature
+                      </th>
                       <th className="text-center py-3 px-4 bg-slate-50 font-bold text-slate-900 rounded-t-lg">
                         CashFlow Bridge
                       </th>
-                      <th className={"text-center py-3 px-4 font-semibold " + getTextClasses('body')}>Silvr</th>
-                      <th className={"text-center py-3 px-4 font-semibold " + getTextClasses('body')}>iwoca</th>
-                      <th className={"text-center py-3 px-4 font-semibold " + getTextClasses('body')}>
+                      <th
+                        className={
+                          "text-center py-3 px-4 font-semibold " +
+                          getTextClasses("body")
+                        }
+                      >
+                        Silvr
+                      </th>
+                      <th
+                        className={
+                          "text-center py-3 px-4 font-semibold " +
+                          getTextClasses("body")
+                        }
+                      >
+                        iwoca
+                      </th>
+                      <th
+                        className={
+                          "text-center py-3 px-4 font-semibold " +
+                          getTextClasses("body")
+                        }
+                      >
                         Traditional Banks
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="border-b border-gray-100">
-                      <td className={"py-3 px-4 font-medium " + getTextClasses('body')}>Minimum Amount</td>
+                      <td
+                        className={
+                          "py-3 px-4 font-medium " + getTextClasses("body")
+                        }
+                      >
+                        Minimum Amount
+                      </td>
                       <td className="text-center py-3 px-4 bg-slate-50 font-semibold text-slate-900">
                         €500
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         €5,000
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         €1,000
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         €10,000
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100">
-                      <td className={"py-3 px-4 font-medium " + getTextClasses('body')}>Repayment Terms</td>
+                      <td
+                        className={
+                          "py-3 px-4 font-medium " + getTextClasses("body")
+                        }
+                      >
+                        Repayment Terms
+                      </td>
                       <td className="text-center py-3 px-4 bg-slate-50 font-semibold text-slate-900">
                         Weekly
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         Monthly
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         Monthly
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         Monthly
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100">
-                      <td className={"py-3 px-4 font-medium " + getTextClasses('body')}>Approval Time</td>
+                      <td
+                        className={
+                          "py-3 px-4 font-medium " + getTextClasses("body")
+                        }
+                      >
+                        Approval Time
+                      </td>
                       <td className="text-center py-3 px-4 bg-slate-50 font-semibold text-slate-900">
                         Instant
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         2-3 days
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         24 hours
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         2-3 weeks
                       </td>
                     </tr>
                     <tr>
-                      <td className={"py-3 px-4 font-medium " + getTextClasses('body')}>Flexibility</td>
+                      <td
+                        className={
+                          "py-3 px-4 font-medium " + getTextClasses("body")
+                        }
+                      >
+                        Flexibility
+                      </td>
                       <td className="text-center py-3 px-4 bg-slate-50 font-semibold text-slate-900">
                         Skip weeks
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         Fixed
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         Fixed
                       </td>
-                      <td className={"text-center py-3 px-4 " + getTextClasses('body')}>
+                      <td
+                        className={
+                          "text-center py-3 px-4 " + getTextClasses("body")
+                        }
+                      >
                         Fixed
                       </td>
                     </tr>
@@ -664,9 +772,9 @@ const HomePage = () => {
 
       {/* CTA Section */}
       <div id="cta-section" className="bg-slate-900 py-16">
-        <div className={getContainerClasses('text-center')}>
+        <div className={getContainerClasses("text-center")}>
           <div className="max-w-2xl mx-auto">
-            <h2 className={getTextClasses('h2') + ' text-white mb-4'}>
+            <h2 className={getTextClasses("h2") + " text-white mb-4"}>
               Ready for Weekly Credit?
             </h2>
             <p className="text-xl text-slate-300 mb-8">
@@ -674,7 +782,10 @@ const HomePage = () => {
             </p>
             <button
               onClick={handleGetStarted}
-              className={getButtonClasses('primary', 'lg') + ' text-lg font-bold shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-lime-300 focus:ring-offset-2 focus:ring-offset-slate-900'}
+              className={
+                getButtonClasses("primary", "lg") +
+                " text-lg font-bold shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-lime-300 focus:ring-offset-2 focus:ring-offset-slate-900"
+              }
             >
               GET WEEKLY CREDIT LINE
             </button>

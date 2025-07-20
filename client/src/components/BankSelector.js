@@ -42,13 +42,6 @@ const BankSelector = ({ onBankSelect, selectedBank }) => {
 
   return (
     <div className="w-full">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Select Your Bank</h3>
-        <p className="text-sm text-gray-600">
-          Choose your business bank to securely analyze your cash flow
-        </p>
-      </div>
-      
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {banks.sort((a, b) => a.priority - b.priority).map((bank) => (
           <div

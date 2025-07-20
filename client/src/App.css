@@ -17,6 +17,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Typography with Playfair Display for biggest headers only */
+h1, h2,
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* Ensure Tailwind utility classes work properly */
+.font-\[\"Playfair_Display\"\,serif\] {
+  font-family: 'Playfair Display', serif !important;
+}
+
 .App {
   min-height: 100vh;
 }

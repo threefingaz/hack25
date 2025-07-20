@@ -1,83 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Import persona photos
-import annaPhoto from '../assets/anna-photo.jpg';
-import mehmetPhoto from '../assets/mehmet-photo.jpg';
-import mariaPhoto from '../assets/maria-photo.jpg';
+import annaPhoto from "../assets/anna-photo.jpg";
+import mehmetPhoto from "../assets/mehmet-photo.jpg";
+import mariaPhoto from "../assets/maria-photo.jpg";
 
 const BusinessDemoSelector = ({ onPersonaSelect }) => {
   const [selectedPersona, setSelectedPersona] = useState(null);
 
-
   const personas = [
     {
-      id: 'anna',
-      name: 'Anna Schmidt',
-      business: 'Food Truck Owner',
-      description: 'Runs a popular food truck with steady weekly patterns',
+      id: "anna",
+      name: "Anna Schmidt",
+      business: "Food Truck Owner",
+      description: "Runs a popular food truck with steady weekly patterns",
       photo: annaPhoto,
-      accountType: 'Business',
-      balance: '€2,847',
-      averageMonthlyIncome: '€2,100',
-      pattern: 'Weekly income patterns with weekend variations',
-      expectedLoan: '€525',
+      accountType: "Business",
+      balance: "€2,847",
+      averageMonthlyIncome: "€2,100",
+      pattern: "Weekly income patterns with weekend variations",
+      expectedLoan: "€525",
       latestTransaction: {
-        type: 'income',
-        description: 'Weekend Food Sales',
-        amount: '+€287',
-        time: 'Today, 16:30',
-        icon: '🚚',
-        iconBg: 'bg-orange-100'
-      }
+        type: "income",
+        description: "Weekend Food Sales",
+        amount: "+€287",
+        time: "Today, 16:30",
+        icon: "🚚",
+        iconBg: "bg-orange-100",
+      },
     },
     {
-      id: 'mehmet',
-      name: 'Mehmet Özkan',
-      business: 'Online Retailer',
-      description: 'E-commerce business with monthly promotional spikes',
+      id: "mehmet",
+      name: "Mehmet Özkan",
+      business: "Online Retailer",
+      description: "E-commerce business with monthly promotional spikes",
       photo: mehmetPhoto,
-      accountType: 'Business',
-      balance: '€4,235',
-      averageMonthlyIncome: '€3,500',
-      pattern: 'Monthly spikes with consistent daily base income',
-      expectedLoan: '€875',
+      accountType: "Business",
+      balance: "€4,235",
+      averageMonthlyIncome: "€3,500",
+      pattern: "Monthly spikes with consistent daily base income",
+      expectedLoan: "€875",
       latestTransaction: {
-        type: 'income',
-        description: 'Online Store Revenue',
-        amount: '+€156',
-        time: 'Today, 14:20',
-        icon: '🛒',
-        iconBg: 'bg-blue-100'
-      }
+        type: "income",
+        description: "Online Store Revenue",
+        amount: "+€156",
+        time: "Today, 14:20",
+        icon: "🛒",
+        iconBg: "bg-blue-100",
+      },
     },
     {
-      id: 'maria',
-      name: 'Maria Rodriguez',
-      business: 'Event Planner',
-      description: 'Freelance event planner with seasonal variations',
+      id: "maria",
+      name: "Maria Rodriguez",
+      business: "Event Planner",
+      description: "Freelance event planner with seasonal variations",
       photo: mariaPhoto,
-      accountType: 'Business',
-      balance: '€1,923',
-      averageMonthlyIncome: '€1,800',
-      pattern: 'Seasonal patterns with holiday boosts',
-      expectedLoan: '€450',
+      accountType: "Business",
+      balance: "€1,923",
+      averageMonthlyIncome: "€1,800",
+      pattern: "Seasonal patterns with holiday boosts",
+      expectedLoan: "€450",
       latestTransaction: {
-        type: 'expense',
-        description: 'Event Equipment',
-        amount: '-€89',
-        time: 'Yesterday, 11:45',
-        icon: '🎉',
-        iconBg: 'bg-purple-100'
-      }
-    }
+        type: "expense",
+        description: "Event Equipment",
+        amount: "-€89",
+        time: "Yesterday, 11:45",
+        icon: "🎉",
+        iconBg: "bg-purple-100",
+      },
+    },
   ];
 
   const handlePersonaClick = (persona) => {
     setSelectedPersona(persona.id);
     // Store selected persona for session consistency
-    sessionStorage.setItem('selectedPersona', persona.id);
-    sessionStorage.setItem('selectedPersonaName', persona.name);
-    sessionStorage.setItem('selectedPersonaBusiness', persona.business);
-    
+    sessionStorage.setItem("selectedPersona", persona.id);
+    sessionStorage.setItem("selectedPersonaName", persona.name);
+    sessionStorage.setItem("selectedPersonaBusiness", persona.business);
+
     // Call the callback to notify parent component
     if (onPersonaSelect) {
       onPersonaSelect(persona);
@@ -91,7 +90,9 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
           Choose Your Business Demo
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Select a business profile to see how CashFlow Bridge analyzes different types of cash flow patterns and provides personalized credit offers.
+          Select a business profile to see how CashFlow Bridge analyzes
+          different types of cash flow patterns and provides personalized credit
+          offers.
         </p>
       </div>
 
@@ -100,50 +101,68 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
           <div
             key={persona.id}
             className={`relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 transform hover:scale-105 ${
-              selectedPersona === persona.id ? 'ring-4 ring-blue-500 shadow-2xl' : 'shadow-lg hover:shadow-xl'
+              selectedPersona === persona.id
+                ? "ring-4 ring-blue-500 shadow-2xl"
+                : "shadow-lg hover:shadow-xl"
             }`}
             onClick={() => handlePersonaClick(persona)}
-            style={{ minHeight: '500px' }}
+            style={{ minHeight: "500px" }}
           >
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ 
+              style={{
                 backgroundImage: `url(${persona.photo})`,
-                filter: 'brightness(0.9)'
+                filter: "brightness(0.9)",
               }}
             />
-            
+
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/40 to-transparent" />
+
             {/* Content */}
             <div className="relative h-full flex flex-col justify-between p-6 text-white">
               {/* Top Section - Persona Info */}
               <div>
                 <div className="mb-4">
-                  <h3 className="text-xl font-bold text-white mb-1">{persona.name}</h3>
-                  <p className="text-sm font-medium text-white/90 mb-2">{persona.business}</p>
-                  <p className="text-xs text-white/80 mb-3">{persona.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-1">
+                    {persona.name}
+                  </h3>
+                  <p className="text-sm font-medium text-white/90 mb-2">
+                    {persona.business}
+                  </p>
+                  <p className="text-xs text-white/80 mb-3">
+                    {persona.description}
+                  </p>
                 </div>
               </div>
-              
+
               {/* Bottom Section - Income Info */}
               <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 text-gray-900">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-gray-600">Avg Monthly Income</span>
-                  <span className="text-xl font-bold text-gray-900">{persona.averageMonthlyIncome}</span>
+                  <span className="text-sm font-medium text-gray-600">
+                    Avg Monthly Income
+                  </span>
+                  <span className="text-xl font-bold text-gray-900">
+                    {persona.averageMonthlyIncome}
+                  </span>
                 </div>
-                <div className="text-xs text-gray-600">
-                  {persona.pattern}
-                </div>
+                <div className="text-xs text-gray-600">{persona.pattern}</div>
               </div>
-              
+
               {/* Selection Indicator */}
               {selectedPersona === persona.id && (
                 <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   Selected
                 </div>
@@ -157,7 +176,8 @@ const BusinessDemoSelector = ({ onPersonaSelect }) => {
         <div className="text-center mt-8">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 inline-block">
             <p className="text-blue-800 font-medium mb-2">
-              ✨ Starting demo for {personas.find(p => p.id === selectedPersona)?.name}
+              ✨ Starting demo for{" "}
+              {personas.find((p) => p.id === selectedPersona)?.name}
             </p>
             <p className="text-sm text-blue-600">
               You'll now experience their complete loan application journey.
