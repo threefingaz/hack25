@@ -1,44 +1,99 @@
 import React, { useState } from 'react';
+import CashFlowTips from './tips/CashFlowTips';
 
 const NextSteps = ({ loanData }) => {
   const [expandedSection, setExpandedSection] = useState(null);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   
-  const fundUsageSuggestions = [
-    {
-      title: 'Stock Up on Inventory',
-      description: 'Take advantage of bulk discounts from suppliers',
-      savings: 'Save up to 15% with bulk orders'
-    },
-    {
-      title: 'Launch Marketing Campaign',
-      description: 'Invest in digital advertising to boost sales',
-      savings: 'Average ROI of 200% on targeted ads'
-    },
-    {
-      title: 'Upgrade Equipment',
-      description: 'Improve efficiency with modern tools',
-      savings: 'Reduce operating costs by 20%'
-    }
-  ];
+  const getPersonaSpecificSuggestions = () => {
+    const selectedPersona = localStorage.getItem('selectedPersona') || 'anna';
+    const suggestionsByPersona = {
+      anna: [
+        {
+          title: 'Invest in Food Truck Equipment',
+          description: 'Upgrade your mobile kitchen setup for better efficiency',
+          savings: 'Serve 30% more customers per hour'
+        },
+        {
+          title: 'Stock Premium Ingredients',
+          description: 'Offer higher-margin specialty items',
+          savings: 'Increase profit margins by 25%'
+        },
+        {
+          title: 'Weekend Location Expansion',
+          description: 'Scout and secure profitable weekend spots',
+          savings: 'Double weekend revenue potential'
+        }
+      ],
+      mehmet: [
+        {
+          title: 'Inventory Investment',
+          description: 'Stock up on fast-moving products for better turnover',
+          savings: 'Reduce stockouts by 40%'
+        },
+        {
+          title: 'Digital Marketing Campaign',
+          description: 'Boost online visibility and customer acquisition',
+          savings: 'Average ROI of 300% on targeted ads'
+        },
+        {
+          title: 'Warehouse Optimization',
+          description: 'Improve storage and fulfillment efficiency',
+          savings: 'Reduce operational costs by 20%'
+        }
+      ],
+      maria: [
+        {
+          title: 'Event Planning Software',
+          description: 'Streamline operations with professional tools',
+          savings: 'Handle 50% more events efficiently'
+        },
+        {
+          title: 'Marketing Materials',
+          description: 'Professional branding and portfolio development',
+          savings: 'Increase booking rates by 35%'
+        },
+        {
+          title: 'Vendor Network Expansion',
+          description: 'Build relationships with premium suppliers',
+          savings: 'Improve margins on high-end events'
+        }
+      ]
+    };
+    return suggestionsByPersona[selectedPersona] || suggestionsByPersona.anna;
+  };
   
-  const financialTips = [
-    {
-      id: 1,
-      title: 'Set Up Automatic Payments',
-      content: 'Enable auto-debit to never miss a payment and maintain a perfect repayment record. This helps build your credit profile for future loans.'
-    },
-    {
-      id: 2,
-      title: 'Track Your Cash Flow',
-      content: 'Use our free cash flow tracking tools to monitor your business health. Understanding your patterns helps you make better financial decisions.'
-    },
-    {
-      id: 3,
-      title: 'Plan for Growth',
-      content: 'As you repay this loan, you\'ll qualify for higher amounts. Start planning how additional capital could accelerate your business growth.'
-    }
-  ];
+  // Get cash flow data for personalized tips
+  const getCashFlowData = () => {
+    const selectedPersona = localStorage.getItem('selectedPersona') || 'anna';
+    const personas = {
+      anna: {
+        averageMonthlyIncome: 2300,
+        averageMonthlyExpenses: 1967,
+        averageNetCashFlow: 333,
+        volatility: 15,
+        positiveCashFlowMonths: 3,
+        totalMonths: 3
+      },
+      mehmet: {
+        averageMonthlyIncome: 3500,
+        averageMonthlyExpenses: 3000,
+        averageNetCashFlow: 500,
+        volatility: 20,
+        positiveCashFlowMonths: 3,
+        totalMonths: 3
+      },
+      maria: {
+        averageMonthlyIncome: 2200,
+        averageMonthlyExpenses: 1900,
+        averageNetCashFlow: 300,
+        volatility: 18,
+        positiveCashFlowMonths: 3,
+        totalMonths: 3
+      }
+    };
+    return personas[selectedPersona] || personas.anna;
+  };
   
   const successStories = [
     {
@@ -89,7 +144,7 @@ const NextSteps = ({ loanData }) => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {fundUsageSuggestions.map((suggestion, index) => (
+          {getPersonaSpecificSuggestions().map((suggestion, index) => (
             <div key={index} className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
               <h3 className="font-semibold text-gray-800 mb-1">{suggestion.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{suggestion.description}</p>
@@ -100,49 +155,15 @@ const NextSteps = ({ loanData }) => {
       </div>
       
       <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Financial Tips & Best Practices
-        </h2>
-        
-        <div className="space-y-3">
-          {financialTips.map((tip) => (
-            <div
-              key={tip.id}
-              className="border border-gray-200 rounded-lg overflow-hidden"
-            >
-              <button
-                onClick={() => setExpandedSection(expandedSection === tip.id ? null : tip.id)}
-                className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
-              >
-                <div className="flex items-center">
-                  <span className="font-medium text-gray-800">{tip.title}</span>
-                </div>
-                <svg
-                  className={`w-5 h-5 text-gray-400 transform transition-transform ${
-                    expandedSection === tip.id ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {expandedSection === tip.id && (
-                <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
-                  <p className="text-sm text-gray-700">{tip.content}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        
-        <div className="mt-4 text-center">
-          <button className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
-            View All Resources →
-          </button>
-        </div>
+        <CashFlowTips 
+          cashFlowSummary={getCashFlowData()}
+          persona={localStorage.getItem('selectedPersona')}
+          layout="default"
+          theme="light"
+          maxTips={4}
+          headerText="Personalized Growth Recommendations"
+          className=""
+        />
       </div>
       
       <div className="bg-indigo-50 rounded-lg p-6">

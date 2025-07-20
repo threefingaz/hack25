@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import LoadingSkeleton from './LoadingSkeleton';
+import { getCardClasses, getTextClasses } from '../design-system/utils';
 
 // Lazy load Chart.js components
 const Chart = React.lazy(() => 
@@ -36,10 +37,8 @@ const Chart = React.lazy(() =>
 const CashFlowChart = ({ monthlyFlows }) => {
   if (!monthlyFlows || monthlyFlows.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <div className="text-center py-12">
-          <p className="text-gray-500">No cash flow data available</p>
-        </div>
+      <div className="text-center py-12">
+        <p className={getTextClasses('body')}>No cash flow data available</p>
       </div>
     );
   }
@@ -92,35 +91,7 @@ const CashFlowChart = ({ monthlyFlows }) => {
         }
       },
       tooltip: {
-        callbacks: {
-          label: function(context) {
-            let label = context.dataset.label || '';
-            if (label) {
-              label += ': €';
-            }
-            const value = context.parsed.y;
-            label += new Intl.NumberFormat('de-DE').format(value);
-            
-            // Add net cash flow to tooltip for income
-            if (context.datasetIndex === 0) {
-              const monthData = monthlyFlows[context.dataIndex];
-              const netFlow = monthData.income - monthData.expenses;
-              return [
-                label,
-                `Net Cash Flow: €${new Intl.NumberFormat('de-DE').format(netFlow)}`
-              ];
-            }
-            return label;
-          }
-        },
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        titleColor: 'white',
-        bodyColor: 'white',
-        borderColor: 'rgba(255, 255, 255, 0.1)',
-        borderWidth: 1,
-        padding: 12,
-        displayColors: true,
-        intersect: false
+        enabled: false
       }
     },
     scales: {
@@ -153,21 +124,20 @@ const CashFlowChart = ({ monthlyFlows }) => {
       easing: 'easeInOutQuart'
     },
     interaction: {
-      mode: 'index',
-      intersect: false
+      mode: false
     }
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+    <div>
       <div className="relative" style={{ height: window.innerWidth < 768 ? '300px' : '400px' }}>
         <Suspense fallback={<LoadingSkeleton type="chart" />}>
           <Chart data={data} options={options} />
         </Suspense>
       </div>
-      <div className="mt-4 text-sm text-gray-600 text-center">
+      <div className={"mt-4 text-center " + getTextClasses('caption')}>
         <span className="inline-flex items-center">
-          <span className="w-3 h-3 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+          <span className="w-3 h-3 bg-slate-600 rounded-full mr-2 animate-pulse"></span>
           Latest 3 months of cash flow data
         </span>
       </div>

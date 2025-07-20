@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import TermsAndConditions from '../components/TermsAndConditions';
 import DigitalSignature from '../components/DigitalSignature';
 import SuccessAnimation from '../components/SuccessAnimation';
+import { getButtonClasses, getContainerClasses, getCardClasses, getTextClasses, getBackgroundClasses } from '../design-system/utils';
 
 const AcceptancePage = () => {
   const navigate = useNavigate();
@@ -17,10 +18,17 @@ const AcceptancePage = () => {
   let offer = location.state?.offer;
   if (!offer) {
     try {
-      const mockOfferStr = localStorage.getItem('mockOffer');
-      offer = mockOfferStr ? JSON.parse(mockOfferStr) : null;
+      // First try acceptingOffer (from CreditOfferPage)
+      const acceptingOfferStr = localStorage.getItem('acceptingOffer');
+      if (acceptingOfferStr) {
+        offer = JSON.parse(acceptingOfferStr);
+      } else {
+        // Fallback to creditOffer
+        const creditOfferStr = localStorage.getItem('creditOffer');
+        offer = creditOfferStr ? JSON.parse(creditOfferStr) : null;
+      }
     } catch (e) {
-      console.error('Error parsing mock offer:', e);
+      console.error('Error parsing offer:', e);
       offer = null;
     }
   }
@@ -111,7 +119,7 @@ const AcceptancePage = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-8 text-center max-w-md">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-600 mx-auto mb-4"></div>
           <h2 className="text-xl font-semibold mb-2">Processing Your Loan...</h2>
           <p className="text-gray-600">Finalizing agreement and preparing disbursement</p>
         </div>
@@ -120,7 +128,7 @@ const AcceptancePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={"min-h-screen " + getBackgroundClasses('surface')}>
       {currentStep === 'success' && (
         <SuccessAnimation
           amount={offer.loanAmount}
@@ -129,12 +137,12 @@ const AcceptancePage = () => {
         />
       )}
 
-      <div className="container mx-auto px-4 py-8">
+      <div className={getContainerClasses('py-16')}>
         {/* Progress Steps */}
         <div className="max-w-2xl mx-auto mb-8">
           <div className="flex justify-between items-center">
-            <div className={`flex items-center ${currentStep === 'terms' ? 'text-blue-600' : currentStep === 'signature' || currentStep === 'success' ? 'text-green-600' : 'text-gray-400'}`}>
-              <div className={`rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold ${currentStep === 'terms' ? 'bg-blue-600 text-white' : currentStep === 'signature' || currentStep === 'success' ? 'bg-green-600 text-white' : 'bg-gray-300'}`}>
+            <div className={`flex items-center ${currentStep === 'terms' ? 'text-slate-900' : currentStep === 'signature' || currentStep === 'success' ? 'text-green-600' : 'text-gray-400'}`}>
+              <div className={`rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold ${currentStep === 'terms' ? 'bg-slate-900 text-white' : currentStep === 'signature' || currentStep === 'success' ? 'bg-green-600 text-white' : 'bg-gray-300'}`}>
                 {currentStep === 'signature' || currentStep === 'success' ? '✓' : '1'}
               </div>
               <span className="ml-2 font-medium">Terms & Conditions</span>
@@ -142,8 +150,8 @@ const AcceptancePage = () => {
             
             <div className={`flex-1 h-1 mx-4 ${currentStep === 'signature' || currentStep === 'success' ? 'bg-green-600' : 'bg-gray-300'}`}></div>
             
-            <div className={`flex items-center ${currentStep === 'signature' ? 'text-blue-600' : currentStep === 'success' ? 'text-green-600' : 'text-gray-400'}`}>
-              <div className={`rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold ${currentStep === 'signature' ? 'bg-blue-600 text-white' : currentStep === 'success' ? 'bg-green-600 text-white' : 'bg-gray-300'}`}>
+            <div className={`flex items-center ${currentStep === 'signature' ? 'text-slate-900' : currentStep === 'success' ? 'text-green-600' : 'text-gray-400'}`}>
+              <div className={`rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold ${currentStep === 'signature' ? 'bg-slate-900 text-white' : currentStep === 'success' ? 'bg-green-600 text-white' : 'bg-gray-300'}`}>
                 {currentStep === 'success' ? '✓' : '2'}
               </div>
               <span className="ml-2 font-medium">Digital Signature</span>
@@ -153,24 +161,24 @@ const AcceptancePage = () => {
 
         {/* Loan Summary */}
         <div className="max-w-2xl mx-auto mb-8">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h3 className="font-semibold text-blue-900 mb-2">Loan Summary</h3>
+          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+            <h3 className="font-semibold text-slate-900 mb-2">Weekly Credit Line Summary</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-blue-700">Amount:</span>
+                <span className="text-slate-700">Weekly Amount:</span>
                 <span className="font-semibold ml-2">€{offer.loanAmount?.toLocaleString('de-DE')}</span>
               </div>
               <div>
-                <span className="text-blue-700">Daily Rate:</span>
-                <span className="font-semibold ml-2">{(offer.dailyInterestRate * 100).toFixed(2)}%</span>
+                <span className="text-slate-700">Weekly Rate:</span>
+                <span className="font-semibold ml-2">{offer.weeklyInterestRate || '1.2'}%</span>
               </div>
               <div>
-                <span className="text-blue-700">Daily Payment:</span>
-                <span className="font-semibold ml-2">€{offer.repaymentTerms?.dailyPayment?.toLocaleString('de-DE')}</span>
+                <span className="text-slate-700">Total Weekly Payment:</span>
+                <span className="font-semibold ml-2">€{offer.repaymentTerms?.totalWeeklyPayment?.toLocaleString('de-DE') || ((offer.loanAmount * 1.012).toFixed(2))}</span>
               </div>
               <div>
-                <span className="text-blue-700">Term:</span>
-                <span className="font-semibold ml-2">{offer.repaymentTerms?.numberOfDays} days</span>
+                <span className="text-slate-700">Renewal:</span>
+                <span className="font-semibold ml-2">{offer.repaymentTerms?.renewalDate || 'Every Monday'}</span>
               </div>
             </div>
           </div>
@@ -185,7 +193,7 @@ const AcceptancePage = () => {
           {currentStep === 'signature' && (
             <DigitalSignature 
               onSign={handleSignatureComplete}
-              accountHolder={sessionStorage.getItem('selectedPersonaName') || "Anna Schmidt"}
+              accountHolder={localStorage.getItem('selectedPersonaName') || "Anna Schmidt"}
             />
           )}
         </div>

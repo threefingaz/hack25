@@ -4,28 +4,38 @@ const RepaymentSchedule = ({ loanData }) => {
   const [expandedView, setExpandedView] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   
-  const generateRepaymentSchedule = () => {
+  const generateWeeklyRepaymentSchedule = () => {
     const schedule = [];
     const startDate = new Date(loanData?.acceptedAt || new Date());
-    const totalDays = Math.ceil((loanData?.totalRepayment || 1500) / 50);
+    const loanAmount = loanData?.amount || loanData?.loanAmount || 1500;
+    const weeklyInterestRate = 0.012; // 1.2% weekly
+    const totalWeeks = 8; // Show 8 weeks of schedule
     const currentDate = new Date();
     
-    for (let i = 0; i < totalDays; i++) {
-      const paymentDate = new Date(startDate);
-      paymentDate.setDate(paymentDate.getDate() + i + 1);
+    // Find the next Monday
+    const nextMonday = new Date(startDate);
+    const daysToMonday = (1 - nextMonday.getDay() + 7) % 7;
+    nextMonday.setDate(nextMonday.getDate() + daysToMonday);
+    
+    for (let i = 0; i < totalWeeks; i++) {
+      const paymentDate = new Date(nextMonday);
+      paymentDate.setDate(paymentDate.getDate() + (i * 7));
       
       const isPaid = paymentDate < currentDate;
       const isNext = !isPaid && schedule.filter(p => !p.isPaid).length === 0;
+      const weeklyInterest = loanAmount * weeklyInterestRate;
+      const totalWeeklyPayment = loanAmount + weeklyInterest;
       
       schedule.push({
         id: i + 1,
         date: paymentDate,
-        amount: 50,
-        principal: 48.50,
-        interest: 1.50,
-        balance: Math.max(0, (loanData?.totalRepayment || 1500) - ((i + 1) * 50)),
+        amount: totalWeeklyPayment,
+        principal: loanAmount,
+        interest: weeklyInterest,
+        balance: loanAmount, // Credit line available each week
         isPaid,
         isNext,
+        isSkipped: false, // Can be skipped with 24hr notice
         status: isPaid ? 'Paid' : isNext ? 'Due' : 'Scheduled'
       });
     }
@@ -33,7 +43,7 @@ const RepaymentSchedule = ({ loanData }) => {
     return schedule;
   };
   
-  const schedule = generateRepaymentSchedule();
+  const schedule = generateWeeklyRepaymentSchedule();
   const paidPayments = schedule.filter(p => p.isPaid);
   const upcomingPayments = schedule.filter(p => !p.isPaid);
   const nextPayment = schedule.find(p => p.isNext);
@@ -45,7 +55,10 @@ const RepaymentSchedule = ({ loanData }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-800">Repayment Schedule</h2>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800">Weekly Credit Schedule</h2>
+          <p className="text-sm text-gray-600">Renews every Monday</p>
+        </div>
         <div className="flex space-x-2">
           <button
             onClick={() => setShowCalendar(!showCalendar)}
@@ -57,8 +70,8 @@ const RepaymentSchedule = ({ loanData }) => {
           >
             {showCalendar ? 'List View' : 'Calendar View'}
           </button>
-          <button className="px-3 py-1 text-sm font-medium bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors">
-            Pay Early
+          <button className="px-3 py-1 text-sm font-medium bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 transition-colors">
+            Skip Week
           </button>
         </div>
       </div>
@@ -69,8 +82,7 @@ const RepaymentSchedule = ({ loanData }) => {
             <div>
               <p className="text-sm font-medium text-indigo-900">Next Payment Due</p>
               <p className="text-lg font-bold text-indigo-900">
-                {nextPayment.date.toLocaleDateString('en-GB', { 
-                  weekday: 'short',
+                Monday, {nextPayment.date.toLocaleDateString('en-GB', { 
                   day: 'numeric',
                   month: 'short'
                 })}
@@ -78,7 +90,7 @@ const RepaymentSchedule = ({ loanData }) => {
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold text-indigo-900">€{nextPayment.amount.toFixed(2)}</p>
-              <p className="text-xs text-indigo-700">Auto-debit enabled</p>
+              <p className="text-xs text-indigo-700">Credit renews after payment</p>
             </div>
           </div>
         </div>
@@ -88,15 +100,15 @@ const RepaymentSchedule = ({ loanData }) => {
         <div className="bg-gray-50 rounded-lg p-4">
           <p className="text-sm text-gray-600">Total Paid</p>
           <p className="text-xl font-bold text-gray-800">€{totalPaid.toFixed(2)}</p>
-          <p className="text-xs text-gray-500 mt-1">{paidPayments.length} payments</p>
+          <p className="text-xs text-gray-500 mt-1">{paidPayments.length} weeks</p>
         </div>
         
         <div className="bg-gray-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600">Remaining Balance</p>
+          <p className="text-sm text-gray-600">Weekly Credit Line</p>
           <p className="text-xl font-bold text-gray-800">
-            €{(loanData?.totalRepayment - totalPaid || 0).toFixed(2)}
+            €{(loanData?.amount || loanData?.loanAmount || 1500).toFixed(2)}
           </p>
-          <p className="text-xs text-gray-500 mt-1">{upcomingPayments.length} payments left</p>
+          <p className="text-xs text-gray-500 mt-1">Available each Monday</p>
         </div>
         
         <div className="bg-gray-50 rounded-lg p-4">
@@ -121,7 +133,7 @@ const RepaymentSchedule = ({ loanData }) => {
           </svg>
           <div>
             <p className="text-sm font-medium text-gray-800">•••• •••• •••• 4242</p>
-            <p className="text-xs text-gray-500">Auto-debit active</p>
+            <p className="text-xs text-gray-500">Auto-debit every Monday</p>
           </div>
         </div>
       </div>
@@ -130,7 +142,7 @@ const RepaymentSchedule = ({ loanData }) => {
         <div>
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold text-gray-700">
-              {expandedView ? 'All Payments' : 'Recent & Upcoming Payments'}
+              {expandedView ? 'All Weeks' : 'Recent & Upcoming Weeks'}
             </h3>
             <button
               onClick={() => setExpandedView(!expandedView)}
@@ -141,7 +153,7 @@ const RepaymentSchedule = ({ loanData }) => {
           </div>
           
           <div className="space-y-2 max-h-96 overflow-y-auto">
-            {(expandedView ? schedule : [...paidPayments.slice(-3), ...upcomingPayments.slice(0, 5)])
+            {(expandedView ? schedule : [...paidPayments.slice(-2), ...upcomingPayments.slice(0, 6)])
               .map((payment) => (
                 <div
                   key={payment.id}
@@ -159,10 +171,10 @@ const RepaymentSchedule = ({ loanData }) => {
                     }`} />
                     <div>
                       <p className="text-sm font-medium text-gray-800">
-                        Payment #{payment.id}
+                        Week #{payment.id}
                       </p>
                       <p className="text-xs text-gray-500">
-                        {payment.date.toLocaleDateString('en-GB', { 
+                        Monday, {payment.date.toLocaleDateString('en-GB', { 
                           day: 'numeric',
                           month: 'short',
                           year: 'numeric'
@@ -214,11 +226,14 @@ const RepaymentSchedule = ({ loanData }) => {
                         : payment.isNext
                         ? 'bg-indigo-100 text-indigo-800 font-medium'
                         : 'bg-orange-100 text-orange-800 font-medium'
+                      : date.getDay() === 1 // Monday
+                      ? 'bg-blue-50 text-blue-600'
                       : 'bg-gray-50 text-gray-400'
                   }`}
                 >
                   <div>{date.getDate()}</div>
-                  {payment && <div className="text-xs mt-1">€50</div>}
+                  {payment && <div className="text-xs mt-1">€{payment.amount.toFixed(0)}</div>}
+                  {!payment && date.getDay() === 1 && <div className="text-xs mt-1">MON</div>}
                 </div>
               );
             })}
@@ -227,13 +242,34 @@ const RepaymentSchedule = ({ loanData }) => {
       )}
       
       <div className="mt-6 pt-6 border-t border-gray-200">
-        <div className="flex items-center justify-between text-sm">
-          <p className="text-gray-600">
-            Save €{(remainingInterest * 0.3).toFixed(2)} by paying off early
-          </p>
-          <button className="text-indigo-600 hover:text-indigo-700 font-medium">
-            Calculate Early Payoff →
-          </button>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h4 className="font-medium text-blue-900 mb-2">Weekly Credit Features</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div className="flex items-center">
+              <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-blue-800">Full credit line available each Monday</span>
+            </div>
+            <div className="flex items-center">
+              <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-blue-800">Skip any week with 24hr notice</span>
+            </div>
+            <div className="flex items-center">
+              <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span className="text-blue-800">Automatic renewal every Monday</span>
+            </div>
+            <div className="flex items-center">
+              <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span className="text-blue-800">1.2% weekly interest rate</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ const StepIndicator = ({ currentStep }) => {
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
                   currentStep >= step.id
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-slate-900 text-white'
                     : 'bg-gray-200 text-gray-600'
                 }`}
               >
@@ -29,14 +29,14 @@ const StepIndicator = ({ currentStep }) => {
                 )}
               </div>
               <span className={`mt-2 text-sm font-medium ${
-                currentStep >= step.id ? 'text-blue-600' : 'text-gray-500'
+                currentStep >= step.id ? 'text-slate-900' : 'text-gray-500'
               }`}>
                 {step.name}
               </span>
             </div>
             {index < steps.length - 1 && (
               <div className={`flex-1 h-1 mx-4 transition-all duration-300 ${
-                currentStep > step.id ? 'bg-blue-600' : 'bg-gray-200'
+                currentStep > step.id ? 'bg-slate-900' : 'bg-gray-200'
               }`} />
             )}
           </React.Fragment>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { getTextClasses, getCardClasses, getBackgroundClasses } from '../design-system/utils';
 
 const ImpactMetrics = () => {
   const [animatedValues, setAnimatedValues] = useState({
@@ -83,33 +84,33 @@ const ImpactMetrics = () => {
   }, [hasAnimated]);
 
   return (
-    <div ref={sectionRef} className="bg-gray-50 py-16">
+    <div ref={sectionRef} className={getBackgroundClasses('default') + ' py-16'}>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className={getTextClasses('h2') + ' mb-4'}>
             Helping Businesses Grow Faster
           </h2>
-          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className={getTextClasses('body') + ' text-lg mb-12 max-w-2xl mx-auto'}>
             Real impact delivered to businesses across Europe through instant cash flow analysis and credit decisions.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div className={getCardClasses('elevated', 'md')}>
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <div className="text-4xl font-bold text-blue-600 mb-2">
+                <div className="text-4xl font-bold text-slate-900 mb-2">
                   {formatNumber(animatedValues.timeSaved)} Days
                 </div>
-                <p className="text-gray-600 font-medium">Average time saved</p>
-                <p className="text-sm text-gray-500 mt-1">vs traditional banks</p>
+                <p className={getTextClasses('body') + ' font-medium'}>Average time saved</p>
+                <p className={getTextClasses('caption') + ' mt-1'}>vs traditional banks</p>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div className={getCardClasses('elevated', 'md')}>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,34 +120,34 @@ const ImpactMetrics = () => {
                 <div className="text-4xl font-bold text-green-600 mb-2">
                   {formatNumber(animatedValues.businessesHelped)}
                 </div>
-                <p className="text-gray-600 font-medium">Businesses funded</p>
-                <p className="text-sm text-gray-500 mt-1">this month alone</p>
+                <p className={getTextClasses('body') + ' font-medium'}>Businesses funded</p>
+                <p className={getTextClasses('caption') + ' mt-1'}>this month alone</p>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div className={getCardClasses('elevated', 'md')}>
               <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
                 </div>
-                <div className="text-4xl font-bold text-purple-600 mb-2">
+                <div className="text-4xl font-bold text-slate-900 mb-2">
                   €{formatNumber(animatedValues.economicImpact, true)}M
                 </div>
-                <p className="text-gray-600 font-medium">Economic impact</p>
-                <p className="text-sm text-gray-500 mt-1">created this quarter</p>
+                <p className={getTextClasses('body') + ' font-medium'}>Economic impact</p>
+                <p className={getTextClasses('caption') + ' mt-1'}>created this quarter</p>
               </div>
             </div>
           </div>
 
           <div className="mt-12 flex items-center justify-center space-x-4">
-            <div className="flex items-center text-sm text-gray-500">
+            <div className={"flex items-center " + getTextClasses('caption')}>
               <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
               Updated in real-time
             </div>
             <div className="text-gray-300">•</div>
-            <div className="text-sm text-gray-500">
+            <div className={getTextClasses('caption')}>
               Data from our live platform
             </div>
           </div>
