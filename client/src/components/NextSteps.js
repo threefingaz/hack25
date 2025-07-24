@@ -158,7 +158,7 @@ const NextSteps = ({ loanData }) => {
         <CashFlowTips 
           cashFlowSummary={getCashFlowData()}
           persona={localStorage.getItem('selectedPersona')}
-          layout="default"
+          layout="cards"
           theme="light"
           maxTips={4}
           headerText="Personalized Growth Recommendations"

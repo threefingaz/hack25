@@ -471,11 +471,10 @@ const HomePage = () => {
                   </svg>
                 </div>
                 <h3 className={getTextClasses("h4") + " mb-3"}>
-                  2. Analyze Weekly Patterns
+                  2. Analyze & Get Tips
                 </h3>
                 <p className={getTextClasses("body") + " leading-relaxed"}>
-                  We analyze your weekly cash flow patterns for perfect credit
-                  fit
+                  We analyze your cash flow patterns and provide personalized business tips to optimize your finances
                 </p>
               </div>
               <div className="text-center">
@@ -488,6 +487,118 @@ const HomePage = () => {
                 <p className={getTextClasses("body") + " leading-relaxed"}>
                   Receive your weekly credit line that renews every Monday
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* AI-Powered Business Tips */}
+      <div className={getBackgroundClasses("surface") + " py-16"}>
+        <div className={getContainerClasses()}>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className={getTextClasses("h2") + " mb-4"}>
+                Smart Business Insights
+              </h2>
+              <p className={getTextClasses("body") + " text-lg text-slate-600 max-w-2xl mx-auto"}>
+                Beyond credit decisions, we analyze your transaction patterns to provide personalized tips that help grow your business
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className={getCardClasses("default", "md") + " bg-white"}>
+                <div className="flex items-start">
+                  <div className="bg-lime-100 rounded-full p-3 mr-4 flex-shrink-0">
+                    <svg className="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className={getTextClasses("h4") + " mb-3"}>
+                      Personalized Recommendations
+                    </h3>
+                    <p className={getTextClasses("body") + " leading-relaxed text-slate-600"}>
+                      Get tailored advice based on your spending patterns - from optimizing supplier payments to identifying cost-saving opportunities
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={getCardClasses("default", "md") + " bg-white"}>
+                <div className="flex items-start">
+                  <div className="bg-lime-100 rounded-full p-3 mr-4 flex-shrink-0">
+                    <svg className="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className={getTextClasses("h4") + " mb-3"}>
+                      Cash Flow Optimization
+                    </h3>
+                    <p className={getTextClasses("body") + " leading-relaxed text-slate-600"}>
+                      Learn how to improve your weekly cash flow cycles with actionable insights from your transaction history
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={getCardClasses("default", "md") + " bg-white"}>
+                <div className="flex items-start">
+                  <div className="bg-lime-100 rounded-full p-3 mr-4 flex-shrink-0">
+                    <svg className="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className={getTextClasses("h4") + " mb-3"}>
+                      Revenue Growth Tips
+                    </h3>
+                    <p className={getTextClasses("body") + " leading-relaxed text-slate-600"}>
+                      Discover peak sales periods and receive suggestions to maximize revenue during your strongest business days
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={getCardClasses("default", "md") + " bg-white"}>
+                <div className="flex items-start">
+                  <div className="bg-lime-100 rounded-full p-3 mr-4 flex-shrink-0">
+                    <svg className="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className={getTextClasses("h4") + " mb-3"}>
+                      Risk Management
+                    </h3>
+                    <p className={getTextClasses("body") + " leading-relaxed text-slate-600"}>
+                      Identify potential cash flow risks and get early warnings about irregular spending patterns
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={getCardClasses("outline", "lg") + " mt-12 bg-gradient-to-r from-slate-50 to-lime-50 border-lime-200"}>
+              <div className="text-center">
+                <h3 className={getTextClasses("h4") + " mb-4"}>
+                  See Your Tips in Action
+                </h3>
+                <p className={getTextClasses("body") + " mb-6 text-slate-600"}>
+                  Each demo persona receives different personalized tips based on their unique business patterns
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 text-sm">
+                  <div className="bg-white px-4 py-2 rounded-full border border-slate-200">
+                    <span className="font-medium">Anna:</span> Weekend sales optimization
+                  </div>
+                  <div className="bg-white px-4 py-2 rounded-full border border-slate-200">
+                    <span className="font-medium">Mehmet:</span> Inventory cycle management
+                  </div>
+                  <div className="bg-white px-4 py-2 rounded-full border border-slate-200">
+                    <span className="font-medium">Maria:</span> Seasonal planning strategies
+                  </div>
+                </div>
               </div>
             </div>
           </div>
